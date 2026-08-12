@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - Football Fashion</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo">Football Fashion</a>
+            <nav class="navbar">
+                <a href="../index.html">Trang chủ</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="favorites.html">Yêu thích</a>
+                <a href="cart.html">Giỏ hàng</a>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html">Đăng nhập</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-detail-page">
+        <div class="container">
+
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a>
+                <span>/</span>
+                <a href="products.html">Sản phẩm</a>
+                <span>/</span>
+                <span id="breadcrumbTitle">Chi tiết sản phẩm</span>
+            </div>
+
+            <section class="product-detail">
+
+                <div class="product-image">
+                    <img id="productImage" src="../images/products/default.jpg" alt="Sản phẩm">
+                </div>
+
+                <div class="product-info">
+                    <p id="productCategory" class="product-category">Áo đấu</p>
+                    <h1 id="productName">Tên sản phẩm</h1>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <span>(0 đánh giá)</span>
+                    </div>
+
+                    <p id="productPrice" class="product-price">0đ</p>
+
+                    <div class="product-description">
+                        <h3>Mô tả sản phẩm</h3>
+                        <p id="productDescription">Mô tả sản phẩm sẽ được hiển thị tại đây.</p>
+                    </div>
+
+                    <div class="product-option">
+                        <h3>Chọn size</h3>
+                        <div class="size-options" id="sizeOptionsContainer">
+                            <button type="button" class="size-btn" data-size="S">S</button>
+                            <button type="button" class="size-btn" data-size="M">M</button>
+                            <button type="button" class="size-btn" data-size="L">L</button>
+                            <button type="button" class="size-btn" data-size="XL">XL</button>
+                        </div>
+                    </div>
+
+                    <div class="product-option">
+                        <h3>Số lượng</h3>
+                        <div class="quantity">
+                            <button type="button" id="decreaseBtn">−</button>
+                            <span id="quantity">1</span>
+                            <button type="button" id="increaseBtn">+</button>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button type="button" id="addToCartBtn" class="add-to-cart-btn">
+                            Thêm vào giỏ hàng
+                        </button>
+                        <button type="button" id="buyNowBtn" class="buy-now-btn">
+                            Mua ngay
+                        </button>
+                        <button type="button" id="favoriteBtn" class="favorite-btn" title="Thêm vào yêu thích">
+                            ♡
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="related-products">
+                <div class="section-title">
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
+                <div id="relatedProducts" class="product-grid"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Football Fashion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/product-detail.js"></script>
+
+</body>
+</html>

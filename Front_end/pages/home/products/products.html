@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Football Fashion - Products</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/products.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-container">
+
+            <a href="../index.html" class="logo">
+                Football Fashion
+            </a>
+
+            <nav class="navbar">
+                <a href="../index.html">Trang chủ</a>
+                <a href="products.html" class="active">Sản phẩm</a>
+                <a href="favorites.html">Yêu thích</a>
+                <a href="cart.html">Giỏ hàng</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html">Đăng nhập</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- PRODUCTS PAGE -->
+    <main class="products-page">
+
+        <div class="container">
+
+            <!-- PAGE TITLE -->
+            <section class="page-header">
+                <h1>Sản phẩm</h1>
+                <p>Khám phá các sản phẩm thời trang bóng đá</p>
+            </section>
+
+
+            <!-- FILTER + SORT -->
+            <section class="products-toolbar">
+
+                <div class="filter-group">
+
+                    <label for="categoryFilter">
+                        Danh mục
+                    </label>
+
+                    <select id="categoryFilter">
+                        <option value="all">Tất cả</option>
+                        <option value="jersey">Áo đấu</option>
+                        <option value="tshirt">Áo thun</option>
+                        <option value="jacket">Áo khoác</option>
+                        <option value="short">Quần</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="priceFilter">
+                        Giá
+                    </label>
+
+                    <select id="priceFilter">
+                        <option value="all">Tất cả mức giá</option>
+                        <option value="under500">Dưới 500.000đ</option>
+                        <option value="500-1000">500.000đ - 1.000.000đ</option>
+                        <option value="over1000">Trên 1.000.000đ</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="sortFilter">
+                        Sắp xếp
+                    </label>
+
+                    <select id="sortFilter">
+                        <option value="default">Mặc định</option>
+                        <option value="price-asc">Giá thấp → cao</option>
+                        <option value="price-desc">Giá cao → thấp</option>
+                        <option value="name-asc">Tên A → Z</option>
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRODUCT COUNT -->
+            <div class="products-info">
+                <p>
+                    Có <span id="productCount">0</span> sản phẩm
+                </p>
+            </div>
+
+
+            <!-- PRODUCT LIST -->
+            <section class="products-section">
+
+                <div
+                    id="productGrid"
+                    class="product-grid">
+                </div>
+
+
+                <!-- NO PRODUCT -->
+                <div
+                    id="noProducts"
+                    class="no-products"
+                    style="display: none;">
+
+                    <h2>Không tìm thấy sản phẩm</h2>
+
+                    <p>
+                        Hãy thử thay đổi bộ lọc.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 Football Fashion. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../data/products.js"></script>
+    <script src="../js/products.js"></script>
+
+</body>
+</html>
