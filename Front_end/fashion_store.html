@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm - Football Fashion Store</title>
+    <link rel="stylesheet" href="../assets/css/products.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">Football Fashion</a>
+            <nav class="nav-menu">
+                <a href="../index.html">Trang chủ</a>
+                <a href="fashion_store.html" class="active">Sản phẩm</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container catalog-layout">
+            
+            <aside class="filter-sidebar">
+                <h2>Bộ lọc sản phẩm</h2>
+
+                <div class="filter-group">
+                    <h3>Kích thước (Size)</h3>
+                    <label><input type="checkbox" name="size" value="XS"> XS</label>
+                    <label><input type="checkbox" name="size" value="S"> S</label>
+                    <label><input type="checkbox" name="size" value="M"> M</label>
+                    <label><input type="checkbox" name="size" value="L"> L</label>
+                    <label><input type="checkbox" name="size" value="XL"> XL</label>
+                    <label><input type="checkbox" name="size" value="XXL"> XXL</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Màu sắc</h3>
+                    <label><input type="checkbox" name="color" value="Đen"> Đen</label>
+                    <label><input type="checkbox" name="color" value="Trắng"> Trắng</label>
+                    <label><input type="checkbox" name="color" value="Đỏ"> Đỏ</label>
+                    <label><input type="checkbox" name="color" value="Xanh"> Xanh</label>
+                    <label><input type="checkbox" name="color" value="Vàng"> Vàng</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Khoảng giá</h3>
+                    <input type="range" id="priceFilter" min="0" max="5000000" step="100000" value="5000000">
+                    <p>Giá tối đa: <span id="priceValue">5.000.000đ</span></p>
+                </div>
+            </aside>
+
+            <section class="product-catalog-section">
+                <h1>Football Products Catalog</h1>
+
+                <div class="catalog-toolbar">
+                    <p>Hiển thị <span id="productCount">0</span> sản phẩm</p>
+                    <div class="sort-box">
+                        <label for="sortProducts">Sắp xếp:</label>
+                        <select id="sortProducts">
+                            <option value="default">Mặc định</option>
+                            <option value="price-low">Giá: Thấp đến Cao</option>
+                            <option value="price-high">Giá: Cao đến Thấp</option>
+                            <option value="name">Tên: A - Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="productGrid" class="product-grid"></div>
+
+                <div id="noProducts" class="no-products" hidden>
+                    <p>Không tìm thấy sản phẩm nào phù hợp với bộ lọc của bạn.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Football Fashion Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/products.js"></script>
+</body>
+</html>

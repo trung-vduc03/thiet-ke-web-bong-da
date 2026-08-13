@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE HUB | Giỏ Hàng</title>
+    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+    <link rel="stylesheet" href="../../styles/cart-checkout.css">
+</head>
+<body>
+    <div id="app-header"></div>
+
+    <main class="container">
+        <!-- Thẻ H1 duy nhất -->
+        <h1 class="page-title">Giỏ Hàng Của Bạn</h1>
+        
+        <div class="cart-grid" id="cartContent">
+            <div>
+                <div class="cart-table-wrapper">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="emptyCartMsg" class="empty-box hidden">
+                    <p class="empty-text">Giỏ hàng của bạn đang trống!</p>
+                    <a href="../home/products/products.html" class="btn-primary btn-empty">Khám phá sản phẩm</a>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h2 class="section-title">Tóm Tắt Đơn Hàng</h2>
+                <div class="summary-row">
+                    <span>Tạm tính:</span>
+                    <strong id="subTotal">0đ</strong>
+                </div>
+                <div class="summary-row">
+                    <span>Phí vận chuyển:</span>
+                    <span>30.000đ</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Tổng tiền:</span>
+                    <strong id="grandTotal" class="price-text">0đ</strong>
+                </div>
+                <a href="checkout.html" id="btnCheckout" class="btn-primary">Tiến Hành Thanh Toán</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="../../app.js"></script>
+    <script src="./cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE HUB | Danh Sách Yêu Thích</title>
+    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+    <link rel="stylesheet" href="../../styles/cart-checkout.css">
+</head>
+<body>
+    <div id="app-header"></div>
+
+    <main class="container">
+        <!-- Thẻ H1 duy nhất -->
+        <h1 class="page-title">Sản Phẩm Yêu Thích</h1>
+        
+        <div id="wishlistGrid" class="wishlist-grid"></div>
+
+        <div id="emptyWishlistMsg" class="empty-box hidden">
+            <p class="empty-text">Danh sách yêu thích của bạn đang trống!</p>
+            <a href="../home/products/products.html" class="btn-primary btn-empty">Xem các sản phẩm</a>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="../../app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", renderWishlist);
+
+        function renderWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const grid = document.getElementById("wishlistGrid");
+            const emptyMsg = document.getElementById("emptyWishlistMsg");
+
+            if (wishlist.length === 0) {
+                grid.classList.add("hidden");
+                emptyMsg.classList.remove("hidden");
+                return;
+            }
+
+            grid.classList.remove("hidden");
+            emptyMsg.classList.add("hidden");
+
+            grid.innerHTML = wishlist.map(item => `
+                <div class="wishlist-card">
+                    <img src="${item.image}" alt="${item.name}" class="wishlist-thumb">
+                    <h2>${item.name}</h2>
+                    <p class="price-text">${Number(item.price).toLocaleString("vi-VN")}đ</p>
+                    <button onclick="removeWishlist(${item.id})" class="btn-delete">Xóa khỏi Yêu thích</button>
+                </div>
+            `).join('');
+        }
+
+        function removeWishlist(id) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            wishlist = wishlist.filter(item => item.id !== id);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+            renderWishlist();
+        }
+    </script>
+</body>
+</html>
