@@ -1,195 +1,342 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Tiết Sản Phẩm | StyleHub</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/products.css">
-    <link rel="stylesheet" href="../styles/product-detail.css">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Chi tiết sản phẩm | Football Fashion</title>
+
+    <meta
+        name="description"
+        content="Xem chi tiết sản phẩm thời trang bóng đá tại Football Fashion."
+    >
+
+    <link rel="stylesheet" href="../../../styles/style.css">
+    <link rel="stylesheet" href="./product-detail.css">
+
 </head>
+
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container nav-container">
-            <a href="../index.html" class="logo">
-                <h2>STYLE<span>HUB</span></h2>
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <a
+            href="../../../../index.html"
+            class="logo">
+            Football Fashion
+        </a>
+
+
+        <nav
+            class="main-nav"
+            aria-label="Điều hướng chính">
+
+            <a href="../../../../index.html">
+                Trang chủ
             </a>
 
-            <nav class="navbar" aria-label="Điều hướng chính">
-                <ul>
-                    <li><a href="../index.html">Trang chủ</a></li>
-                    <li><a href="products.html" class="active">Sản phẩm</a></li>
-                    <li>
-                        <a href="favorites.html">
-                            Yêu thích <span id="wishlistCountBadge" class="badge">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <a href="products.html">
+                Sản phẩm
+            </a>
 
-            <div class="header-actions">
-                <a href="cart.html" class="icon-btn" aria-label="Giỏ hàng">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="cartCountBadge" class="badge">0</span>
-                </a>
-            </div>
-        </div>
-    </header>
+            <a href="../favorites.html">
+                Yêu thích
+            </a>
+
+            <a href="../cart.html">
+                Giỏ hàng
+            </a>
+
+        </nav>
 
 
-    <!-- Main -->
-    <main class="product-detail-page">
+        <a
+            href="../login.html"
+            class="login-link">
+            Đăng nhập
+        </a>
 
-        <div class="container">
+    </div>
 
-            <!-- Breadcrumb -->
-            <nav class="breadcrumb" aria-label="Breadcrumb">
-                <a href="../index.html">Trang chủ</a>
-                <span class="breadcrumb-separator">/</span>
-                <a href="products.html">Sản phẩm</a>
-                <span class="breadcrumb-separator">/</span>
-                <span id="breadcrumbTitle" class="breadcrumb-active">Đang tải...</span>
-            </nav>
+</header>
 
-            <section class="product-detail" aria-label="Chi tiết sản phẩm">
-                
-                <div class="product-gallery">
 
-                    <div class="product-image-main">
-                        <button type="button" id="prevImageBtn" class="gallery-btn gallery-prev" aria-label="Ảnh trước">&#10094;</button>
-                        <img id="productImage" src="https://via.placeholder.com/500x500?text=Loading..." alt="Ảnh sản phẩm">
-                        <button type="button" id="nextImageBtn" class="gallery-btn gallery-next" aria-label="Ảnh tiếp theo">&#10095;</button>
-                    </div>
-                    <div id="productThumbnails" class="product-thumbnails"></div>
+<main class="detail-page">
+
+    <div class="container">
+
+
+        <nav
+            class="breadcrumb"
+            aria-label="Breadcrumb">
+
+            <a href="../../../../index.html">
+                Trang chủ
+            </a>
+
+            <span>/</span>
+
+            <a href="products.html">
+                Sản phẩm
+            </a>
+
+            <span>/</span>
+
+            <span id="breadcrumbTitle">
+                Chi tiết sản phẩm
+            </span>
+
+        </nav>
+
+
+        <section
+            class="product-detail"
+            aria-label="Chi tiết sản phẩm">
+
+
+            <!-- GALLERY -->
+
+            <div class="product-gallery">
+
+                <div class="main-image-wrapper">
+
+                    <button
+                        type="button"
+                        id="prevImageBtn"
+                        class="gallery-button"
+                        aria-label="Ảnh trước">
+                        &#10094;
+                    </button>
+
+
+                    <img
+                        id="productImage"
+                        src=""
+                        alt="Ảnh sản phẩm"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="nextImageBtn"
+                        class="gallery-button"
+                        aria-label="Ảnh tiếp theo">
+                        &#10095;
+                    </button>
+
                 </div>
 
 
-                <!-- Product Information -->
-                <div class="product-info">
-                    <p id="productCategory" class="product-category">Đang tải danh mục...</p>
-                    
-                    <h1 id="productName">Đang tải tên sản phẩm...</h1>
+                <div
+                    id="productThumbnails"
+                    class="product-thumbnails">
+                </div>
+
+            </div>
 
 
-                    <!-- Rating -->
-                    <div class="product-rating">
-                        <span class="stars">★★★★★</span>
-                        <span id="productRating" class="rating-text">(5.0 đánh giá)</span>
-                        <span class="divider">|</span>
-                        <span class="stock-status in-stock">Còn hàng</span>
-                    </div>
+            <!-- INFORMATION -->
 
-                    <div class="product-price-box">
-                        <span id="productPrice" class="product-price">0đ</span>
-                        <span id="productOriginalPrice" class="product-original-price"></span>
-                    </div>
+            <div class="product-info">
+
+                <p
+                    id="productCategory"
+                    class="product-category">
+                    Áo đấu
+                </p>
 
 
-                    <!-- Price -->
-                    <p
-                        id="productPrice"
-                        class="product-price">
-                        0đ
+                <h1 id="productName">
+                    Đang tải sản phẩm...
+                </h1>
+
+
+                <div class="rating">
+
+                    <span class="stars">
+                        ★★★★★
+                    </span>
+
+                    <span id="productRating">
+                        (0 đánh giá)
+                    </span>
+
+                    <span
+                        id="stockStatus"
+                        class="stock-status">
+                        Còn hàng
+                    </span>
+
+                </div>
+
+
+                <p
+                    id="productPrice"
+                    class="detail-price">
+                    0đ
+                </p>
+
+
+                <div class="description">
+
+                    <h2>Mô tả sản phẩm</h2>
+
+                    <p id="productDescription">
+                        Đang tải thông tin sản phẩm...
                     </p>
 
-
-                    <!-- Description -->
-                    <div class="product-description">
-
-                        <h2>Mô tả sản phẩm</h2>
-                        <p id="productDescription">Đang tải nội dung chi tiết...</p>
-                    </div>
-
-
-                    <!-- Size -->
-                    <div class="product-option">
-                        <div class="option-header">
-                            <h2>Chọn Size</h2>
-                            <span id="selectedSizeLabel" class="selected-label"></span>
-                        </div>
-                        <div id="sizeOptionsContainer" class="size-options"></div>
-                        <p id="sizeError" class="option-error"></p>
-                    </div>
-
-
-                    <!-- Color -->
-                    <div class="product-option">
-                        <div class="option-header">
-                            <h2>Chọn Màu sắc</h2>
-                            <span id="selectedColorLabel" class="selected-label"></span>
-                        </div>
-                        <div id="colorOptionsContainer" class="color-options"></div>
-                        <p id="colorError" class="option-error"></p>
-                    </div>
-
-
-                    <!-- Quantity -->
-                    <div class="product-option">
-
-                        <h2>Số lượng</h2>
-                        <div class="quantity-box">
-                            <button type="button" id="decreaseBtn" aria-label="Giảm số lượng">−</button>
-                            <span id="quantity">1</span>
-                            <button type="button" id="increaseBtn" aria-label="Tăng số lượng">+</button>
-                        </div>
-
-                    </div>
-
-
-                    <!-- Actions -->
-                    <div class="product-actions">
-                        <button type="button" id="buyNowBtn" class="btn btn-buy-now">
-                            <i class="fa-solid fa-bolt"></i> Mua Ngay
-                        </button>
-                        <button type="button" id="addToCartBtn" class="btn btn-add-cart">
-                            <i class="fa-solid fa-cart-shopping"></i> Thêm Vào Giỏ Hàng
-                        </button>
-                        <button type="button" id="toggleWishlistBtn" class="btn btn-wishlist" aria-label="Thêm yêu thích">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-
-                    </div>
-
-                    <p id="cartMessage" class="cart-message"></p>
                 </div>
 
-            </section>
 
+                <!-- SIZE -->
 
-            <!-- Related Products -->
-            <section class="related-products">
+                <div class="option-section">
 
-                <div class="section-title">
-                    <h2>Sản phẩm liên quan</h2>
+                    <h2>Chọn size</h2>
+
+                    <div
+                        id="sizeOptionsContainer"
+                        class="size-options">
+                    </div>
+
+                    <p
+                        id="sizeError"
+                        class="error-message">
+                    </p>
+
                 </div>
-                <div id="relatedProducts" class="product-grid"></div>
-            </section>
-
-        </div>
-
-    </main>
 
 
-    <!-- Footer -->
-    <footer class="footer">
+                <!-- COLOR -->
 
-        <div class="container">
-            <p>© 2026 StyleHub - Football Fashion. All rights reserved.</p>
-        </div>
+                <div class="option-section">
 
-    </footer>
+                    <h2>Chọn màu</h2>
+
+                    <div
+                        id="colorOptionsContainer"
+                        class="color-options">
+                    </div>
+
+                    <p
+                        id="colorError"
+                        class="error-message">
+                    </p>
+
+                </div>
 
 
-    <!-- JavaScript -->
-    <script src="../js/product-detail.js"></script>
+                <!-- QUANTITY -->
+
+                <div class="option-section">
+
+                    <h2>Số lượng</h2>
+
+                    <div class="quantity-control">
+
+                        <button
+                            type="button"
+                            id="decreaseBtn"
+                            aria-label="Giảm số lượng">
+                            −
+                        </button>
+
+                        <span
+                            id="quantity"
+                            aria-live="polite">
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            id="increaseBtn"
+                            aria-label="Tăng số lượng">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <div class="detail-actions">
+
+                    <button
+                        type="button"
+                        id="addToCartBtn"
+                        class="add-cart-button">
+                        Thêm vào giỏ hàng
+                    </button>
+
+                    <button
+                        type="button"
+                        id="toggleWishlistBtn"
+                        class="wishlist-button">
+                        ♥ Thêm vào yêu thích
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="cartMessage"
+                    class="cart-message"
+                    aria-live="polite">
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RELATED -->
+
+        <section
+            class="related-section"
+            aria-labelledby="relatedTitle">
+
+            <h2 id="relatedTitle">
+                Sản phẩm liên quan
+            </h2>
+
+            <div
+                id="relatedProducts"
+                class="related-grid">
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <p>
+            © 2026 Football Fashion. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="./product-detail.js"></script>
 
 </body>
+
 </html>
-```
