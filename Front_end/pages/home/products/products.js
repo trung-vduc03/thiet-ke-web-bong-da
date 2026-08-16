@@ -1,500 +1,182 @@
-"use strict";
+// products.js - Xử lý tải dữ liệu, bộ lọc và giỏ hàng
+document.addEventListener("DOMContentLoaded", () => {
+    let allProducts = [];
+    let filteredProducts = [];
 
-let allProducts = [];
-let filteredProducts = [];
+    const productGrid = document.getElementById("productGrid");
+    const productCount = document.getElementById("productCount");
+    const noProducts = document.getElementById("noProducts");
+    const searchInput = document.getElementById("searchInput");
+    const priceFilter = document.getElementById("priceFilter");
+    const priceValue = document.getElementById("priceValue");
+    const sortSelect = document.getElementById("sortProducts");
+    const resetFilterBtn = document.getElementById("resetFilterBtn");
+    const sizeCheckboxes = document.querySelectorAll('input[name="size"]');
+    const colorCheckboxes = document.querySelectorAll('input[name="color"]');
+    const cartBadge = document.getElementById("cartCountBadge");
 
-/* =========================
-   DOM ELEMENTS
-========================= */
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartBadge) cartBadge.textContent = total;
+    }
 
-const productGrid = document.getElementById("productGrid");
-const productCount = document.getElementById("productCount");
-const noProducts = document.getElementById("noProducts");
+    async function loadProducts() {
+        const candidatePaths = [
+            "../../data/products.json",
+            "../data/products.json",
+            "./data/products.json",
+            "/data/products.json"
+        ];
 
-const priceFilter = document.getElementById("priceFilter");
-const priceValue = document.getElementById("priceValue");
-
-const sortProducts = document.getElementById("sortProducts");
-
-const sizeFilters = document.querySelectorAll(
-    'input[name="size"]'
-);
-
-const colorFilters = document.querySelectorAll(
-    'input[name="color"]'
-);
-
-
-/* =========================
-   FORMAT PRICE
-========================= */
-
-function formatPrice(price) {
-    return Number(price).toLocaleString("vi-VN") + "đ";
-}
-
-
-/* =========================
-   LOAD PRODUCTS
-========================= */
-
-async function loadProducts() {
-
-    try {
-
-        const response = await fetch("/data/products.json");
-
-        if (!response.ok) {
-            throw new Error(
-                "Không thể tải dữ liệu sản phẩm."
-            );
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path);
+                if (res.ok) {
+                    allProducts = await res.json();
+                    filteredProducts = [...allProducts];
+                    applyFilters();
+                    return;
+                }
+            } catch (err) {
+                // Thử path tiếp theo
+            }
         }
 
-        allProducts = await response.json();
-
-        filteredProducts = [...allProducts];
-
-        updatePriceValue();
-
-        renderProducts();
-
-    } catch (error) {
-
-        console.error(
-            "Lỗi tải sản phẩm:",
-            error
-        );
-
-        productGrid.innerHTML = `
-            <p class="no-products">
-                Không thể tải danh sách sản phẩm.
-            </p>
-        `;
-
-        productCount.textContent = "0";
-    }
-}
-
-
-/* =========================
-   RENDER PRODUCTS
-========================= */
-
-function renderProducts() {
-
-    productGrid.innerHTML = "";
-
-    productCount.textContent =
-        filteredProducts.length;
-
-
-    if (filteredProducts.length === 0) {
-
-        noProducts.hidden = false;
-
-        return;
+        if (productGrid) {
+            productGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #e63946;">Không thể tải tệp products.json. Vui lòng mở bằng Live Server trong VS Code.</p>`;
+        }
     }
 
-    noProducts.hidden = true;
-
-
-    filteredProducts.forEach((product) => {
-
-        const card =
-            createProductCard(product);
-
-        productGrid.appendChild(card);
-
-    });
-}
-
-
-/* =========================
-   CREATE PRODUCT CARD
-========================= */
-
-function createProductCard(product) {
-
-    const article =
-        document.createElement("article");
-
-    article.className =
-        "product-card";
-
-
-    /* =====================
-       IMAGE
-    ===================== */
-
-    const imageBox =
-        document.createElement("div");
-
-    imageBox.className =
-        "product-img-box";
-
-
-    const image =
-        document.createElement("img");
-
-    image.src =
-        convertImagePath(product.image);
-
-    image.alt =
-        product.name;
-
-    image.loading =
-        "lazy";
-
-
-    image.addEventListener(
-        "error",
-        () => {
-
-            image.src =
-                "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
-
-        },
-        { once: true }
-    );
-
-
-    imageBox.appendChild(image);
-
-
-    /* =====================
-       PRODUCT INFO
-    ===================== */
-
-    const info =
-        document.createElement("div");
-
-    info.className =
-        "product-card-info";
-
-
-    /* PRODUCT NAME */
-
-    const title =
-        document.createElement("a");
-
-    title.className =
-        "product-title";
-
-    title.href =
-        `product-detail.html?id=${product.id}`;
-
-    title.textContent =
-        product.name;
-
-
-    /* PRICE */
-
-    const price =
-        document.createElement("p");
-
-    price.className =
-        "product-price";
-
-    price.textContent =
-        formatPrice(product.price);
-
-
-    /* =====================
-       DETAIL BUTTON
-    ===================== */
-
-    const actions =
-        document.createElement("div");
-
-    actions.className =
-        "card-actions";
-
-
-    const detailLink =
-        document.createElement("a");
-
-    detailLink.className =
-        "btn-detail";
-
-    detailLink.href =
-        `product-detail.html?id=${product.id}`;
-
-    detailLink.textContent =
-        "Xem chi tiết";
-
-
-    actions.appendChild(
-        detailLink
-    );
-
-
-    /* =====================
-       APPEND
-    ===================== */
-
-    info.appendChild(title);
-
-    info.appendChild(price);
-
-    info.appendChild(actions);
-
-    article.appendChild(imageBox);
-
-    article.appendChild(info);
-
-
-    return article;
-}
-
-
-/* =========================
-   IMAGE PATH
-========================= */
-
-function convertImagePath(imagePath) {
-
-    if (!imagePath) {
-
-        return "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+    function renderProducts(products) {
+        if (!productGrid) return;
+        productGrid.innerHTML = "";
+
+        if (products.length === 0) {
+            if (noProducts) noProducts.style.display = "block";
+            if (productCount) productCount.textContent = "0 sản phẩm";
+            return;
+        }
+
+        if (noProducts) noProducts.style.display = "none";
+        if (productCount) productCount.textContent = `Hiển thị ${products.length} sản phẩm`;
+
+        products.forEach((product) => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+
+            const formattedPrice = new Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND"
+            }).format(product.price);
+
+            const imageSrc = product.image || (product.images && product.images[0]) || "https://via.placeholder.com/300x300?text=Fashion+Jersey";
+
+            card.innerHTML = `
+                <div class="product-card-img-wrap">
+                    <a href="product-detail.html?id=${product.id}">
+                        <img src="${imageSrc}" alt="${product.name}" class="product-card-img" onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
+                    </a>
+                </div>
+                <div class="product-card-body">
+                    <span class="product-card-category">${product.category || "Trang phục"}</span>
+                    <h3 class="product-card-title">
+                        <a href="product-detail.html?id=${product.id}">${product.name}</a>
+                    </h3>
+                    <div class="product-card-price">${formattedPrice}</div>
+                    <button type="button" class="product-card-btn" data-id="${product.id}">
+                        Xem chi tiết
+                    </button>
+                </div>
+            `;
+
+            card.querySelector(".product-card-btn").addEventListener("click", () => {
+                window.location.href = `product-detail.html?id=${product.id}`;
+            });
+
+            productGrid.appendChild(card);
+        });
     }
 
+    function applyFilters() {
+        const selectedSizes = Array.from(sizeCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value.toUpperCase());
 
-    /*
-     * JSON:
-     * ../assets/images/clubs/...
-     *
-     * Chuyển thành:
-     * /Front_end/assets/images/clubs/...
-     */
+        const selectedColors = Array.from(colorCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value.toLowerCase());
 
-    if (
-        imagePath.startsWith(
-            "../assets/"
-        )
-    ) {
+        const maxPrice = priceFilter ? parseInt(priceFilter.value, 10) : Infinity;
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
 
-        return "/Front_end/" +
-            imagePath.replace(
-                "../",
-                ""
-            );
-    }
+        filteredProducts = allProducts.filter((product) => {
+            const matchSize = selectedSizes.length === 0 || 
+                (product.sizes && product.sizes.some(s => selectedSizes.includes(s.toUpperCase())));
 
+            const matchColor = selectedColors.length === 0 || 
+                (product.colors && product.colors.some(c => selectedColors.includes(c.toLowerCase())));
 
-    if (
-        imagePath.startsWith(
-            "./assets/"
-        )
-    ) {
+            const matchPrice = product.price <= maxPrice;
+            const matchQuery = product.name.toLowerCase().includes(query) || 
+                               (product.category && product.category.toLowerCase().includes(query));
 
-        return "/Front_end/" +
-            imagePath.replace(
-                "./",
-                ""
-            );
-    }
-
-
-    return imagePath;
-}
-
-
-/* =========================
-   FILTER PRODUCTS
-========================= */
-
-function applyFilters() {
-
-    const selectedSizes =
-        [...sizeFilters]
-            .filter(
-                (checkbox) =>
-                    checkbox.checked
-            )
-            .map(
-                (checkbox) =>
-                    checkbox.value
-            );
-
-
-    const selectedColors =
-        [...colorFilters]
-            .filter(
-                (checkbox) =>
-                    checkbox.checked
-            )
-            .map(
-                (checkbox) =>
-                    checkbox.value
-            );
-
-
-    const maxPrice =
-        Number(priceFilter.value);
-
-
-    filteredProducts =
-        allProducts.filter(
-            (product) => {
-
-
-                /* SIZE */
-
-                const sizeMatch =
-                    selectedSizes.length === 0 ||
-                    selectedSizes.some(
-                        (size) =>
-                            Array.isArray(
-                                product.sizes
-                            ) &&
-                            product.sizes.includes(
-                                size
-                            )
-                    );
-
-
-                /* COLOR */
-
-                const colorMatch =
-                    selectedColors.length === 0 ||
-                    selectedColors.includes(
-                        String(
-                            product.color
-                        ).toLowerCase()
-                    );
-
-
-                /* PRICE */
-
-                const priceMatch =
-                    Number(
-                        product.price
-                    ) <= maxPrice;
-
-
-                return (
-                    sizeMatch &&
-                    colorMatch &&
-                    priceMatch
-                );
-            }
-        );
-
-
-    applySorting();
-
-    renderProducts();
-}
-
-
-/* =========================
-   SORT PRODUCTS
-========================= */
-
-function applySorting() {
-
-    const sortType =
-        sortProducts.value;
-
-
-    if (
-        sortType ===
-        "price-low"
-    ) {
-
-        filteredProducts.sort(
-            (a, b) =>
-                Number(a.price) -
-                Number(b.price)
-        );
-    }
-
-
-    if (
-        sortType ===
-        "price-high"
-    ) {
-
-        filteredProducts.sort(
-            (a, b) =>
-                Number(b.price) -
-                Number(a.price)
-        );
-    }
-}
-
-
-/* =========================
-   PRICE VALUE
-========================= */
-
-function updatePriceValue() {
-
-    priceValue.textContent =
-        formatPrice(
-            priceFilter.value
-        );
-}
-
-
-/* =========================
-   FILTER EVENTS
-========================= */
-
-sizeFilters.forEach(
-    (checkbox) => {
-
-        checkbox.addEventListener(
-            "change",
-            applyFilters
-        );
-
-    }
-);
-
-
-colorFilters.forEach(
-    (checkbox) => {
-
-        checkbox.addEventListener(
-            "change",
-            applyFilters
-        );
-
-    }
-);
-
-
-priceFilter.addEventListener(
-    "input",
-    () => {
-
-        updatePriceValue();
-
-        applyFilters();
-
-    }
-);
-
-
-/* =========================
-   SORT EVENT
-========================= */
-
-sortProducts.addEventListener(
-    "change",
-    () => {
+            return matchSize && matchColor && matchPrice && matchQuery;
+        });
 
         applySorting();
-
-        renderProducts();
-
     }
-);
 
+    function applySorting() {
+        const sortValue = sortSelect ? sortSelect.value : "default";
 
-/* =========================
-   START
-========================= */
+        if (sortValue === "price-asc") {
+            filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (sortValue === "price-desc") {
+            filteredProducts.sort((a, b) => b.price - a.price);
+        } else if (sortValue === "name-asc") {
+            filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+        }
 
-loadProducts();
+        renderProducts(filteredProducts);
+    }
+
+    if (searchInput) searchInput.addEventListener("input", applyFilters);
+    if (priceFilter) {
+        priceFilter.addEventListener("input", (e) => {
+            if (priceValue) {
+                priceValue.textContent = new Intl.NumberFormat("vi-VN", {
+                    style: "currency",
+                    currency: "VND"
+                }).format(e.target.value);
+            }
+            applyFilters();
+        });
+    }
+
+    sizeCheckboxes.forEach(cb => cb.addEventListener("change", applyFilters));
+    colorCheckboxes.forEach(cb => cb.addEventListener("change", applyFilters));
+    if (sortSelect) sortSelect.addEventListener("change", applySorting);
+
+    if (resetFilterBtn) {
+        resetFilterBtn.addEventListener("click", () => {
+            if (searchInput) searchInput.value = "";
+            sizeCheckboxes.forEach(cb => cb.checked = false);
+            colorCheckboxes.forEach(cb => cb.checked = false);
+            if (priceFilter) {
+                priceFilter.value = priceFilter.max;
+                if (priceValue) {
+                    priceValue.textContent = new Intl.NumberFormat("vi-VN", {
+                        style: "currency",
+                        currency: "VND"
+                    }).format(priceFilter.max);
+                }
+            }
+            if (sortSelect) sortSelect.value = "default";
+            applyFilters();
+        });
+    }
+
+    updateCartBadge();
+    loadProducts();
+});
