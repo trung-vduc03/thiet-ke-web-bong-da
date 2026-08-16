@@ -1,115 +1,289 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Chi tiết sản phẩm - Football Fashion</title>
+    <meta name="description" content="Chi tiết sản phẩm thời trang bóng đá Football Fashion">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/product-detail.css">
 </head>
 
 <body>
 
+    <!-- Header -->
     <header class="header">
         <div class="container header-container">
-            <a href="../index.html" class="logo">Football Fashion</a>
-            <nav class="navbar">
+
+            <a href="../index.html" class="logo">
+                Football Fashion
+            </a>
+
+            <nav class="navbar" aria-label="Điều hướng chính">
                 <a href="../index.html">Trang chủ</a>
                 <a href="products.html">Sản phẩm</a>
                 <a href="favorites.html">Yêu thích</a>
                 <a href="cart.html">Giỏ hàng</a>
             </nav>
+
             <div class="header-actions">
                 <a href="login.html">Đăng nhập</a>
             </div>
+
         </div>
     </header>
 
+
+    <!-- Main -->
     <main class="product-detail-page">
+
         <div class="container">
 
-            <div class="breadcrumb">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="../index.html">Trang chủ</a>
                 <span>/</span>
+
                 <a href="products.html">Sản phẩm</a>
                 <span>/</span>
-                <span id="breadcrumbTitle">Chi tiết sản phẩm</span>
-            </div>
 
+                <span id="breadcrumbTitle">
+                    Chi tiết sản phẩm
+                </span>
+            </nav>
+
+
+            <!-- Product Detail -->
             <section class="product-detail">
 
-                <div class="product-image">
-                    <img id="productImage" src="../images/products/default.jpg" alt="Sản phẩm">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+
+                    <div class="product-image-main">
+
+                        <button
+                            type="button"
+                            id="prevImageBtn"
+                            class="gallery-btn gallery-prev"
+                            aria-label="Ảnh trước">
+                            &#10094;
+                        </button>
+
+                        <img
+                            id="productImage"
+                            src="../images/products/default.jpg"
+                            alt="Sản phẩm"
+                        >
+
+                        <button
+                            type="button"
+                            id="nextImageBtn"
+                            class="gallery-btn gallery-next"
+                            aria-label="Ảnh tiếp theo">
+                            &#10095;
+                        </button>
+
+                    </div>
+
+
+                    <!-- Thumbnail -->
+                    <div
+                        id="productThumbnails"
+                        class="product-thumbnails"
+                        aria-label="Danh sách ảnh sản phẩm">
+                    </div>
+
                 </div>
 
+
+                <!-- Product Information -->
                 <div class="product-info">
-                    <p id="productCategory" class="product-category">Áo đấu</p>
-                    <h1 id="productName">Tên sản phẩm</h1>
 
+                    <p
+                        id="productCategory"
+                        class="product-category">
+                        Áo đấu
+                    </p>
+
+
+                    <h1 id="productName">
+                        Tên sản phẩm
+                    </h1>
+
+
+                    <!-- Rating -->
                     <div class="product-rating">
-                        <span>★★★★★</span>
-                        <span>(0 đánh giá)</span>
+                        <span aria-label="5 sao">
+                            ★★★★★
+                        </span>
+
+                        <span>
+                            (0 đánh giá)
+                        </span>
                     </div>
 
-                    <p id="productPrice" class="product-price">0đ</p>
 
+                    <!-- Price -->
+                    <p
+                        id="productPrice"
+                        class="product-price">
+                        0đ
+                    </p>
+
+
+                    <!-- Description -->
                     <div class="product-description">
-                        <h3>Mô tả sản phẩm</h3>
-                        <p id="productDescription">Mô tả sản phẩm sẽ được hiển thị tại đây.</p>
+
+                        <h2>Mô tả sản phẩm</h2>
+
+                        <p id="productDescription">
+                            Mô tả sản phẩm sẽ được hiển thị tại đây.
+                        </p>
+
                     </div>
 
+
+                    <!-- Size -->
                     <div class="product-option">
-                        <h3>Chọn size</h3>
-                        <div class="size-options" id="sizeOptionsContainer">
-                            <button type="button" class="size-btn" data-size="S">S</button>
-                            <button type="button" class="size-btn" data-size="M">M</button>
-                            <button type="button" class="size-btn" data-size="L">L</button>
-                            <button type="button" class="size-btn" data-size="XL">XL</button>
+
+                        <h2>Chọn size</h2>
+
+                        <div
+                            id="sizeOptionsContainer"
+                            class="size-options">
+
+                            <button
+                                type="button"
+                                class="size-btn"
+                                data-size="S">
+                                S
+                            </button>
+
+                            <button
+                                type="button"
+                                class="size-btn"
+                                data-size="M">
+                                M
+                            </button>
+
+                            <button
+                                type="button"
+                                class="size-btn"
+                                data-size="L">
+                                L
+                            </button>
+
+                            <button
+                                type="button"
+                                class="size-btn"
+                                data-size="XL">
+                                XL
+                            </button>
+
                         </div>
+
                     </div>
 
+
+                    <!-- Color -->
                     <div class="product-option">
-                        <h3>Số lượng</h3>
+
+                        <h2>Chọn màu</h2>
+
+                        <div
+                            id="colorOptionsContainer"
+                            class="color-options">
+                        </div>
+
+                    </div>
+
+
+                    <!-- Quantity -->
+                    <div class="product-option">
+
+                        <h2>Số lượng</h2>
+
                         <div class="quantity">
-                            <button type="button" id="decreaseBtn">−</button>
-                            <span id="quantity">1</span>
-                            <button type="button" id="increaseBtn">+</button>
+
+                            <button
+                                type="button"
+                                id="decreaseBtn"
+                                aria-label="Giảm số lượng">
+                                −
+                            </button>
+
+                            <span id="quantity">
+                                1
+                            </span>
+
+                            <button
+                                type="button"
+                                id="increaseBtn"
+                                aria-label="Tăng số lượng">
+                                +
+                            </button>
+
                         </div>
+
                     </div>
 
+
+                    <!-- Actions -->
                     <div class="product-actions">
-                        <button type="button" id="addToCartBtn" class="add-to-cart-btn">
+
+                        <button
+                            type="button"
+                            id="addToCartBtn"
+                            class="add-to-cart-btn">
                             Thêm vào giỏ hàng
                         </button>
-                        <button type="button" id="buyNowBtn" class="buy-now-btn">
-                            Mua ngay
-                        </button>
-                        <button type="button" id="favoriteBtn" class="favorite-btn" title="Thêm vào yêu thích">
-                            ♡
-                        </button>
+
                     </div>
 
                 </div>
 
             </section>
 
+
+            <!-- Related Products -->
             <section class="related-products">
+
                 <div class="section-title">
                     <h2>Sản phẩm liên quan</h2>
                 </div>
-                <div id="relatedProducts" class="product-grid"></div>
+
+                <div
+                    id="relatedProducts"
+                    class="product-grid">
+                </div>
+
             </section>
 
         </div>
+
     </main>
 
+
+    <!-- Footer -->
     <footer class="footer">
+
         <div class="container">
-            <p>© 2026 Football Fashion. All rights reserved.</p>
+
+            <p>
+                © 2026 Football Fashion. All rights reserved.
+            </p>
+
         </div>
+
     </footer>
 
+
+    <!-- JavaScript -->
     <script src="../js/product-detail.js"></script>
 
 </body>
 </html>
+```

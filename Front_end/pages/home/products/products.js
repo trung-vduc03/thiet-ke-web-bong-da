@@ -1,1021 +1,500 @@
-[
-    {
-        "id": 1,
-        "name": "Manchester United 2025/26 - Sân nhà",
-        "team": "Manchester United",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 850000,
-        "image": "../assets/images/clubs/manchester-united-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Manchester United mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 2,
-        "name": "Manchester United 2025/26 - Sân khách",
-        "team": "Manchester United",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 850000,
-        "image": "../assets/images/clubs/manchester-united-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Manchester United mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 3,
-        "name": "Manchester United 2025/26 - Áo thứ 3",
-        "team": "Manchester United",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 850000,
-        "image": "../assets/images/clubs/manchester-united-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Manchester United mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 4,
-        "name": "Manchester United 2024/25 - Sân nhà",
-        "team": "Manchester United",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 750000,
-        "image": "../assets/images/clubs/manchester-united-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Manchester United mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 5,
-        "name": "Manchester United 2024/25 - Sân khách",
-        "team": "Manchester United",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 750000,
-        "image": "../assets/images/clubs/manchester-united-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Manchester United mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 6,
-        "name": "Manchester United 2024/25 - Áo thứ 3",
-        "team": "Manchester United",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 750000,
-        "image": "../assets/images/clubs/manchester-united-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Manchester United mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 7,
-        "name": "Manchester United 2023/24 - Sân nhà",
-        "team": "Manchester United",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 650000,
-        "image": "../assets/images/clubs/manchester-united-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Manchester United mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 8,
-        "name": "Manchester United 2023/24 - Sân khách",
-        "team": "Manchester United",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 650000,
-        "image": "../assets/images/clubs/manchester-united-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Manchester United mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 9,
-        "name": "Manchester United 2023/24 - Áo thứ 3",
-        "team": "Manchester United",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 650000,
-        "image": "../assets/images/clubs/manchester-united-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Manchester United mùa giải 2023/24 phiên bản thứ 3."
-    },
-    
-    {
-        "id": 10,
-        "name": "Real Madrid 2025/26 - Sân nhà",
-        "team": "Real Madrid",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 900000,
-        "image": "../assets/images/clubs/real-madrid-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Real Madrid mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 11,
-        "name": "Real Madrid 2025/26 - Sân khách",
-        "team": "Real Madrid",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 900000,
-        "image": "../assets/images/clubs/real-madrid-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Real Madrid mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 12,
-        "name": "Real Madrid 2025/26 - Áo thứ 3",
-        "team": "Real Madrid",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 900000,
-        "image": "../assets/images/clubs/real-madrid-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Real Madrid mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 13,
-        "name": "Real Madrid 2024/25 - Sân nhà",
-        "team": "Real Madrid",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 800000,
-        "image": "../assets/images/clubs/real-madrid-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Real Madrid mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 14,
-        "name": "Real Madrid 2024/25 - Sân khách",
-        "team": "Real Madrid",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 800000,
-        "image": "../assets/images/clubs/real-madrid-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Real Madrid mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 15,
-        "name": "Real Madrid 2024/25 - Áo thứ 3",
-        "team": "Real Madrid",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 800000,
-        "image": "../assets/images/clubs/real-madrid-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Real Madrid mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 16,
-        "name": "Real Madrid 2023/24 - Sân nhà",
-        "team": "Real Madrid",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 700000,
-        "image": "../assets/images/clubs/real-madrid-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Real Madrid mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 17,
-        "name": "Real Madrid 2023/24 - Sân khách",
-        "team": "Real Madrid",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 700000,
-        "image": "../assets/images/clubs/real-madrid-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Real Madrid mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 18,
-        "name": "Real Madrid 2023/24 - Áo thứ 3",
-        "team": "Real Madrid",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 700000,
-        "image": "../assets/images/clubs/real-madrid-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Real Madrid mùa giải 2023/24 phiên bản thứ 3."
-    },
+"use strict";
 
-    {
-        "id": 19,
-        "name": "Barcelona 2025/26 - Sân nhà",
-        "team": "Barcelona",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 800000,
-        "image": "../assets/images/clubs/barcelona-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Barcelona mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 20,
-        "name": "Barcelona 2025/26 - Sân khách",
-        "team": "Barcelona",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 800000,
-        "image": "../assets/images/clubs/barcelona-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Barcelona mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 21,
-        "name": "Barcelona 2025/26 - Áo thứ 3",
-        "team": "Barcelona",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 800000,
-        "image": "../assets/images/clubs/barcelona-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Barcelona mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 22,
-        "name": "Barcelona 2024/25 - Sân nhà",
-        "team": "Barcelona",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 700000,
-        "image": "../assets/images/clubs/barcelona-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Barcelona mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 23,
-        "name": "Barcelona 2024/25 - Sân khách",
-        "team": "Barcelona",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 700000,
-        "image": "../assets/images/clubs/barcelona-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Barcelona mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 24,
-        "name": "Barcelona 2024/25 - Áo thứ 3",
-        "team": "Barcelona",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 700000,
-        "image": "../assets/images/clubs/barcelona-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Barcelona mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 25,
-        "name": "Barcelona 2023/24 - Sân nhà",
-        "team": "Barcelona",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 600000,
-        "image": "../assets/images/clubs/barcelona-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu Barcelona mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 26,
-        "name": "Barcelona 2023/24 - Sân khách",
-        "team": "Barcelona",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 600000,
-        "image": "../assets/images/clubs/barcelona-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Barcelona mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 27,
-        "name": "Barcelona 2023/24 - Áo thứ 3",
-        "team": "Barcelona",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 600000,
-        "image": "../assets/images/clubs/barcelona-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Barcelona mùa giải 2023/24 phiên bản thứ 3."
-    },
+let allProducts = [];
+let filteredProducts = [];
 
-    {
-        "id": 28,
-        "name": "Liverpool 2025/26 - Sân nhà",
-        "team": "Liverpool",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 750000,
-        "image": "../assets/images/clubs/liverpool-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Liverpool mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 29,
-        "name": "Liverpool 2025/26 - Sân khách",
-        "team": "Liverpool",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 750000,
-        "image": "../assets/images/clubs/liverpool-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Liverpool mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 30,
-        "name": "Liverpool 2025/26 - Áo thứ 3",
-        "team": "Liverpool",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 750000,
-        "image": "../assets/images/clubs/liverpool-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Liverpool mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 31,
-        "name": "Liverpool 2024/25 - Sân nhà",
-        "team": "Liverpool",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 680000,
-        "image": "../assets/images/clubs/liverpool-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Liverpool mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 32,
-        "name": "Liverpool 2024/25 - Sân khách",
-        "team": "Liverpool",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 680000,
-        "image": "../assets/images/clubs/liverpool-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Liverpool mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 33,
-        "name": "Liverpool 2024/25 - Áo thứ 3",
-        "team": "Liverpool",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 680000,
-        "image": "../assets/images/clubs/liverpool-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Liverpool mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 34,
-        "name": "Liverpool 2023/24 - Sân nhà",
-        "team": "Liverpool",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 600000,
-        "image": "../assets/images/clubs/liverpool-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Liverpool mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 35,
-        "name": "Liverpool 2023/24 - Sân khách",
-        "team": "Liverpool",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 600000,
-        "image": "../assets/images/clubs/liverpool-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu Liverpool mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 36,
-        "name": "Liverpool 2023/24 - Áo thứ 3",
-        "team": "Liverpool",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 600000,
-        "image": "../assets/images/clubs/liverpool-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Liverpool mùa giải 2023/24 phiên bản thứ 3."
-    },
+/* =========================
+   DOM ELEMENTS
+========================= */
 
-    {
-        "id": 37,
-        "name": "Arsenal 2025/26 - Sân nhà",
-        "team": "Arsenal",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 820000,
-        "image": "../assets/images/clubs/arsenal-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Arsenal mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 38,
-        "name": "Arsenal 2025/26 - Sân khách",
-        "team": "Arsenal",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 820000,
-        "image": "../assets/images/clubs/arsenal-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Arsenal mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 39,
-        "name": "Arsenal 2025/26 - Áo thứ 3",
-        "team": "Arsenal",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 820000,
-        "image": "../assets/images/clubs/arsenal-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Arsenal mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 40,
-        "name": "Arsenal 2024/25 - Sân nhà",
-        "team": "Arsenal",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 720000,
-        "image": "../assets/images/clubs/arsenal-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Arsenal mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 41,
-        "name": "Arsenal 2024/25 - Sân khách",
-        "team": "Arsenal",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 720000,
-        "image": "../assets/images/clubs/arsenal-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Arsenal mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 42,
-        "name": "Arsenal 2024/25 - Áo thứ 3",
-        "team": "Arsenal",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 720000,
-        "image": "../assets/images/clubs/arsenal-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Arsenal mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 43,
-        "name": "Arsenal 2023/24 - Sân nhà",
-        "team": "Arsenal",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 620000,
-        "image": "../assets/images/clubs/arsenal-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu Arsenal mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 44,
-        "name": "Arsenal 2023/24 - Sân khách",
-        "team": "Arsenal",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 620000,
-        "image": "../assets/images/clubs/arsenal-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu Arsenal mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 45,
-        "name": "Arsenal 2023/24 - Áo thứ 3",
-        "team": "Arsenal",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 620000,
-        "image": "../assets/images/clubs/arsenal-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu Arsenal mùa giải 2023/24 phiên bản thứ 3."
-    },
+const productGrid = document.getElementById("productGrid");
+const productCount = document.getElementById("productCount");
+const noProducts = document.getElementById("noProducts");
 
-    {
-        "id": 46,
-        "name": "AC Milan 2025/26 - Sân nhà",
-        "team": "AC Milan",
-        "season": "2025/26",
-        "type": "Sân nhà",
-        "price": 780000,
-        "image": "../assets/images/clubs/ac-milan-2025-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu AC Milan mùa giải 2025/26 phiên bản sân nhà."
-    },
-    {
-        "id": 47,
-        "name": "AC Milan 2025/26 - Sân khách",
-        "team": "AC Milan",
-        "season": "2025/26",
-        "type": "Sân khách",
-        "price": 780000,
-        "image": "../assets/images/clubs/ac-milan-2025-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu AC Milan mùa giải 2025/26 phiên bản sân khách."
-    },
-    {
-        "id": 48,
-        "name": "AC Milan 2025/26 - Áo thứ 3",
-        "team": "AC Milan",
-        "season": "2025/26",
-        "type": "Áo thứ 3",
-        "price": 780000,
-        "image": "../assets/images/clubs/ac-milan-2025-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu AC Milan mùa giải 2025/26 phiên bản thứ 3."
-    },
-    {
-        "id": 49,
-        "name": "AC Milan 2024/25 - Sân nhà",
-        "team": "AC Milan",
-        "season": "2024/25",
-        "type": "Sân nhà",
-        "price": 680000,
-        "image": "../assets/images/clubs/ac-milan-2024-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu AC Milan mùa giải 2024/25 phiên bản sân nhà."
-    },
-    {
-        "id": 50,
-        "name": "AC Milan 2024/25 - Sân khách",
-        "team": "AC Milan",
-        "season": "2024/25",
-        "type": "Sân khách",
-        "price": 680000,
-        "image": "../assets/images/clubs/ac-milan-2024-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu AC Milan mùa giải 2024/25 phiên bản sân khách."
-    },
-    {
-        "id": 51,
-        "name": "AC Milan 2024/25 - Áo thứ 3",
-        "team": "AC Milan",
-        "season": "2024/25",
-        "type": "Áo thứ 3",
-        "price": 680000,
-        "image": "../assets/images/clubs/ac-milan-2024-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu AC Milan mùa giải 2024/25 phiên bản thứ 3."
-    },
-    {
-        "id": 52,
-        "name": "AC Milan 2023/24 - Sân nhà",
-        "team": "AC Milan",
-        "season": "2023/24",
-        "type": "Sân nhà",
-        "price": 580000,
-        "image": "../assets/images/clubs/ac-milan-2023-home.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu AC Milan mùa giải 2023/24 phiên bản sân nhà."
-    },
-    {
-        "id": 53,
-        "name": "AC Milan 2023/24 - Sân khách",
-        "team": "AC Milan",
-        "season": "2023/24",
-        "type": "Sân khách",
-        "price": 580000,
-        "image": "../assets/images/clubs/ac-milan-2023-away.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu AC Milan mùa giải 2023/24 phiên bản sân khách."
-    },
-    {
-        "id": 54,
-        "name": "AC Milan 2023/24 - Áo thứ 3",
-        "team": "AC Milan",
-        "season": "2023/24",
-        "type": "Áo thứ 3",
-        "price": 580000,
-        "image": "../assets/images/clubs/ac-milan-2023-third.jpg",
-        "category": "Áo đấu CLB",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu AC Milan mùa giải 2023/24 phiên bản thứ 3."
-    },
-    {
-        "id": 55,
-        "name": "Đội tuyển Việt Nam 2026 - Sân nhà",
-        "team": "Việt Nam",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 650000,
-        "image": "../assets/images/national-teams/vietnam-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu đội tuyển Việt Nam phiên bản sân nhà."
-    },
-    {
-        "id": 56,
-        "name": "Đội tuyển Việt Nam 2026 - Sân khách",
-        "team": "Việt Nam",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 650000,
-        "image": "../assets/images/national-teams/vietnam-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Việt Nam phiên bản sân khách."
-    },
-    {
-        "id": 57,
-        "name": "Brazil 2026 - Sân nhà",
-        "team": "Brazil",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 750000,
-        "image": "../assets/images/national-teams/brazil-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu đội tuyển Brazil phiên bản sân nhà."
-    },
-    {
-        "id": 58,
-        "name": "Brazil 2026 - Sân khách",
-        "team": "Brazil",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 750000,
-        "image": "../assets/images/national-teams/brazil-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Brazil phiên bản sân khách."
-    },
-    {
-        "id": 59,
-        "name": "Argentina 2026 - Sân nhà",
-        "team": "Argentina",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 750000,
-        "image": "../assets/images/national-teams/argentina-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Argentina phiên bản sân nhà."
-    },
-    {
-        "id": 60,
-        "name": "Argentina 2026 - Sân khách",
-        "team": "Argentina",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 750000,
-        "image": "../assets/images/national-teams/argentina-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu đội tuyển Argentina phiên bản sân khách."
-    },
-    {
-        "id": 61,
-        "name": "Pháp 2026 - Sân nhà",
-        "team": "Pháp",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 780000,
-        "image": "../assets/images/national-teams/france-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Pháp phiên bản sân nhà."
-    },
-    {
-        "id": 62,
-        "name": "Pháp 2026 - Sân khách",
-        "team": "Pháp",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 780000,
-        "image": "../assets/images/national-teams/france-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Pháp phiên bản sân khách."
-    },
-    {
-        "id": 63,
-        "name": "Đức 2026 - Sân nhà",
-        "team": "Đức",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 780000,
-        "image": "../assets/images/national-teams/germany-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Đức phiên bản sân nhà."
-    },
-    {
-        "id": 64,
-        "name": "Đức 2026 - Sân khách",
-        "team": "Đức",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 780000,
-        "image": "../assets/images/national-teams/germany-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "black",
-        "description": "Áo đấu đội tuyển Đức phiên bản sân khách."
-    },
-    {
-        "id": 65,
-        "name": "Anh 2026 - Sân nhà",
-        "team": "Anh",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 780000,
-        "image": "../assets/images/national-teams/england-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Anh phiên bản sân nhà."
-    },
-    {
-        "id": 66,
-        "name": "Anh 2026 - Sân khách",
-        "team": "Anh",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 780000,
-        "image": "../assets/images/national-teams/england-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu đội tuyển Anh phiên bản sân khách."
-    },
-    {
-        "id": 67,
-        "name": "Tây Ban Nha 2026 - Sân nhà",
-        "team": "Tây Ban Nha",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 760000,
-        "image": "../assets/images/national-teams/spain-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu đội tuyển Tây Ban Nha phiên bản sân nhà."
-    },
-    {
-        "id": 68,
-        "name": "Tây Ban Nha 2026 - Sân khách",
-        "team": "Tây Ban Nha",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 760000,
-        "image": "../assets/images/national-teams/spain-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "yellow",
-        "description": "Áo đấu đội tuyển Tây Ban Nha phiên bản sân khách."
-    },
-    {
-        "id": 69,
-        "name": "Bồ Đào Nha 2026 - Sân nhà",
-        "team": "Bồ Đào Nha",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 780000,
-        "image": "../assets/images/national-teams/portugal-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu đội tuyển Bồ Đào Nha phiên bản sân nhà."
-    },
-    {
-        "id": 70,
-        "name": "Bồ Đào Nha 2026 - Sân khách",
-        "team": "Bồ Đào Nha",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 780000,
-        "image": "../assets/images/national-teams/portugal-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Bồ Đào Nha phiên bản sân khách."
-    },
-    {
-        "id": 71,
-        "name": "Ý 2026 - Sân nhà",
-        "team": "Ý",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 760000,
-        "image": "../assets/images/national-teams/italy-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Ý phiên bản sân nhà."
-    },
-    {
-        "id": 72,
-        "name": "Ý 2026 - Sân khách",
-        "team": "Ý",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 760000,
-        "image": "../assets/images/national-teams/italy-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Ý phiên bản sân khách."
-    },
-    {
-        "id": 73,
-        "name": "Hà Lan 2026 - Sân nhà",
-        "team": "Hà Lan",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 760000,
-        "image": "../assets/images/national-teams/netherlands-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "orange",
-        "description": "Áo đấu đội tuyển Hà Lan phiên bản sân nhà."
-    },
-    {
-        "id": 74,
-        "name": "Hà Lan 2026 - Sân khách",
-        "team": "Hà Lan",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 760000,
-        "image": "../assets/images/national-teams/netherlands-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Hà Lan phiên bản sân khách."
-    },
-    {
-        "id": 75,
-        "name": "Nhật Bản 2026 - Sân nhà",
-        "team": "Nhật Bản",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 720000,
-        "image": "../assets/images/national-teams/japan-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "blue",
-        "description": "Áo đấu đội tuyển Nhật Bản phiên bản sân nhà."
-    },
-    {
-        "id": 76,
-        "name": "Nhật Bản 2026 - Sân khách",
-        "team": "Nhật Bản",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 720000,
-        "image": "../assets/images/national-teams/japan-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Nhật Bản phiên bản sân khách."
-    },
-    {
-        "id": 77,
-        "name": "Hàn Quốc 2026 - Sân nhà",
-        "team": "Hàn Quốc",
-        "season": "2026",
-        "type": "Sân nhà",
-        "price": 720000,
-        "image": "../assets/images/national-teams/south-korea-2026-home.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "red",
-        "description": "Áo đấu đội tuyển Hàn Quốc phiên bản sân nhà."
-    },
-    {
-        "id": 78,
-        "name": "Hàn Quốc 2026 - Sân khách",
-        "team": "Hàn Quốc",
-        "season": "2026",
-        "type": "Sân khách",
-        "price": 720000,
-        "image": "../assets/images/national-teams/south-korea-2026-away.jpg",
-        "category": "Áo đấu ĐTQG",
-        "sizes": ["S", "M", "L", "XL"],
-        "color": "white",
-        "description": "Áo đấu đội tuyển Hàn Quốc phiên bản sân khách."
+const priceFilter = document.getElementById("priceFilter");
+const priceValue = document.getElementById("priceValue");
+
+const sortProducts = document.getElementById("sortProducts");
+
+const sizeFilters = document.querySelectorAll(
+    'input[name="size"]'
+);
+
+const colorFilters = document.querySelectorAll(
+    'input[name="color"]'
+);
+
+
+/* =========================
+   FORMAT PRICE
+========================= */
+
+function formatPrice(price) {
+    return Number(price).toLocaleString("vi-VN") + "đ";
+}
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+async function loadProducts() {
+
+    try {
+
+        const response = await fetch("/data/products.json");
+
+        if (!response.ok) {
+            throw new Error(
+                "Không thể tải dữ liệu sản phẩm."
+            );
+        }
+
+        allProducts = await response.json();
+
+        filteredProducts = [...allProducts];
+
+        updatePriceValue();
+
+        renderProducts();
+
+    } catch (error) {
+
+        console.error(
+            "Lỗi tải sản phẩm:",
+            error
+        );
+
+        productGrid.innerHTML = `
+            <p class="no-products">
+                Không thể tải danh sách sản phẩm.
+            </p>
+        `;
+
+        productCount.textContent = "0";
     }
-]
+}
+
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts() {
+
+    productGrid.innerHTML = "";
+
+    productCount.textContent =
+        filteredProducts.length;
+
+
+    if (filteredProducts.length === 0) {
+
+        noProducts.hidden = false;
+
+        return;
+    }
+
+    noProducts.hidden = true;
+
+
+    filteredProducts.forEach((product) => {
+
+        const card =
+            createProductCard(product);
+
+        productGrid.appendChild(card);
+
+    });
+}
+
+
+/* =========================
+   CREATE PRODUCT CARD
+========================= */
+
+function createProductCard(product) {
+
+    const article =
+        document.createElement("article");
+
+    article.className =
+        "product-card";
+
+
+    /* =====================
+       IMAGE
+    ===================== */
+
+    const imageBox =
+        document.createElement("div");
+
+    imageBox.className =
+        "product-img-box";
+
+
+    const image =
+        document.createElement("img");
+
+    image.src =
+        convertImagePath(product.image);
+
+    image.alt =
+        product.name;
+
+    image.loading =
+        "lazy";
+
+
+    image.addEventListener(
+        "error",
+        () => {
+
+            image.src =
+                "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+
+        },
+        { once: true }
+    );
+
+
+    imageBox.appendChild(image);
+
+
+    /* =====================
+       PRODUCT INFO
+    ===================== */
+
+    const info =
+        document.createElement("div");
+
+    info.className =
+        "product-card-info";
+
+
+    /* PRODUCT NAME */
+
+    const title =
+        document.createElement("a");
+
+    title.className =
+        "product-title";
+
+    title.href =
+        `product-detail.html?id=${product.id}`;
+
+    title.textContent =
+        product.name;
+
+
+    /* PRICE */
+
+    const price =
+        document.createElement("p");
+
+    price.className =
+        "product-price";
+
+    price.textContent =
+        formatPrice(product.price);
+
+
+    /* =====================
+       DETAIL BUTTON
+    ===================== */
+
+    const actions =
+        document.createElement("div");
+
+    actions.className =
+        "card-actions";
+
+
+    const detailLink =
+        document.createElement("a");
+
+    detailLink.className =
+        "btn-detail";
+
+    detailLink.href =
+        `product-detail.html?id=${product.id}`;
+
+    detailLink.textContent =
+        "Xem chi tiết";
+
+
+    actions.appendChild(
+        detailLink
+    );
+
+
+    /* =====================
+       APPEND
+    ===================== */
+
+    info.appendChild(title);
+
+    info.appendChild(price);
+
+    info.appendChild(actions);
+
+    article.appendChild(imageBox);
+
+    article.appendChild(info);
+
+
+    return article;
+}
+
+
+/* =========================
+   IMAGE PATH
+========================= */
+
+function convertImagePath(imagePath) {
+
+    if (!imagePath) {
+
+        return "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+    }
+
+
+    /*
+     * JSON:
+     * ../assets/images/clubs/...
+     *
+     * Chuyển thành:
+     * /Front_end/assets/images/clubs/...
+     */
+
+    if (
+        imagePath.startsWith(
+            "../assets/"
+        )
+    ) {
+
+        return "/Front_end/" +
+            imagePath.replace(
+                "../",
+                ""
+            );
+    }
+
+
+    if (
+        imagePath.startsWith(
+            "./assets/"
+        )
+    ) {
+
+        return "/Front_end/" +
+            imagePath.replace(
+                "./",
+                ""
+            );
+    }
+
+
+    return imagePath;
+}
+
+
+/* =========================
+   FILTER PRODUCTS
+========================= */
+
+function applyFilters() {
+
+    const selectedSizes =
+        [...sizeFilters]
+            .filter(
+                (checkbox) =>
+                    checkbox.checked
+            )
+            .map(
+                (checkbox) =>
+                    checkbox.value
+            );
+
+
+    const selectedColors =
+        [...colorFilters]
+            .filter(
+                (checkbox) =>
+                    checkbox.checked
+            )
+            .map(
+                (checkbox) =>
+                    checkbox.value
+            );
+
+
+    const maxPrice =
+        Number(priceFilter.value);
+
+
+    filteredProducts =
+        allProducts.filter(
+            (product) => {
+
+
+                /* SIZE */
+
+                const sizeMatch =
+                    selectedSizes.length === 0 ||
+                    selectedSizes.some(
+                        (size) =>
+                            Array.isArray(
+                                product.sizes
+                            ) &&
+                            product.sizes.includes(
+                                size
+                            )
+                    );
+
+
+                /* COLOR */
+
+                const colorMatch =
+                    selectedColors.length === 0 ||
+                    selectedColors.includes(
+                        String(
+                            product.color
+                        ).toLowerCase()
+                    );
+
+
+                /* PRICE */
+
+                const priceMatch =
+                    Number(
+                        product.price
+                    ) <= maxPrice;
+
+
+                return (
+                    sizeMatch &&
+                    colorMatch &&
+                    priceMatch
+                );
+            }
+        );
+
+
+    applySorting();
+
+    renderProducts();
+}
+
+
+/* =========================
+   SORT PRODUCTS
+========================= */
+
+function applySorting() {
+
+    const sortType =
+        sortProducts.value;
+
+
+    if (
+        sortType ===
+        "price-low"
+    ) {
+
+        filteredProducts.sort(
+            (a, b) =>
+                Number(a.price) -
+                Number(b.price)
+        );
+    }
+
+
+    if (
+        sortType ===
+        "price-high"
+    ) {
+
+        filteredProducts.sort(
+            (a, b) =>
+                Number(b.price) -
+                Number(a.price)
+        );
+    }
+}
+
+
+/* =========================
+   PRICE VALUE
+========================= */
+
+function updatePriceValue() {
+
+    priceValue.textContent =
+        formatPrice(
+            priceFilter.value
+        );
+}
+
+
+/* =========================
+   FILTER EVENTS
+========================= */
+
+sizeFilters.forEach(
+    (checkbox) => {
+
+        checkbox.addEventListener(
+            "change",
+            applyFilters
+        );
+
+    }
+);
+
+
+colorFilters.forEach(
+    (checkbox) => {
+
+        checkbox.addEventListener(
+            "change",
+            applyFilters
+        );
+
+    }
+);
+
+
+priceFilter.addEventListener(
+    "input",
+    () => {
+
+        updatePriceValue();
+
+        applyFilters();
+
+    }
+);
+
+
+/* =========================
+   SORT EVENT
+========================= */
+
+sortProducts.addEventListener(
+    "change",
+    () => {
+
+        applySorting();
+
+        renderProducts();
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
+
+loadProducts();

@@ -3,97 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh mục sản phẩm - Football Fashion</title>
-    <link rel="stylesheet" href="../styles/products.css">
+
+    <title>Sản phẩm | Football Fashion</title>
+    <meta
+        name="description"
+        content="Danh sách áo đấu bóng đá chính hãng Football Fashion."
+    >
+
+    <link rel="stylesheet" href="./products.css">
 </head>
+
 <body>
 
+    <!-- HEADER -->
     <header class="header">
         <div class="container header-container">
-            <a href="../fashion_store.html" class="logo">Football Fashion</a>
-            <nav class="navbar">
-                <a href="../fashion_store.html">Trang chủ</a>
-                <a href="products.html" class="active">Sản phẩm</a>
+
+            <a href="/" class="logo">
+                Football Fashion
+            </a>
+
+            <nav class="navbar" aria-label="Điều hướng chính">
+
+                <a href="/">
+                    Trang chủ
+                </a>
+
+                <a
+                    href="/Front_end/pages/home/products/products.html"
+                    class="active"
+                    aria-current="page">
+                    Sản phẩm
+                </a>
+
+                <a href="/Front_end/pages/cart-checkout/wishlist.html">
+                    Yêu thích
+                </a>
+
+                <a href="/Front_end/pages/cart-checkout/cart.html">
+                    Giỏ hàng
+                </a>
+
             </nav>
+
         </div>
     </header>
 
+
+    <!-- MAIN -->
     <main class="main-content">
+
         <div class="container catalog-layout">
-            
+
+            <!-- FILTER SIDEBAR -->
             <aside class="filter-sidebar">
+
                 <h2>Bộ lọc tìm kiếm</h2>
 
+                <!-- SIZE -->
                 <div class="filter-group">
-                    <h3>Kích thước (Size)</h3>
-                    <label><input type="checkbox" name="size" value="XS"> XS</label>
-                    <label><input type="checkbox" name="size" value="S"> S</label>
-                    <label><input type="checkbox" name="size" value="M"> M</label>
-                    <label><input type="checkbox" name="size" value="L"> L</label>
-                    <label><input type="checkbox" name="size" value="XL"> XL</label>
-                    <label><input type="checkbox" name="size" value="XXL"> XXL</label>
+
+                    <h3>Kích thước</h3>
+
+                    <label>
+                        <input type="checkbox" name="size" value="XS">
+                        XS
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="size" value="S">
+                        S
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="size" value="M">
+                        M
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="size" value="L">
+                        L
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="size" value="XL">
+                        XL
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="size" value="XXL">
+                        XXL
+                    </label>
+
                 </div>
 
+
+                <!-- COLOR -->
                 <div class="filter-group">
+
                     <h3>Màu sắc</h3>
-                    <label><input type="checkbox" name="color" value="Đen"> Đen</label>
-                    <label><input type="checkbox" name="color" value="Trắng"> Trắng</label>
-                    <label><input type="checkbox" name="color" value="Đỏ"> Đỏ</label>
-                    <label><input type="checkbox" name="color" value="Xanh"> Xanh</label>
+
+                    <label>
+                        <input type="checkbox" name="color" value="red">
+                        Đỏ
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="color" value="white">
+                        Trắng
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="color" value="black">
+                        Đen
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="color" value="blue">
+                        Xanh
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="color" value="yellow">
+                        Vàng
+                    </label>
+
                 </div>
 
+
+                <!-- PRICE -->
                 <div class="filter-group">
+
                     <h3>Khoảng giá tối đa</h3>
-                    <input type="range" id="priceFilter" min="0" max="2000000" step="50000" value="2000000">
-                    <p>Giá: <span id="priceValue">2.000.000đ</span></p>
+
+                    <input
+                        type="range"
+                        id="priceFilter"
+                        min="0"
+                        max="2000000"
+                        step="50000"
+                        value="2000000"
+                    >
+
+                    <p>
+                        Giá tối đa:
+                        <strong id="priceValue">2.000.000đ</strong>
+                    </p>
+
                 </div>
+
             </aside>
 
+
+            <!-- PRODUCT CATALOG -->
             <section class="product-catalog-section">
+
                 <h1>Danh Sách Sản Phẩm Áo Đấu Bóng Đá</h1>
 
                 <div class="catalog-toolbar">
-                    <p>Hiển thị <span id="productCount">0</span> sản phẩm</p>
+
+                    <p>
+                        Hiển thị
+                        <strong id="productCount">0</strong>
+                        sản phẩm
+                    </p>
+
                     <div class="sort-box">
+
+                        <label for="sortProducts">
+                            Sắp xếp:
+                        </label>
+
                         <select id="sortProducts">
-                            <option value="default">Sắp xếp mặc định</option>
-                            <option value="price-low">Giá: Thấp đến Cao</option>
-                            <option value="price-high">Giá: Cao đến Thấp</option>
+
+                            <option value="default">
+                                Mặc định
+                            </option>
+
+                            <option value="price-low">
+                                Giá thấp đến cao
+                            </option>
+
+                            <option value="price-high">
+                                Giá cao đến thấp
+                            </option>
+
                         </select>
+
                     </div>
+
                 </div>
 
-                <div id="productGrid" class="product-grid"></div>
 
-                <div id="noProducts" class="no-products" hidden>
-                    <p>Không tìm thấy sản phẩm phù hợp với bộ lọc.</p>
+                <!-- PRODUCT GRID -->
+                <div
+                    id="productGrid"
+                    class="product-grid">
                 </div>
+
+
+                <!-- NO PRODUCT -->
+                <div
+                    id="noProducts"
+                    class="no-products"
+                    hidden>
+
+                    <p>
+                        Không tìm thấy sản phẩm phù hợp với bộ lọc.
+                    </p>
+
+                </div>
+
             </section>
 
         </div>
+
     </main>
 
-    <div id="quickViewModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal">&times;</button>
+
+    <!-- QUICK VIEW MODAL -->
+    <div
+        id="quickViewModal"
+        class="modal-overlay"
+        aria-hidden="true">
+
+        <div
+            class="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeModal"
+                aria-label="Đóng cửa sổ xem nhanh">
+                &times;
+            </button>
+
+
             <div class="modal-img">
-                <img id="modalImg" src="" alt="Sản phẩm">
+
+                <img
+                    id="modalImg"
+                    src=""
+                    alt="">
+
             </div>
+
+
             <div class="modal-info">
-                <h2 id="modalTitle">Tên sản phẩm</h2>
-                <p class="modal-price" id="modalPrice">0đ</p>
-                <p class="modal-desc" id="modalDesc">Mô tả sản phẩm...</p>
-                <a id="modalDetailLink" href="#" class="btn-detail" style="display:block; text-align:center;">Xem chi tiết sản phẩm</a>
+
+                <h2 id="modalTitle">
+                    Tên sản phẩm
+                </h2>
+
+                <p
+                    class="modal-price"
+                    id="modalPrice">
+                    0đ
+                </p>
+
+                <p
+                    class="modal-desc"
+                    id="modalDesc">
+                    Mô tả sản phẩm
+                </p>
+
+                <a
+                    id="modalDetailLink"
+                    href="#"
+                    class="btn-detail">
+                    Xem chi tiết sản phẩm
+                </a>
+
             </div>
+
         </div>
+
     </div>
 
+
+    <!-- FOOTER -->
     <footer class="footer">
+
         <div class="container">
-            <p>&copy; 2026 Football Fashion Store. All rights reserved.</p>
+
+            <p>
+                © 2026 Football Fashion Store.
+                All rights reserved.
+            </p>
+
         </div>
+
     </footer>
 
-    <script src="../js/products.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="./products.js"></script>
+
 </body>
 </html>
