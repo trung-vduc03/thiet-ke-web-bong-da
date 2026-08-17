@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Danh Sách Yêu Thích</title>
+   
     <!-- Trỏ đến thư mục styles/ ở Front_end -->
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
 </head>
@@ -58,6 +59,15 @@
             localStorage.setItem("wishlist", JSON.stringify(wishlist));
             renderWishlist();
         }
+        function updateBadges() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const cartBadge = document.getElementById("cart-badge");
+            const wishlistBadge = document.getElementById("wishlist-badge");
+    
+    if (cartBadge) cartBadge.textContent = cart.length;
+    if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
+}
     </script>
 </body>
 </html>

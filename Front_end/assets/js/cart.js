@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     renderCart();
+    updateBadges(); 
 });
 
 function getCart() {
@@ -8,90 +9,89 @@ function getCart() {
 
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
+    updateBadges(); // Cập nhật số lượng trên icon mỗi khi thay đổi
 }
 
 function renderCart() {
     const cart = getCart();
-    const tbody = document.getElementById("cartTableBody");
-    const emptyMsg = document.getElementById("emptyCartMsg");
-    const tableWrapper = document.querySelector(".cart-table-wrapper");
-    const btnCheckout = document.getElementById("btnCheckout");
-
-    if (!tbody) return;
+    const tableBody = document.getElementById("cartTableBody");
+    const giftWrapChecked = document.getElementById("giftWrap")?.checked || false;
+    const shippingNotice = document.getElementById("shippingNotice");
+    
+    let subTotal = 0;
+    const shippingThreshold = 2000000; // Miễn phí vận chuyển cho đơn trên 2tr
 
     if (cart.length === 0) {
-        if (tableWrapper) tableWrapper.classList.add("hidden");
-        if (emptyMsg) emptyMsg.classList.remove("hidden");
-        if (btnCheckout) {
-            btnCheckout.style.pointerEvents = "none";
-            btnCheckout.style.opacity = "0.5";
-        }
-        updateTotalSummary(0);
+        document.getElementById("cartContent").innerHTML = `
+            <div class="empty-box">
+                <p class="empty-text">Giỏ hàng trống! Hãy chọn áo đấu yêu thích.</p>
+                <a href="../home/products/products.html" class="btn-primary">Khám phá sản phẩm</a>
+            </div>`;
         return;
     }
 
-    if (tableWrapper) tableWrapper.classList.remove("hidden");
-    if (emptyMsg) emptyMsg.classList.add("hidden");
-    if (btnCheckout) {
-        btnCheckout.style.pointerEvents = "auto";
-        btnCheckout.style.opacity = "1";
-    }
-
-    let subTotal = 0;
-
-    tbody.innerHTML = cart.map((item, index) => {
-        const total = item.price * item.quantity;
-        subTotal += total;
+    tableBody.innerHTML = cart.map((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subTotal += itemTotal;
         return `
             <tr>
                 <td>
-                    <div class="product-item">
-                        <img src="${item.image}" alt="${item.name}" class="product-thumb">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="${item.image}" width="60" alt="${item.name}">
                         <div>
-                            <strong>${item.name}</strong>
-                            <div class="product-meta">Size: ${item.size || 'M'}</div>
+                            <strong>${item.name}</strong><br>
+                            <small class="text-muted">Size: ${item.size || 'M'}</small>
                         </div>
                     </div>
                 </td>
                 <td>${Number(item.price).toLocaleString("vi-VN")}đ</td>
                 <td>
-                    <button onclick="changeQty(${index}, -1)" class="btn-qty">-</button>
-                    <span>${item.quantity}</span>
-                    <button onclick="changeQty(${index}, 1)" class="btn-qty">+</button>
+                    <input type="number" min="1" value="${item.quantity}" 
+                    onchange="updateQuantity(${index}, this.value)" style="width: 50px;">
                 </td>
-                <td><strong>${total.toLocaleString("vi-VN")}đ</strong></td>
-                <td>
-                    <button onclick="removeItem(${index})" class="btn-remove">Xóa</button>
-                </td>
-            </tr>
-        `;
-    }).join('');
+                <td>${itemTotal.toLocaleString("vi-VN")}đ</td>
+                <td><button onclick="removeItem(${index})" style="color: var(--color-danger); cursor:pointer; border:none; background:none;">Xóa</button></td>
+            </tr>`;
+    }).join("");
 
-    updateTotalSummary(subTotal);
+    //  Thông báo vận chuyển 
+    if (subTotal < shippingThreshold) {
+        const remaining = shippingThreshold - subTotal;
+        shippingNotice.innerHTML = `Mua thêm <strong>${remaining.toLocaleString("vi-VN")}đ</strong> để được miễn phí vận chuyển`;
+    } else {
+        shippingNotice.innerHTML = `Chúc mừng! Đơn hàng của bạn được <strong>Miễn phí vận chuyển</strong>`;
+    }
+
+    const giftWrapFee = giftWrapChecked ? 10000 : 0;
+    const shippingFee = subTotal >= shippingThreshold ? 0 : 30000;
+
+    document.getElementById("subTotal").textContent = subTotal.toLocaleString("vi-VN") + "đ";
+    document.getElementById("giftWrapPrice").textContent = giftWrapFee.toLocaleString("vi-VN") + "đ";
+    document.getElementById("grandTotal").textContent = (subTotal + shippingFee + giftWrapFee).toLocaleString("vi-VN") + "đ";
 }
 
-function changeQty(index, delta) {
-    let cart = getCart();
-    cart[index].quantity += delta;
-    if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
+function updateQuantity(index, qty) {
+    const cart = getCart();
+    if (qty > 0) {
+        cart[index].quantity = parseInt(qty);
+        saveCart(cart);
+        renderCart();
     }
-    saveCart(cart);
-    renderCart();
 }
 
 function removeItem(index) {
-    let cart = getCart();
+    const cart = getCart();
     cart.splice(index, 1);
     saveCart(cart);
     renderCart();
 }
-
-function updateTotalSummary(subTotal) {
-    const shipping = subTotal > 0 ? 30000 : 0;
-    const subTotalElem = document.getElementById("subTotal");
-    const grandTotalElem = document.getElementById("grandTotal");
+function updateBadges() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     
-    if (subTotalElem) subTotalElem.textContent = ${subTotal.toLocaleString("vi-VN")}đ;
-    if (grandTotalElem) grandTotalElem.textContent = ${(subTotal + shipping).toLocaleString("vi-VN")}đ;
+    const cartBadge = document.getElementById("cart-badge");
+    const wishlistBadge = document.getElementById("wishlist-badge");
+    
+    if (cartBadge) cartBadge.textContent = cart.length;
+    if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
 }

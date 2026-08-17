@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Thanh Toán</title>
+   
     <!-- Trỏ đến thư mục styles/ ở Front_end -->
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
 </head>
@@ -15,47 +16,46 @@
         <h1 class="page-title">Thông Tin Thanh Toán</h1>
 
         <form id="checkoutForm" class="checkout-grid">
-            <div class="checkout-section">
-                <h2 class="section-title">1. Địa chỉ nhận hàng</h2>
-                <div class="form-group">
-                    <label for="fullName">Họ và tên *</label>
-                    <input type="text" id="fullName" class="form-control" required placeholder="Nguyễn Văn A">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Số điện thoại *</label>
-                    <input type="tel" id="phone" class="form-control" required placeholder="0901234567">
-                </div>
-                <div class="form-group">
-                    <label for="address">Địa chỉ cụ thể *</label>
-                    <input type="text" id="address" class="form-control" required placeholder="Số nhà, tên đường...">
-                </div>
+    <div class="checkout-section card-flex">
+        <h2 class="section-title">1. Thông tin liên hệ</h2>
+        <input type="email" class="field-input" placeholder="Địa chỉ Email" required>
+        
+        <h2 class="section-title" style="margin-top: 32px;">2. Giao hàng</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <input type="text" class="field-input" placeholder="Họ">
+            <input type="text" class="field-input" placeholder="Tên">
+        </div>
+        <input type="text" class="field-input" placeholder="Địa chỉ chi tiết">
 
-                <h2 class="section-title">2. Phương thức thanh toán</h2>
-                <div>
-                    <label>
-                        <input type="radio" name="payment" value="cod" checked> Thanh toán khi nhận hàng (COD)
-                    </label>
-                    <br><br>
-                    <label>
-                        <input type="radio" name="payment" value="banking"> Chuyển khoản ngân hàng (QR Code)
-                    </label>
-                </div>
+        <h2 class="section-title" style="margin-top: 32px;">3. Thanh toán thẻ [3]</h2>
+        <div style="background: #f9f9f9; padding: 16px; border: 1px solid var(--color-primary);">
+            <p><strong>Credit Card</strong></p>
+            <input type="text" class="field-input" placeholder="Số thẻ">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <input type="text" class="field-input" placeholder="MM/YY">
+                <input type="text" class="field-input" placeholder="CVV">
             </div>
+            <input type="text" class="field-input" placeholder="Tên chủ thẻ">
+        </div>
+    </div>
 
-            <div class="checkout-section checkout-summary">
-                <h2 class="section-title">Đơn hàng của bạn</h2>
-                <div id="checkoutItems"></div>
-                <div class="summary-row">
-                    <span>Phí giao hàng:</span>
-                    <span>30.000đ</span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Tổng thanh toán:</span>
-                    <strong id="checkoutTotal" class="price-text">0đ</strong>
-                </div>
-                <button type="submit" class="btn-primary">Xác Nhận Đặt Hàng</button>
-            </div>
-        </form>
+    <div class="order-summary card-flex">
+        <h2 class="section-title">Đơn hàng của bạn</h2>
+        <div id="checkoutItems"></div>
+        
+        <!-- Ô nhập mã giảm giá FASCO [2] -->
+        <div style="display: flex; gap: 8px; margin: 24px 0;">
+            <input type="text" class="field-input" placeholder="Mã giảm giá" style="margin: 0;">
+            <button type="button" class="btn-primary" style="padding: 10px 20px;">Áp dụng</button>
+        </div>
+
+        <div class="summary-row summary-total">
+            <span>Tổng cộng:</span>
+            <strong id="checkoutTotal">0đ</strong>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top: 16px;">Thanh toán ngay</button>
+    </div>
+</form>
     </main>
 
     <div id="app-footer"></div>
