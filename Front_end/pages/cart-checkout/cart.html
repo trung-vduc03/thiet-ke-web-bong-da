@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE HUB | Giỏ Hàng</title>
+   
+    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+    <link rel="stylesheet" href="../../styles/cart-checkout.css">
+</head>
+<body>
+    <main class="container">
+    <!-- Thông báo vận chuyển F -->
+    <div class="shipping-notice" id="shippingNotice">
+        Mua thêm <strong>500.000đ</strong> để được miễn phí vận chuyển
+    </div>
+
+    <h1 class="page-title">Shopping </h1>
+    
+    <div class="cart-grid">
+        <div class="cart-table-wrapper" id="cartTableWrapper">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="summary-box card-flex">
+            <h2 class="section-title">Đơn hàng</h2>
+            
+            <!-- Tùy chọn gói quà chuẩn FASCO [4] -->
+            <div style="padding: 16px 0; border-top: 1px solid var(--color-line); margin-top: 16px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                    <input type="checkbox" id="giftWrap" onchange="renderCart()">
+                    <span>Thêm 10.000đ để gói quà sản phẩm</span>
+                </label>
+            </div>
+
+            <div class="summary-row"><span>Tạm tính:</span><strong id="subTotal">0đ</strong></div>
+            <div class="summary-row"><span>Phí gói quà:</span><strong id="giftWrapPrice">0đ</strong></div>
+            <div class="summary-row"><span>Phí vận chuyển:</span><span>30.000đ</span></div>
+            <div class="summary-row summary-total"><span>Tổng tiền:</span><strong id="grandTotal">0đ</strong></div>
+            
+            <a href="checkout.html" class="btn-primary" style="text-align: center; display: block; text-decoration: none; margin-top: 16px;">Thanh toán</a>
+        </div>
+    </div>
+
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="../../app.js"></script>
+    <script src="./cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trang chủ | Football Fashion</title>
+    <meta name="description" content="Thời trang bóng đá - Áo đấu các câu lạc bộ">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --primary: #071a2b;
+            --primary-light: #0d2b43;
+            --accent: #18d900;
+            --accent-dark: #10ad00;
+
+            --text: #172033;
+            --muted: #697386;
+            --border: #e5e7eb;
+            --background: #f7f8fa;
+            --white: #ffffff;
+
+            --danger: #e11d48;
+            --warning: #f59e0b;
+
+            --radius: 10px;
+            --shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+            --transition: all .25s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fff;
+            color: var(--text);
+            font-family: "Plus Jakarta Sans", Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+        }
+
+        .header-inner {
+            width: min(1440px, 100%);
+            min-height: 72px;
+            margin: 0 auto;
+            padding: 0 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 800;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .main-nav a,
+        .login-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #fff;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active,
+        .login-link:hover {
+            color: var(--accent);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero-banner {
+            position: relative;
+
+            min-height: 460px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 80px 40px;
+
+            text-align: center;
+            color: #fff;
+
+            background:
+                linear-gradient(
+                    rgba(7, 26, 43, .90),
+                    rgba(7, 26, 43, .90)
+                ),
+                url("https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&q=80")
+                center / cover no-repeat;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            margin-bottom: 15px;
+            padding: 6px 16px;
+
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+
+            background: rgba(24, 217, 0, .12);
+            color: var(--accent);
+
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-title {
+            max-width: 900px;
+
+            margin-bottom: 15px;
+
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .hero-desc {
+            max-width: 650px;
+
+            margin-bottom: 30px;
+
+            color: rgba(255, 255, 255, .75);
+            font-size: 15px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            min-height: 44px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 25px;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: var(--primary);
+        }
+
+        /* =========================
+           TRUST BAR
+        ========================= */
+
+        .trust-bar {
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 24px 20px;
+        }
+
+        .trust-container {
+            width: min(1440px, 100%);
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .trust-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 8px;
+
+            background: rgba(24, 217, 0, .10);
+            color: var(--accent);
+
+            font-size: 17px;
+        }
+
+        .trust-title {
+            margin-bottom: 2px;
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .trust-desc {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: min(1440px, 100%);
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-tag {
+            margin-bottom: 5px;
+
+            color: var(--accent);
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .section-title {
+            color: var(--text);
+
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        /* =========================
+           CLUB SHIRT CATEGORY
+        ========================= */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            position: relative;
+
+            height: 230px;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+            color: #fff;
+
+            background: #eee;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition: transform .45s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(7, 26, 43, .92),
+                    rgba(7, 26, 43, 0)
+                );
+        }
+
+        .category-title {
+            margin-bottom: 4px;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .category-sub {
+            color: var(--accent);
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PRODUCT SECTION
+        ========================= */
+
+        .products-section {
+            padding-top: 0;
+        }
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 22px;
+        }
+
+        .product-card {
+            position: relative;
+
+            min-width: 0;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            background: #fff;
+
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow: var(--shadow);
+        }
+
+        .product-badge {
+            position: absolute;
+
+            top: 11px;
+            left: 11px;
+
+            z-index: 2;
+
+            padding: 5px 9px;
+
+            border-radius: 4px;
+
+            background: var(--accent);
+            color: var(--primary);
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .product-badge.sale {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .product-img-box {
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            overflow: hidden;
+
+            background: #f4f5f6;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition: transform .5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.045);
+        }
+
+        .product-info {
+            padding: 14px;
+        }
+
+        .product-category {
+            margin-bottom: 5px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .product-title {
+            min-height: 42px;
+
+            display: -webkit-box;
+
+            overflow: hidden;
+
+            color: var(--text);
+
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.5;
+
+            text-decoration: none;
+
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-title:hover {
+            color: #0b67b2;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+
+            margin: 8px 0;
+        }
+
+        .product-rating i {
+            color: var(--warning);
+            font-size: 10px;
+        }
+
+        .product-rating span {
+            margin-left: 4px;
+
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 10px;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .product-price {
+            color: var(--danger);
+
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .old-price {
+            color: #9ca3af;
+
+            font-size: 11px;
+
+            text-decoration: line-through;
+        }
+
+        .add-btn {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+
+            background: var(--primary);
+            color: #fff;
+
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+
+        /* =========================
+           PROMO
+        ========================= */
+
+        .promo-banner {
+            margin-top: 10px;
+
+            padding: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-light)
+                );
+
+            color: #fff;
+        }
+
+        .promo-content h2 {
+            margin-bottom: 8px;
+
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .promo-content p {
+            max-width: 600px;
+
+            color: rgba(255, 255, 255, .70);
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .site-footer {
+            padding: 28px 20px;
+
+            background: var(--primary);
+            color: rgba(255, 255, 255, .75);
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .header-inner {
+                padding: 0 25px;
+            }
+
+            .container {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .main-nav {
+                gap: 18px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* =========================
+           TABLET NHỎ
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .header-inner {
+                min-height: 65px;
+            }
+
+            .main-nav {
+                gap: 14px;
+            }
+
+            .main-nav a,
+            .login-link {
+                font-size: 12px;
+            }
+
+            .trust-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .promo-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .header-inner {
+                min-height: auto;
+
+                padding: 14px;
+
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .main-nav {
+                order: 3;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                justify-content: flex-start;
+
+                padding-bottom: 2px;
+            }
+
+            .login-link {
+                display: none;
+            }
+
+            .hero-banner {
+                min-height: 400px;
+
+                padding: 60px 20px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-desc {
+                font-size: 13px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .trust-container {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 45px 14px;
+            }
+
+            .section-title {
+                font-size: 23px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-card {
+                height: 210px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 15px 10px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .product-title {
+                min-height: 37px;
+                font-size: 11px;
+            }
+
+            .product-price {
+                font-size: 12px;
+            }
+
+            .old-price {
+                display: none;
+            }
+
+            .add-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .promo-banner {
+                padding: 30px 22px;
+            }
+
+            .promo-content h2 {
+                font-size: 23px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .product-grid {
+                gap: 12px 8px;
+            }
+
+            .product-category {
+                font-size: 9px;
+            }
+
+            .product-title {
+                font-size: 10px;
+            }
+
+            .product-price {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                Football Fashion
+            </a>
+
+            <nav class="main-nav" aria-label="Điều hướng chính">
+
+                <a href="index.html" class="active">
+                    Trang chủ
+                </a>
+
+                <a href="Front_end/pages/home/products/products.html">
+                    Sản phẩm
+                </a>
+
+                <a href="Front_end/pages/home/wishlist.html">
+                    <i class="fa-regular fa-heart"></i>
+                    Yêu thích
+                </a>
+
+                <a href="Front_end/pages/home/cart.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Giỏ hàng
+                </a>
+
+            </nav>
+
+            <a href="Front_end/pages/user/login.html" class="login-link">
+    Đăng nhập
+</a>
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero-banner">
+
+        <span class="hero-badge">
+            BỘ SƯU TẬP 2025/2026
+        </span>
+
+        <h1 class="hero-title">
+            ĐẲNG CẤP THỜI TRANG BÓNG ĐÁ
+        </h1>
+
+        <p class="hero-desc">
+            Khám phá những mẫu áo đấu mới nhất của các câu lạc bộ
+            hàng đầu thế giới. Thiết kế đẹp, chất lượng cao và phong cách.
+        </p>
+
+        <div class="hero-actions">
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="btn btn-primary"
+            >
+                MUA NGAY
+            </a>
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="btn btn-outline"
+            >
+                XEM BỘ SƯU TẬP
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRUST BAR
+    ========================= -->
+
+    <section class="trust-bar">
+
+        <div class="trust-container">
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div>
+                    <div class="trust-title">
+                        Giao Hàng Hỏa Tốc
+                    </div>
+
+                    <div class="trust-desc">
+                        Nhanh chóng trong 24h
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div>
+                    <div class="trust-title">
+                        100% Chính Hãng
+                    </div>
+
+                    <div class="trust-desc">
+                        Cam kết chất lượng cao
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+
+                <div>
+                    <div class="trust-title">
+                        Đổi Trả 7 Ngày
+                    </div>
+
+                    <div class="trust-desc">
+                        Dễ dàng & miễn phí
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="trust-item">
+
+                <div class="trust-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <div>
+                    <div class="trust-title">
+                        Hỗ Trợ 24/7
+                    </div>
+
+                    <div class="trust-desc">
+                        Tư vấn tận tâm
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ÁO CLB
+    ========================= -->
+
+    <section class="container">
+
+        <div class="section-header">
+
+            <p class="section-tag">
+                DANH MỤC
+            </p>
+
+            <h2 class="section-title">
+                ÁO ĐẤU CÁC CÂU LẠC BỘ
+            </h2>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <!-- REAL MADRID -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="Front_end/assets/images/clubs/Real-Madrid-Logo-1997-2001 (1).jpg"
+                    alt="Áo Real Madrid"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Real Madrid
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- BARCELONA -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="
+                    Front_end/assets/images/clubs/Barcelona-Logo.png"
+                    alt="Áo Barcelona"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Barcelona
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- ARSENAL -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="Front_end/assets/images/clubs/Arsenal-Logo.png"
+                    alt="Áo Arsenal"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Arsenal
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- LIVERPOOL -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="Front_end/assets/images/clubs/Liverpool-Logo.png"
+                    alt="Áo Liverpool"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Liverpool
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- MAN UNITED -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="Front_end/assets/images/clubs/Manchester-United-logo.png"
+                    alt="Áo Manchester United"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Manchester United
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- Manchester City -->
+
+            <a
+                href="Front_end/pages/home/products/products.html"
+                class="category-card"
+            >
+
+                <img
+                    src="Front_end/assets/images/clubs/Manchester-City-Logo.png"
+                    alt="Áo Manchester City"
+                >
+
+                <div class="category-overlay">
+
+                    <div class="category-title">
+                        Manchester City
+                    </div>
+
+                    <div class="category-sub">
+                        Xem áo đấu →
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SẢN PHẨM BÁN CHẠY
+    ========================= -->
+
+    <section class="container products-section">
+
+        <div class="section-header">
+
+            <p class="section-tag">
+                HOT TREND
+            </p>
+
+            <h2 class="section-title">
+                ÁO ĐẤU BÁN CHẠY
+            </h2>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product-card">
+
+                <span class="product-badge">
+                    HOT
+                </span>
+
+                <div class="product-img-box">
+
+                    <img
+                        class="product-img"
+                        src="Front_end/assets/images/clubs/real-madrid-2025-home.jpg"
+                        alt="Áo Real Madrid Home"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <p class="product-category">
+                        Áo Đấu
+                    </p>
+
+                    <h3 class="product-title">
+                        Áo Đấu Real Madrid Home Kit 25/26
+                    </h3>
+
+                    <div class="product-rating">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            (128)
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price-box">
+
+                            <span class="product-price">
+                                900.000đ
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="add-btn"
+                            title="Thêm vào giỏ"
+                        >
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product-card">
+
+                <span class="product-badge sale">
+                    SALE
+                </span>
+
+                <div class="product-img-box">
+
+                    <img
+                        class="product-img"
+                        src="Front_end/assets/images/clubs/arsenal-2025-home.jpg"
+                        alt="Áo Arsenal Away"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <p class="product-category">
+                        Áo Đấu
+                    </p>
+
+                    <h3 class="product-title">
+                        Áo Đấu Arsenal Away Kit 25/26
+                    </h3>
+
+                    <div class="product-rating">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            (96)
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price-box">
+
+                            <span class="product-price">
+                                1.150.000đ
+                            </span>
+
+                            <span class="old-price">
+                                820.000đ
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="add-btn"
+                            title="Thêm vào giỏ"
+                        >
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <span class="product-badge">
+                    NEW
+                </span>
+
+                <div class="product-img-box">
+
+                    <img
+                        class="product-img"
+                        src="Front_end/assets/images/clubs/barcelona-2025-home.jpg"
+                        alt="Áo Barcelona"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <p class="product-category">
+                        Áo Đấu
+                    </p>
+
+                    <h3 class="product-title">
+                        Áo Đấu Barcelona Home Kit 25/26
+                    </h3>
+
+                    <div class="product-rating">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+
+                        <span>
+                            (84)
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price-box">
+
+                            <span class="product-price">
+                                800.000đ
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="add-btn"
+                            title="Thêm vào giỏ"
+                        >
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <span class="product-badge">
+                    HOT
+                </span>
+
+                <div class="product-img-box">
+
+                    <img
+                        class="product-img"
+                        src="Front_end/assets/images/clubs/manchester-united-2025-home.jpg"
+                        alt="Áo Manchester United"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <p class="product-category">
+                        Áo Đấu
+                    </p>
+
+                    <h3 class="product-title">
+                        Áo Đấu Manchester United Home Kit 25/26
+                    </h3>
+
+                    <div class="product-rating">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>
+                            (112)
+                        </span>
+
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <div class="price-box">
+
+                            <span class="product-price">
+                                850.000đ
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="add-btn"
+                            title="Thêm vào giỏ"
+                        >
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROMO
+    ========================= -->
+
+ <!-- PROMO BANNER (ĐÃ CẬP NHẬT ĐƯỜNG DẪN) -->
+<section class="container">
+    <div class="promo-banner">
+        <div class="promo-content">
+            <h2>SẴN SÀNG RA SÂN?</h2>
+            <p>
+                Khám phá bộ sưu tập áo đấu mới nhất
+                từ những câu lạc bộ hàng đầu thế giới.
+            </p>
+        </div>
+       <a href="/Front_end/pages/home/products/products.html" class="btn btn-primary">
+    XEM TẤT CẢ ÁO ĐẤU
+</a>
+    </div>
+</section>
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <!-- CỘT 1: GIỚI THIỆU & MẠNG XÃ HỘI -->
+
+        <div class="footer-col">
+
+            <h3 class="footer-title">
+                FOOTBALL FASHION
+            </h3>
+
+            <p class="footer-desc">
+                Chuyên cung cấp các mẫu áo đấu, giày đá bóng và phụ kiện thể thao chính hãng chất lượng cao.
+            </p>
+
+            <div class="footer-socials">
+
+                <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CỘT 2: THÔNG TIN LIÊN HỆ -->
+
+        <div class="footer-col">
+
+            <h3 class="footer-title">
+                THÔNG TIN LIÊN HỆ
+            </h3>
+
+            <ul class="contact-list">
+
+                <li>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>123 Đường Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
+
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Hotline: 0909 123 456 - 028 3888 999</span>
+
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Email: cskh@footballfashion.vn</span>
+
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Giờ làm việc: 08:30 - 21:30 (T2 - CN)</span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- CỘT 3: HỖ TRỢ KHÁCH HÀNG -->
+
+        <div class="footer-col">
+
+            <h3 class="footer-title">
+                HỖ TRỢ KHÁCH HÀNG
+            </h3>
+
+            <ul class="footer-links">
+
+                <li><a href="#">Hướng dẫn chọn size áo</a></li>
+
+                <li><a href="#">Chính sách đổi trả trong 30 ngày</a></li>
+
+                <li><a href="#">Chính sách bảo hành sản phẩm</a></li>
+
+                <li><a href="#">Phương thức thanh toán</a></li>
+
+                <li><a href="#">Tra cứu đơn hàng</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>&copy; 2026 Football Fashion. Tất cả các quyền được bảo lưu.</p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

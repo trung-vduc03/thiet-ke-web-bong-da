@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | Football Fashion</title>
+
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #071a2b;
+            --primary-light: #0d2b43;
+            --accent: #18d900;
+            --accent-dark: #10ad00;
+            --text: #172033;
+            --muted: #697386;
+            --border: #e2e8f0;
+            --background: #f8fafc;
+            --white: #ffffff;
+            --radius: 12px;
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(7, 26, 43, 0.08);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-header .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 16px 0 42px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: var(--transition);
+            background-color: #f8fafc;
+        }
+
+        .form-input:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(7, 26, 43, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .remember-me input {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+        }
+
+        .forgot-pass {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .forgot-pass:hover {
+            color: var(--accent-dark);
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            height: 48px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider span {
+            padding: 0 12px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-social {
+            flex: 1;
+            height: 42px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-social:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .signup-link a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            color: var(--accent-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../../index.html" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i>
+        Trở về trang chủ
+    </a>
+
+    <div class="login-card">
+
+        <div class="login-header">
+            <a href="../../../index.html" class="logo">Football Fashion</a>
+            <p>Đăng nhập để trải nghiệm mua sắm tuyệt vời</p>
+        </div>
+
+        <form action="#" method="POST">
+
+            <div class="form-group">
+                <label class="form-label" for="email">Email hoặc Số điện thoại</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="text" id="email" class="form-input" placeholder="nhapemail@example.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Mật khẩu</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox">
+                    <span>Ghi nhớ đăng nhập</span>
+                </label>
+                <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="btn-submit">Đăng nhập</button>
+
+        </form>
+
+        <div class="divider">
+            <span>hoặc đăng nhập bằng</span>
+        </div>
+
+        <div class="social-login">
+            <button class="btn-social">
+                <i class="fa-brands fa-google" style="color: #ea4335;"></i>
+                Google
+            </button>
+            <button class="btn-social">
+                <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
+                Facebook
+            </button>
+        </div>
+
+        <div class="signup-link">
+    Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+</div>
+
+    </div>
+
+</body>
+</html>

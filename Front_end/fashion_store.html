@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLE HUB | Trang Chủ</title>
+    <link rel="stylesheet" href="./styles/tokens.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="fashion_store.html" class="logo">STYLE <span>HUB</span></a>
+        <nav class="main-nav">
+            <a href="fashion_store.html" class="active">Trang chủ</a>
+            <a href="pages/products.html">Sản phẩm</a>
+            <a href="pages/wishlist.html" id="wishlistNav">Yêu thích (0)</a>
+            <a href="pages/cart.html" id="cartNav">Giỏ hàng (0)</a>
+            <div class="auth-btns">
+                <a href="pages/login.html">Đăng nhập</a>
+                <a href="pages/register.html">Đăng ký</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <section class="hero">
+            <h1>BỘ SƯU TẬP ÁO ĐẤU 2026</h1>
+            <p>Sở hữu ngay trang phục thi đấu chính hãng mới nhất của các câu lạc bộ hàng đầu thế giới.</p>
+            <a href="pages/products.html" class="btn-hero">Khám Phá Ngay →</a>
+        </section>
+
+        <div class="features">
+            <div class="feature-item">
+                <h4>🚀 Giao Hàng Nhanh</h4>
+                <p>Toàn quốc trong 2-4 ngày</p>
+            </div>
+            <div class="feature-item">
+                <h4>💯 Chuẩn Chính Hãng</h4>
+                <p>Chất liệu cao cấp, thoáng khí</p>
+            </div>
+            <div class="feature-item">
+                <h4>🔄 Đổi Trả Dễ Dàng</h4>
+                <p>Hỗ trợ đổi size trong 7 ngày</p>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Câu Lạc Bộ Nổi Bật</h2>
+            <a href="pages/products.html">Xem tất cả ›</a>
+        </div>
+        <div class="categories-grid">
+            <a href="pages/products.html" class="category-card manc">Manchester United</a>
+            <a href="pages/products.html" class="category-card rma">Real Madrid</a>
+            <a href="pages/products.html" class="category-card ars">Arsenal FC</a>
+        </div>
+
+        <div class="section-title">
+            <h2>Sản Phẩm Bán Chạy</h2>
+            <a href="pages/products.html">Xem tất cả ›</a>
+        </div>
+        <div id="homeProductGrid" class="product-grid"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>STYLE HUB</h4>
+                    <p>Hệ thống phân phối áo đấu bóng đá chính hãng uy tín hàng đầu.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Khám Phá</h4>
+                    <ul>
+                        <li><a href="pages/products.html">Sản phẩm mới</a></li>
+                        <li><a href="pages/products.html">Áo đấu CLB</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ Trợ</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn chọn size</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© MÔN THIẾT KẾ WEB ĐẠI HỌC MỞ </p>
+                <p>THUỘC 3 THÀNH VIÊN : PHẠM HUỲNH PHƯỚC, VIÊN LÊ QUANG LĨNH, VŨ ĐỨC TRUNG</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        updateBadges();
+
+        // ĐƯỜNG DẪN FETCH CHUẨN XÁC: Lùi ra khỏi Front_end để vào thư mục data gốc
+        fetch("../data/products.json")
+          .then((res) => res.json())
+          .then((products) => {
+            const grid = document.getElementById("homeProductGrid");
+            if (!grid) return;
+            const featured = products.slice(0, 4);
+
+            grid.innerHTML = featured
+              .map(
+                (p) => `
+              <div class="product-card" style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; display: flex; flex-direction: column; justify-content: space-between;">
+                <a href="pages/product-detail.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+                  <div style="width: 100%; height: 200px; background-color: #f8fafc; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden;">
+                    <img src="${p.image ? p.image : './assets/images/clubs/manchester-united-2025-home.jpg'}" alt="${p.name}" style="max-width: 90%; max-height: 90%; object-fit: contain;" />
+                  </div>
+                  <h3 style="font-size: 15px; font-weight: 700; text-align: center; margin-bottom: 6px; color: #1e293b;">${p.name}</h3>
+                </a>
+                <p style="color: #dc2626; font-weight: 800; text-align: center; margin-bottom: 12px;">${Number(p.price).toLocaleString("vi-VN")}đ</p>
+                <a href="pages/products.html" style="display: block; text-align: center; padding: 10px; background: #0f172a; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Xem chi tiết</a>
+              </div>
+            `
+              )
+              .join("");
+          })
+          .catch(() => {
+            const grid = document.getElementById("homeProductGrid");
+            if(grid) grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #888;">Ghé thăm trang Sản phẩm để chọn áo đấu yêu thích!</p>`;
+          });
+      });
+
+      function updateBadges() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const totalCart = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+
+        const cartNav = document.getElementById("cartNav");
+        const wishlistNav = document.getElementById("wishlistNav");
+
+        if (cartNav) cartNav.textContent = `Giỏ hàng (${totalCart})`;
+        if (wishlistNav) wishlistNav.textContent = `Yêu thích (${wishlist.length})`;
+      }
+    </script>
+</body>
+</html>
