@@ -57,22 +57,15 @@ function getProductId() {
 ======================================== */
 function convertImagePath(imagePath) {
     if (!imagePath) {
-        return "../assets/images/clubs/manchester-united-2025-home.jpg";
+        return "../../../assets/images/clubs/manchester-united-2025-home.jpg";
     }
 
-    if (imagePath.startsWith("../assets/")) {
+    if (imagePath.startsWith("http") || imagePath.startsWith("data:")) {
         return imagePath;
     }
 
-    if (imagePath.startsWith("assets/")) {
-        return "../" + imagePath;
-    }
-
-    if (imagePath.startsWith("./assets/")) {
-        return "../" + imagePath.replace("./", "");
-    }
-
-    return "../" + imagePath;
+    const fileName = imagePath.split("/").pop();
+    return "../../../assets/images/clubs/" + fileName;
 }
 
 /* ========================================
@@ -80,6 +73,11 @@ function convertImagePath(imagePath) {
 ======================================== */
 async function loadProductsData() {
     const paths = [
+        "../../../../database/products.json",
+        "../../../database/products.json",
+        "../../database/products.json",
+        "/database/products.json",
+        "/Front_end/database/products.json",
         "../data/products.json"
     ];
 
@@ -478,7 +476,7 @@ function renderRelatedProducts() {
         info.className = "related-card-info";
 
         const link = document.createElement("a");
-        link.href = `product-detail.html?id=${product.id}`;
+        link.href = `products-detail.html?id=${product.id}`;
         link.textContent = product.name;
 
         const price = document.createElement("p");

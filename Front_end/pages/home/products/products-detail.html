@@ -6,27 +6,29 @@
     <title>Chi tiết sản phẩm | Football Fashion</title>
     <meta name="description" content="Xem chi tiết sản phẩm thời trang bóng đá tại Football Fashion.">
 
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/product-detail.css">
+    <link rel="icon" type="image/svg+xml" href="../../../assets/images/favicon.svg">
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link rel="stylesheet" href="../../../css/products-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
 <header class="site-header">
-    <div class="container header-inner">
-        <a href="../index.html" class="logo">
+    <div class="container header-inner" style="display: flex; align-items: center; justify-content: space-between; height: 54px;">
+        <a href="../../../../index.html" class="logo" style="color: #fff; font-weight: 800; text-decoration: none; font-size: 20px;">
             Football Fashion
         </a>
 
-        <nav class="main-nav" aria-label="Điều hướng chính">
-            <a href="../index.html">Trang chủ</a>
-            <a href="products.html">Sản phẩm</a>
-            <a href="favorites.html">Yêu thích</a>
-            <a href="cart.html">Giỏ hàng</a>
+        <nav class="main-nav" aria-label="Điều hướng chính" style="display: flex; gap: 24px; align-items: center;">
+            <a href="../../../../index.html" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 14px;">Trang chủ</a>
+            <a href="./products.html" class="active" style="color: #22c55e; text-decoration: none; font-weight: 600; font-size: 14px;">Sản phẩm</a>
+            <a href="../../cart-checkout/wishlist.html" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 14px;">Yêu thích</a>
+            <a href="../../cart-checkout/cart.html" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 14px;">Giỏ hàng</a>
         </nav>
 
-        <a href="login.html" class="login-link">
-            Đăng nhập
+        <a href="../../cart-checkout/cart.html" class="login-link" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 14px;">
+            Xem giỏ hàng
         </a>
     </div>
 </header>
@@ -35,9 +37,9 @@
     <div class="container">
 
         <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.html">Trang chủ</a>
+            <a href="../../../../index.html">Trang chủ</a>
             <span>/</span>
-            <a href="products.html">Sản phẩm</a>
+            <a href="./products.html">Sản phẩm</a>
             <span>/</span>
             <span id="breadcrumbTitle">Chi tiết sản phẩm</span>
         </nav>
@@ -127,7 +129,7 @@
     </div>
 </footer>
 
-<script src="../js/product-detail.js"></script>
+<script src="../../../assets/js/products-detail.js"></script>
 
 </body>
 </html>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Trang Chủ</title>
-    <link rel="stylesheet" href="./styles/tokens.css">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
 
@@ -13,12 +13,11 @@
         <a href="fashion_store.html" class="logo">STYLE <span>HUB</span></a>
         <nav class="main-nav">
             <a href="fashion_store.html" class="active">Trang chủ</a>
-            <a href="pages/products.html">Sản phẩm</a>
-            <a href="pages/wishlist.html" id="wishlistNav">Yêu thích (0)</a>
-            <a href="pages/cart.html" id="cartNav">Giỏ hàng (0)</a>
+            <a href="pages/home/products/products.html">Sản phẩm</a>
+            <a href="pages/cart-checkout/wishlist.html" id="wishlistNav">Yêu thích (0)</a>
+            <a href="pages/cart-checkout/cart.html" id="cartNav">Giỏ hàng (0)</a>
             <div class="auth-btns">
-                <a href="pages/login.html">Đăng nhập</a>
-                <a href="pages/register.html">Đăng ký</a>
+                <a href="pages/home/products/products.html">Mua sắm</a>
             </div>
         </nav>
     </header>
@@ -27,7 +26,7 @@
         <section class="hero">
             <h1>BỘ SƯU TẬP ÁO ĐẤU 2026</h1>
             <p>Sở hữu ngay trang phục thi đấu chính hãng mới nhất của các câu lạc bộ hàng đầu thế giới.</p>
-            <a href="pages/products.html" class="btn-hero">Khám Phá Ngay →</a>
+            <a href="pages/home/products/products.html" class="btn-hero">Khám Phá Ngay →</a>
         </section>
 
         <div class="features">
@@ -47,17 +46,17 @@
 
         <div class="section-title">
             <h2>Câu Lạc Bộ Nổi Bật</h2>
-            <a href="pages/products.html">Xem tất cả ›</a>
+            <a href="pages/home/products/products.html">Xem tất cả ›</a>
         </div>
         <div class="categories-grid">
-            <a href="pages/products.html" class="category-card manc">Manchester United</a>
-            <a href="pages/products.html" class="category-card rma">Real Madrid</a>
-            <a href="pages/products.html" class="category-card ars">Arsenal FC</a>
+            <a href="pages/home/products/products.html" class="category-card manc">Manchester United</a>
+            <a href="pages/home/products/products.html" class="category-card rma">Real Madrid</a>
+            <a href="pages/home/products/products.html" class="category-card ars">Arsenal FC</a>
         </div>
 
         <div class="section-title">
             <h2>Sản Phẩm Bán Chạy</h2>
-            <a href="pages/products.html">Xem tất cả ›</a>
+            <a href="pages/home/products/products.html">Xem tất cả ›</a>
         </div>
         <div id="homeProductGrid" class="product-grid"></div>
     </main>
@@ -72,8 +71,8 @@
                 <div class="footer-col">
                     <h4>Khám Phá</h4>
                     <ul>
-                        <li><a href="pages/products.html">Sản phẩm mới</a></li>
-                        <li><a href="pages/products.html">Áo đấu CLB</a></li>
+                        <li><a href="pages/home/products/products.html">Sản phẩm mới</a></li>
+                        <li><a href="pages/home/products/products.html">Áo đấu CLB</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -85,8 +84,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© MÔN THIẾT KẾ WEB ĐẠI HỌC MỞ </p>
-                <p>THUỘC 3 THÀNH VIÊN : PHẠM HUỲNH PHƯỚC, VIÊN LÊ QUANG LĨNH, VŨ ĐỨC TRUNG</p>
+                <p>© 2026 Football Fashion. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -95,8 +93,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         updateBadges();
 
-        // ĐƯỜNG DẪN FETCH CHUẨN XÁC: Lùi ra khỏi Front_end để vào thư mục data gốc
-        fetch("../data/products.json")
+        fetch("../database/products.json")
           .then((res) => res.json())
           .then((products) => {
             const grid = document.getElementById("homeProductGrid");
@@ -107,14 +104,14 @@
               .map(
                 (p) => `
               <div class="product-card" style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; display: flex; flex-direction: column; justify-content: space-between;">
-                <a href="pages/product-detail.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+                <a href="pages/home/products/products-detail.html?id=${p.id}" style="text-decoration: none; color: inherit;">
                   <div style="width: 100%; height: 200px; background-color: #f8fafc; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden;">
-                    <img src="${p.image ? p.image : './assets/images/clubs/manchester-united-2025-home.jpg'}" alt="${p.name}" style="max-width: 90%; max-height: 90%; object-fit: contain;" />
+                    <img src="${p.image ? p.image.replace(/^(\.\.\/)+/, './') : './assets/images/clubs/manchester-united-2025-home.jpg'}" alt="${p.name}" style="max-width: 90%; max-height: 90%; object-fit: contain;" onerror="this.src='./assets/images/clubs/manchester-united-2025-home.jpg'" />
                   </div>
                   <h3 style="font-size: 15px; font-weight: 700; text-align: center; margin-bottom: 6px; color: #1e293b;">${p.name}</h3>
                 </a>
                 <p style="color: #dc2626; font-weight: 800; text-align: center; margin-bottom: 12px;">${Number(p.price).toLocaleString("vi-VN")}đ</p>
-                <a href="pages/products.html" style="display: block; text-align: center; padding: 10px; background: #0f172a; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Xem chi tiết</a>
+                <a href="pages/home/products/products-detail.html?id=${p.id}" style="display: block; text-align: center; padding: 10px; background: #0f172a; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">Xem chi tiết</a>
               </div>
             `
               )

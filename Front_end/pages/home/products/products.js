@@ -25,8 +25,8 @@ const DATA_PATHS = [
     "/Front_end/data/products.json"
 ];
 
-const CART_KEY = "footballFashionCart";
-const WISHLIST_KEY = "footballFashionWishlist";
+const CART_KEY = "cart";
+const WISHLIST_KEY = "wishlist";
 
 const productGrid = document.getElementById("productGrid");
 const productCount = document.getElementById("productCount");
@@ -64,8 +64,9 @@ const quantityValue = document.getElementById("quantityValue");
 const quantityMinus = document.getElementById("quantityMinus");
 const quantityPlus = document.getElementById("quantityPlus");
 
-const btnAddCart = document.getElementById("btnAddCart");
-const btnBuyNow = document.getElementById("btnBuyNow");
+const btnAddCart = document.getElementById("btnAddCart") || document.getElementById("quickAddCart");
+const btnBuyNow = document.getElementById("btnBuyNow") || document.getElementById("quickBuyNow");
+const quickViewDetail = document.getElementById("quickViewDetail");
 
 const toast = document.getElementById("toast");
 const toastMessage = document.getElementById("toastMessage");
@@ -151,6 +152,9 @@ function getImageCandidatesFromPath(value) {
     const fileName = path.split("/").pop();
     const cleanRelative = path.replace(/^(\.\.\/)+/, "").replace(/^\/+/, "");
 
+    addCandidate(candidates, "../../../assets/images/clubs/" + fileName);
+    addCandidate(candidates, "../../../assets/images/" + fileName);
+    addCandidate(candidates, "../../../" + cleanRelative);
     addCandidate(candidates, "../../assets/images/clubs/" + fileName);
     addCandidate(candidates, "../../assets/images/" + fileName);
     addCandidate(candidates, "../assets/images/clubs/" + fileName);
@@ -383,7 +387,9 @@ function createProductCard(product) {
         <div class="product-card-info">
             <p class="product-category">${escapeHTML(category)}</p>
             <h3 class="product-title">
-                ${escapeHTML(product.name || "Sản phẩm bóng đá")}
+                <a href="./products-detail.html?id=${product.id}" style="text-decoration: none; color: inherit;">
+                    ${escapeHTML(product.name || "Sản phẩm bóng đá")}
+                </a>
             </h3>
 
             <div class="product-rating">
@@ -652,6 +658,24 @@ function openQuickView(product) {
         quickViewDescription.textContent = product.description || "Sản phẩm thời trang bóng đá chất lượng cao, phù hợp để sử dụng khi thi đấu hoặc đi chơi.";
     }
 
+    if (quickViewDetail) {
+        quickViewDetail.href = `./products-detail.html?id=${product.id}`;
+    }
+
+    const sizeSelect = document.getElementById("quickViewSize");
+    if (sizeSelect) {
+        sizeSelect.innerHTML = "";
+        const sizes = getProductSizes(product);
+        const finalSizes = sizes.length ? sizes : ["S", "M", "L", "XL"];
+        finalSizes.forEach(size => {
+            const opt = document.createElement("option");
+            opt.value = size;
+            opt.textContent = `Size ${size}`;
+            sizeSelect.appendChild(opt);
+        });
+        sizeSelect.value = finalSizes[0] || "M";
+    }
+
     renderQuickSizes(product);
     renderQuickColors(product);
 
@@ -740,14 +764,15 @@ function addToCart(product) {
     const productSizes = getProductSizes(product);
     const productColors = getProductColors(product);
 
-    const size = selectedQuickSize || productSizes[0] || "M";
+    const sizeSelect = document.getElementById("quickViewSize");
+    const size = (sizeSelect && sizeSelect.value) ? sizeSelect.value : (selectedQuickSize || productSizes[0] || "M");
     const color = selectedQuickColor || productColors[0] || "";
     const cartId = `${product.id}-${size}-${color}`;
 
-    const existing = cart.find(item => String(item.cartId) === String(cartId));
+    const existing = cart.find(item => String(item.id) === String(product.id) && item.size === size);
 
     if (existing) {
-        existing.quantity = Number(existing.quantity || 0) + quickQuantity;
+        existing.quantity = Number(existing.quantity || 0) + (quickQuantity || 1);
     } else {
         cart.push({
             cartId: cartId,
@@ -757,12 +782,14 @@ function addToCart(product) {
             image: getProductImage(product),
             size: size,
             color: color,
-            quantity: quickQuantity
+            quantity: quickQuantity || 1
         });
     }
 
     saveCart(cart);
-    showToast(`Đã thêm "${product.name}" vào giỏ hàng`);
+    updateBadges();
+    showToast(`Đã thêm "${product.name}" (Size ${size}) vào giỏ hàng!`);
+    closeQuickViewModal();
 }
 
 function getWishlist() {
@@ -823,15 +850,43 @@ function updateWishlistIcon(button, productId) {
 }
 
 function showToast(message) {
-    if (!toast || !toastMessage) return;
-
-    toastMessage.textContent = message;
-    toast.classList.add("show");
+    let t = document.getElementById("toast");
+    let msg = document.getElementById("toastMessage");
+    if (!t) {
+        t = document.createElement("div");
+        t.id = "toast";
+        t.style.cssText = "position: fixed; bottom: 30px; right: 30px; background: #0b1727; color: #fff; border-left: 4px solid #22c55e; padding: 14px 22px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 10px; z-index: 9999; font-weight: 600; font-size: 14px;";
+        t.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 18px;"></i><span id="toastMessage">${message}</span>`;
+        document.body.appendChild(t);
+        msg = document.getElementById("toastMessage");
+    }
+    if (msg) msg.textContent = message;
+    t.style.display = "flex";
 
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () {
-        toast.classList.remove("show");
+        t.style.display = "none";
     }, 2500);
+}
+
+function updateBadges() {
+    try {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const cartBadge = document.getElementById("cart-badge");
+        const wishlistBadge = document.getElementById("wishlist-badge");
+
+        const totalCart = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+
+        if (cartBadge) {
+            cartBadge.textContent = totalCart;
+            cartBadge.style.display = totalCart > 0 ? "inline-flex" : "none";
+        }
+        if (wishlistBadge) {
+            wishlistBadge.textContent = wishlist.length;
+            wishlistBadge.style.display = wishlist.length > 0 ? "inline-flex" : "none";
+        }
+    } catch (e) {}
 }
 
 if (quantityMinus) {
@@ -859,7 +914,7 @@ if (btnBuyNow) {
     btnBuyNow.addEventListener("click", function () {
         if (!currentQuickProduct) return;
         addToCart(currentQuickProduct);
-        window.location.href = "../cart-checkout/cart.html";
+        window.location.href = "../../cart-checkout/cart.html";
     });
 }
 
@@ -906,10 +961,9 @@ if (quickViewModal) {
     });
 }
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && quickViewModal && !quickViewModal.hidden) {
-        closeQuickViewModal();
-    }
-});
+document.addEventListener("DOMContentLoaded", updateBadges);
+window.addEventListener("storage", updateBadges);
 
-loadProducts();
+loadProducts().then(() => {
+    updateBadges();
+});

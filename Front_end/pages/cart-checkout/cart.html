@@ -3,61 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STYLE HUB | Giỏ Hàng</title>
+    <title>Giỏ Hàng | Football Fashion</title>
+    <meta name="description" content="Giỏ hàng mua sắm tại Football Fashion">
    
-    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+    <link rel="stylesheet" href="../../styles/styles.css">
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <main class="container">
-    <!-- Thông báo vận chuyển F -->
-    <div class="shipping-notice" id="shippingNotice">
-        Mua thêm <strong>500.000đ</strong> để được miễn phí vận chuyển
-    </div>
 
-    <h1 class="page-title">Shopping </h1>
-    
-    <div class="cart-grid">
-        <div class="cart-table-wrapper" id="cartTableWrapper">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Tổng</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="cartTableBody"></tbody>
-            </table>
+    <!-- SITE HEADER -->
+    <header class="site-header" style="background-color: #0b1727; height: 54px; padding: 0 4%; display: flex; align-items: center; width: 100%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);">
+        <a href="../../../index.html" class="logo" style="color: #fff; font-size: 20px; font-weight: 800; text-decoration: none;">Football Fashion</a>
+
+        <nav class="nav-menu" style="display: flex; align-items: center; gap: 24px; margin-left: 40px; flex: 1;">
+            <a href="../../../index.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;">Trang chủ</a>
+            <a href="../home/products/products.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;">Sản phẩm</a>
+            <a href="wishlist.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-regular fa-heart"></i> Yêu thích
+                <span id="wishlist-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 4px;">0</span>
+            </a>
+            <a href="cart.html" class="nav-link active" style="color: #22c55e; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
+                <span id="cart-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 4px;">0</span>
+            </a>
+        </nav>
+
+        <div style="margin-left: auto;">
+            <a href="../home/products/products.html" style="color: #22c55e; text-decoration: none; font-size: 13.5px; font-weight: 600;">Tiếp tục mua hàng &rarr;</a>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 24px; padding-bottom: 60px;">
+        <!-- Breadcrumb -->
+        <nav style="margin-bottom: 20px; font-size: 13px; color: #64748b;">
+            <a href="../../../index.html" style="color: #64748b; text-decoration: none;">Trang chủ</a> / 
+            <a href="../home/products/products.html" style="color: #64748b; text-decoration: none;">Sản phẩm</a> / 
+            <span style="color: #0f172a; font-weight: 600;">Giỏ hàng</span>
+        </nav>
+
+        <!-- Thông báo vận chuyển -->
+        <div class="shipping-notice" id="shippingNotice">
+            Mua thêm <strong>500.000đ</strong> để được miễn phí vận chuyển
         </div>
 
-        <div class="summary-box card-flex">
-            <h2 class="section-title">Đơn hàng</h2>
-            
-            <!-- Tùy chọn gói quà chuẩn FASCO [4] -->
-            <div style="padding: 16px 0; border-top: 1px solid var(--color-line); margin-top: 16px;">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
-                    <input type="checkbox" id="giftWrap" onchange="renderCart()">
-                    <span>Thêm 10.000đ để gói quà sản phẩm</span>
-                </label>
+        <h1 class="page-title" style="margin-bottom: 24px; font-size: 24px; font-weight: 800;">Giỏ Hàng Của Bạn</h1>
+        
+        <div class="cart-grid">
+            <div class="cart-table-wrapper card-flex" id="cartTableWrapper" style="border-radius: 8px;">
+                <table class="cart-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #e2e8f0; text-align: left;">
+                            <th style="padding: 12px 8px;">Sản phẩm</th>
+                            <th style="padding: 12px 8px;">Đơn giá</th>
+                            <th style="padding: 12px 8px;">Số lượng</th>
+                            <th style="padding: 12px 8px;">Thành tiền</th>
+                            <th style="padding: 12px 8px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody"></tbody>
+                </table>
             </div>
 
-            <div class="summary-row"><span>Tạm tính:</span><strong id="subTotal">0đ</strong></div>
-            <div class="summary-row"><span>Phí gói quà:</span><strong id="giftWrapPrice">0đ</strong></div>
-            <div class="summary-row"><span>Phí vận chuyển:</span><span>30.000đ</span></div>
-            <div class="summary-row summary-total"><span>Tổng tiền:</span><strong id="grandTotal">0đ</strong></div>
-            
-            <a href="checkout.html" class="btn-primary" style="text-align: center; display: block; text-decoration: none; margin-top: 16px;">Thanh toán</a>
-        </div>
-    </div>
+            <div class="summary-box card-flex" style="border-radius: 8px;">
+                <h2 class="section-title" style="font-size: 18px; font-weight: 700; margin-bottom: 16px;">Tóm tắt đơn hàng</h2>
+                
+                <div style="padding: 16px 0; border-top: 1px solid var(--color-line); margin-top: 16px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                        <input type="checkbox" id="giftWrap" onchange="renderCart()">
+                        <span>Thêm 10.000đ để gói quà sản phẩm</span>
+                    </label>
+                </div>
 
+                <div class="summary-row"><span>Tạm tính:</span><strong id="subTotal">0đ</strong></div>
+                <div class="summary-row"><span>Phí gói quà:</span><strong id="giftWrapPrice">0đ</strong></div>
+                <div class="summary-row"><span>Phí vận chuyển:</span><span>30.000đ</span></div>
+                <div class="summary-row summary-total"><span>Tổng cộng:</span><strong id="grandTotal" style="color: #22c55e;">0đ</strong></div>
+                
+                <a href="checkout.html" id="checkoutBtn" class="btn-primary" style="text-align: center; display: block; text-decoration: none; margin-top: 20px; font-weight: 700; border-radius: 8px;">Tiến hành thanh toán</a>
+            </div>
+        </div>
     </main>
 
-    <div id="app-footer"></div>
+    <footer class="site-footer" style="background: #0b1727; color: #fff; padding: 30px 0; text-align: center; margin-top: 40px;">
+        <div class="container">
+            <p style="color: #94a3b8; font-size: 14px;">© 2026 Football Fashion. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="../../app.js"></script>
-    <script src="./cart.js"></script>
+    <script src="../../assets/js/cart.js"></script>
 </body>
 </html>

@@ -50,10 +50,9 @@
 
 
 
-    <link rel="stylesheet" href="../../../styles/style.css">
-
+    <link rel="icon" type="image/svg+xml" href="../../../assets/images/favicon.svg">
+    <link rel="stylesheet" href="../../../styles/styles.css">
     <link rel="stylesheet" href="./products.css">
-
 </head>
 
 
@@ -63,73 +62,34 @@
 
 
 <header class="site-header">
-
     <div class="container header-inner">
-
-
-
         <a href="../../../../index.html" class="logo">
-
             Football Fashion
-
         </a>
-
-
 
         <nav class="main-nav" aria-label="Điều hướng chính">
-
-
-
             <a href="../../../../index.html">
-
                 Trang chủ
-
             </a>
-
-
-
             <a href="./products.html" class="active">
-
                 Sản phẩm
-
             </a>
-
-
-
-            <a href="../../cart-checkout/wishlist.html">
-
+            <a href="../../cart-checkout/wishlist.html" style="position: relative; display: inline-flex; align-items: center; gap: 4px;">
                 <i class="fa-regular fa-heart"></i>
-
                 Yêu thích
-
+                <span id="wishlist-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 2px;">0</span>
             </a>
-
-
-
-            <a href="../../cart-checkout/cart.html">
-
+            <a href="../../cart-checkout/cart.html" style="position: relative; display: inline-flex; align-items: center; gap: 4px;">
                 <i class="fa-solid fa-bag-shopping"></i>
-
                 Giỏ hàng
-
+                <span id="cart-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 2px;">0</span>
             </a>
-
-
-
         </nav>
 
-
-
-        <a href="../login.html" class="login-link">
-
-            Đăng nhập
-
+        <a href="../../cart-checkout/cart.html" class="login-link">
+            Xem giỏ hàng
         </a>
-
-
-
     </div>
-
 </header>
 
 
@@ -1097,32 +1057,18 @@
 
 
 <footer class="site-footer">
-
-
-
     <div class="container">
-
-
-
-        <p>
-
-            © 2026 Football Fashion. All rights reserved.
-
-        </p>
-
-
-
+        <p>© 2026 Football Fashion. All rights reserved.</p>
     </div>
-
-
-
 </footer>
 
-
+<!-- TOAST NOTIFICATION -->
+<div id="toast" style="position: fixed; bottom: 30px; right: 30px; background: #0b1727; color: #fff; border-left: 4px solid #22c55e; padding: 14px 22px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); display: none; align-items: center; gap: 10px; z-index: 9999; font-weight: 600; font-size: 14px;">
+    <i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 18px;"></i>
+    <span id="toastMessage">Đã thêm vào giỏ hàng thành công!</span>
+</div>
 
 <script src="./products.js"></script>
-
-
 
 </body>
 

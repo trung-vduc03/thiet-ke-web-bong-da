@@ -3,31 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STYLE HUB | Danh Sách Yêu Thích</title>
+    <title>Danh Sách Yêu Thích | Football Fashion</title>
+    <meta name="description" content="Danh sách các sản phẩm bóng đá yêu thích tại Football Fashion.">
    
-    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+    <link rel="stylesheet" href="../../styles/styles.css">
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .wishlist-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .wishlist-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        }
+        .wishlist-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .wishlist-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .price-text {
+            color: #22c55e;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+        .btn-add-cart-w {
+            background: #0b1727;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+        .btn-add-cart-w:hover {
+            background: #22c55e;
+            color: #000;
+        }
+        .btn-delete {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-delete:hover {
+            background: #fca5a5;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <div id="app-header"></div>
 
-    <main class="container">
-        <!-- Thẻ H1 duy nhất -->
-        <h1 class="page-title">Sản Phẩm Yêu Thích</h1>
+    <!-- SITE HEADER -->
+    <header class="site-header" style="background-color: #0b1727; height: 54px; padding: 0 4%; display: flex; align-items: center; width: 100%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);">
+        <a href="../../../index.html" class="logo" style="color: #fff; font-size: 20px; font-weight: 800; text-decoration: none;">Football Fashion</a>
+
+        <nav class="nav-menu" style="display: flex; align-items: center; gap: 24px; margin-left: 40px; flex: 1;">
+            <a href="../../../index.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;">Trang chủ</a>
+            <a href="../home/products/products.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;">Sản phẩm</a>
+            <a href="wishlist.html" class="nav-link active" style="color: #22c55e; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-heart"></i> Yêu thích
+                <span id="wishlist-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 4px;">0</span>
+            </a>
+            <a href="cart.html" class="nav-link" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
+                <span id="cart-badge" style="display: none; background: #22c55e; color: #000; font-size: 11px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; align-items: center; justify-content: center; margin-left: 4px;">0</span>
+            </a>
+        </nav>
+
+        <div style="margin-left: auto;">
+            <a href="../home/products/products.html" style="color: #22c55e; text-decoration: none; font-size: 13.5px; font-weight: 600;">Xem tất cả sản phẩm &rarr;</a>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 24px; padding-bottom: 60px;">
+        <!-- Breadcrumb -->
+        <nav style="margin-bottom: 20px; font-size: 13px; color: #64748b;">
+            <a href="../../../index.html" style="color: #64748b; text-decoration: none;">Trang chủ</a> / 
+            <a href="../home/products/products.html" style="color: #64748b; text-decoration: none;">Sản phẩm</a> / 
+            <span style="color: #0f172a; font-weight: 600;">Danh sách yêu thích</span>
+        </nav>
+
+        <h1 class="page-title" style="margin-bottom: 24px; font-size: 24px; font-weight: 800;">Sản Phẩm Yêu Thích Của Bạn</h1>
         
         <div id="wishlistGrid" class="wishlist-grid"></div>
 
-        <div id="emptyWishlistMsg" class="empty-box hidden">
-            <p class="empty-text">Danh sách yêu thích của bạn đang trống!</p>
-            <a href="../home/products/products.html" class="btn-primary btn-empty">Xem các sản phẩm</a>
+        <div id="emptyWishlistMsg" class="empty-box hidden" style="text-align: center; padding: 48px 20px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+            <p class="empty-text" style="font-size: 16px; color: #64748b; margin-bottom: 20px; font-weight: 500;">Danh sách yêu thích của bạn đang trống!</p>
+            <a href="../home/products/products.html" class="btn-primary" style="display: inline-block; text-decoration: none; padding: 12px 28px; border-radius: 6px;">Khám phá các sản phẩm ngay</a>
         </div>
     </main>
 
-    <div id="app-footer"></div>
+    <footer class="site-footer" style="background: #0b1727; color: #fff; padding: 30px 0; text-align: center; margin-top: 40px;">
+        <div class="container">
+            <p style="color: #94a3b8; font-size: 14px;">© 2026 Football Fashion. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="../../app.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", renderWishlist);
+        function getWishlistImage(imagePath) {
+            if (!imagePath) return "../../assets/images/clubs/manchester-united-2025-home.jpg";
+            if (imagePath.startsWith("http") || imagePath.startsWith("data:")) return imagePath;
+            const fileName = imagePath.split("/").pop();
+            return "../../assets/images/clubs/" + fileName;
+        }
 
         function renderWishlist() {
             const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -37,37 +153,92 @@
             if (wishlist.length === 0) {
                 grid.classList.add("hidden");
                 emptyMsg.classList.remove("hidden");
+                updateBadges();
                 return;
             }
 
             grid.classList.remove("hidden");
             emptyMsg.classList.add("hidden");
 
-            grid.innerHTML = wishlist.map(item => `
-                <div class="wishlist-card">
-                    <img src="${item.image}" alt="${item.name}" class="wishlist-thumb">
-                    <h2>${item.name}</h2>
-                    <p class="price-text">${Number(item.price).toLocaleString("vi-VN")}đ</p>
-                    <button onclick="removeWishlist(${item.id})" class="btn-delete">Xóa khỏi Yêu thích</button>
-                </div>
-            `).join('');
+            grid.innerHTML = wishlist.map((item, index) => {
+                const imgSrc = getWishlistImage(item.image);
+                const price = Number(item.price) || 0;
+                return `
+                    <div class="wishlist-card">
+                        <a href="../home/products/products-detail.html?id=${item.id}" style="text-decoration: none; color: inherit;">
+                            <img src="${imgSrc}" alt="${item.name}" class="wishlist-thumb" onerror="this.src='../../assets/images/clubs/manchester-united-2025-home.jpg'">
+                            <h2 class="wishlist-title">${item.name}</h2>
+                        </a>
+                        <p class="price-text">${price.toLocaleString("vi-VN")}đ</p>
+                        <div>
+                            <button onclick="addToCartFromWishlist(${index})" class="btn-add-cart-w">
+                                <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
+                            </button>
+                            <button onclick="removeWishlist(${item.id})" class="btn-delete">
+                                <i class="fa-solid fa-trash"></i> Xóa khỏi Yêu thích
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateBadges();
         }
 
         function removeWishlist(id) {
             let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            wishlist = wishlist.filter(item => item.id !== id);
+            wishlist = wishlist.filter(item => String(item.id) !== String(id));
             localStorage.setItem("wishlist", JSON.stringify(wishlist));
             renderWishlist();
         }
-        function updateBadges() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function addToCartFromWishlist(index) {
             const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            const cartBadge = document.getElementById("cart-badge");
-            const wishlistBadge = document.getElementById("wishlist-badge");
-    
-    if (cartBadge) cartBadge.textContent = cart.length;
-    if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
-}
+            const item = wishlist[index];
+            if (!item) return;
+
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existing = cart.find(c => String(c.id) === String(item.id));
+            if (existing) {
+                existing.quantity = (Number(existing.quantity) || 1) + 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image,
+                    size: "M",
+                    color: "Mặc định",
+                    quantity: 1
+                });
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateBadges();
+            alert(`Đã thêm "${item.name}" vào giỏ hàng thành công!`);
+        }
+
+        function updateBadges() {
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+                const cartBadge = document.getElementById("cart-badge");
+                const wishlistBadge = document.getElementById("wishlist-badge");
+                
+                const totalCart = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+
+                if (cartBadge) {
+                    cartBadge.textContent = totalCart;
+                    cartBadge.style.display = totalCart > 0 ? "inline-flex" : "none";
+                }
+                if (wishlistBadge) {
+                    wishlistBadge.textContent = wishlist.length;
+                    wishlistBadge.style.display = wishlist.length > 0 ? "inline-flex" : "none";
+                }
+            } catch(e) {}
+        }
+
+        document.addEventListener("DOMContentLoaded", renderWishlist);
+        window.addEventListener("storage", updateBadges);
     </script>
 </body>
 </html>
