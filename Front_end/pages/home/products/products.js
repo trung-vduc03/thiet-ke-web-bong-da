@@ -213,11 +213,39 @@ function setImageWithFallback(img, product) {
     currentIndex++;
 }
 
+function normalizeColorCode(colorStr) {
+    if (!colorStr) return "";
+    const c = String(colorStr).toLowerCase().trim();
+
+    if (c === "red" || c === "đỏ" || c === "do" || c.includes("đỏ") || c.includes("red")) return "red";
+    if (c === "white" || c === "trắng" || c === "trang" || c.includes("trắng") || c.includes("white")) return "white";
+    if (c === "black" || c === "đen" || c === "den" || c.includes("đen") || c.includes("black")) return "black";
+    if (c === "blue" || c === "navy" || c === "xanh dương" || c === "xanh da trời" || c === "xanh biển" || c.includes("navy") || c.includes("blue") || c.includes("dương")) return "blue";
+    if (c === "green" || c === "xanh lá" || c === "xanh lục" || c.includes("green") || c.includes("lá") || c.includes("lục")) return "green";
+    if (c === "yellow" || c === "vàng" || c === "gold" || c.includes("vàng") || c.includes("yellow") || c.includes("gold")) return "yellow";
+    if (c === "orange" || c === "cam" || c.includes("cam") || c.includes("orange")) return "orange";
+    if (c === "pink" || c === "hồng" || c.includes("hồng") || c.includes("pink")) return "pink";
+    if (c === "purple" || c === "tím" || c.includes("tím") || c.includes("purple")) return "purple";
+    if (c === "grey" || c === "gray" || c === "xám" || c === "ghi" || c.includes("xám") || c.includes("gray") || c.includes("grey")) return "grey";
+
+    return c;
+}
+
 function getProductColors(product) {
     if (!product) return [];
     const colors = [];
-    if (Array.isArray(product.colors)) colors.push(...product.colors);
-    if (product.color) colors.push(product.color);
+
+    if (Array.isArray(product.colors)) {
+        colors.push(...product.colors);
+    }
+    if (product.color) {
+        if (typeof product.color === "string" && product.color.includes(",")) {
+            colors.push(...product.color.split(","));
+        } else {
+            colors.push(product.color);
+        }
+    }
+
     return [...new Set(colors.filter(Boolean).map(color => String(color).trim()))];
 }
 
@@ -465,6 +493,7 @@ function applyFilters() {
         const sizes = getProductSizes(product).map(size => size.toLowerCase());
         const colors = getProductColors(product).map(color => color.toLowerCase());
         const category = getProductCategory(product);
+        const nameDesc = (product.name + " " + (product.description || "")).toLowerCase();
 
         const sizeMatch =
             selectedSizes.length === 0 ||
@@ -472,7 +501,23 @@ function applyFilters() {
 
         const colorMatch =
             selectedColors.length === 0 ||
-            selectedColors.some(color => colors.some(productColor => productColor === color || productColor.includes(color) || color.includes(productColor)));
+            selectedColors.some(function (selectedColor) {
+                const normSelected = normalizeColorCode(selectedColor);
+
+                const directMatch = colors.some(function (productColor) {
+                    const normProductColor = normalizeColorCode(productColor);
+                    return (
+                        productColor === selectedColor ||
+                        normProductColor === normSelected ||
+                        productColor.includes(selectedColor) ||
+                        selectedColor.includes(productColor)
+                    );
+                });
+
+                if (directMatch) return true;
+
+                return nameDesc.includes(selectedColor) || (normSelected && nameDesc.includes(normSelected));
+            });
 
         const categoryMatch =
             selectedCategories.length === 0 ||
