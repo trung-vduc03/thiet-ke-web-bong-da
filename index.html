@@ -252,12 +252,14 @@
             overflow: hidden;
             text-decoration: none;
             color: var(--color-white);
+            background-color: var(--color-navy);
         }
 
         .category-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%;
             transition: transform 0.4s ease;
         }
 
@@ -576,8 +578,7 @@
     <section class="hero-banner">
         <span class="hero-badge">BỘ SƯU TẬP 2025/2026</span>
         <h1 class="hero-title">ĐẲNG CẤP THỜI TRANG BÓNG ĐÁ</h1>
-        <p class="hero-desc">Sở hữu ngay những mẫu áo đấu mới nhất, trang phục luyện tập chuyên nghiệp và phụ kiện chính
-            hãng từ các CLB hàng đầu.</p>
+        <p class="hero-desc">Sở hữu ngay những mẫu áo đấu mới nhất mùa giải 2025/2026 chính hãng từ các câu lạc bộ và đội tuyển hàng đầu thế giới.</p>
         <div class="hero-actions">
             <a href="Front_end/pages/home/products/products.html" class="btn btn-primary">MUA NGAY</a>
             <a href="Front_end/pages/home/products/products.html" class="btn btn-outline">XEM BỘ SƯU TẬP</a>
@@ -639,30 +640,30 @@
     <!-- DANH MỤC NỔI BẬT -->
     <section class="container">
         <div class="section-header">
-            <p class="section-tag">DANH MỤC</p>
-            <h2 class="section-title">PHONG CÁCH BÓNG ĐÁ</h2>
+            <p class="section-tag">GIẢI ĐẤU &amp; DANH MỤC</p>
+            <h2 class="section-title">BỘ SƯU TẬP ÁO ĐẤU ĐỈNH CAO</h2>
         </div>
 
         <div class="category-grid">
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&q=80" alt="Áo Đấu">
+            <a href="Front_end/pages/home/products/products.html?league=premier-league" class="category-card">
+                <img src="Front_end/assets/images/clubs/manchester-united-2025-home.jpg" alt="Áo Đấu Premier League">
                 <div class="category-overlay">
-                    <div class="category-title">Áo Đấu Câu Lạc Bộ</div>
-                    <div class="category-sub">Xem 120+ mẫu mới &rarr;</div>
+                    <div class="category-title">Áo Đấu Premier League</div>
+                    <div class="category-sub">Ngoại Hạng Anh • Man Utd, Arsenal, Liverpool... &rarr;</div>
                 </div>
             </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80" alt="Giày Đinh">
+            <a href="Front_end/pages/home/products/products.html?league=laliga" class="category-card">
+                <img src="Front_end/assets/images/clubs/real-madrid-2025-home.jpg" alt="Áo Đấu La Liga">
                 <div class="category-overlay">
-                    <div class="category-title">Giày Đá Bóng</div>
-                    <div class="category-sub">Đa dạng sân cỏ &rarr;</div>
+                    <div class="category-title">Áo Đấu La Liga</div>
+                    <div class="category-sub">Tây Ban Nha • Real Madrid, Barcelona... &rarr;</div>
                 </div>
             </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80" alt="Phụ Kiện">
+            <a href="Front_end/pages/home/products/products.html?league=national" class="category-card">
+                <img src="Front_end/assets/images/clubs/vietnam-2026-home.jpg" alt="Áo Đấu Đội Tuyển Quốc Gia">
                 <div class="category-overlay">
-                    <div class="category-title">Bóng &amp; Phụ Kiện</div>
-                    <div class="category-sub">Trang thiết bị chuẩn &rarr;</div>
+                    <div class="category-title">Áo Đấu Đội Tuyển Quốc Gia</div>
+                    <div class="category-sub">World Cup • Việt Nam, Argentina, Brazil, Pháp... &rarr;</div>
                 </div>
             </a>
         </div>
@@ -677,31 +678,31 @@
 
         <div class="product-grid">
             <!-- SP 1 -->
-            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=16'" style="cursor: pointer;">
+            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=10'" style="cursor: pointer;">
                 <span class="product-badge">HOT</span>
                 <img class="product-img" src="Front_end/assets/images/clubs/real-madrid-2025-home.jpg"
-                    alt="Áo Real Madrid" onerror="this.src='https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=500&q=80'">
+                    alt="Áo Real Madrid 2025/26">
                 <div class="product-info">
-                    <p class="product-category">Áo Đấu</p>
-                    <h3 class="product-title">Áo Đấu Real Madrid Home Kit 25/26</h3>
+                    <p class="product-category">La Liga</p>
+                    <h3 class="product-title">Real Madrid 2025/26 - Sân nhà</h3>
                     <div class="product-bottom">
-                        <span class="product-price">1.250.000đ</span>
-                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(16, 'Áo Đấu Real Madrid Home Kit 25/26', 1250000, 'Front_end/assets/images/clubs/real-madrid-2025-home.jpg');">+</button>
+                        <span class="product-price">900.000đ</span>
+                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(10, 'Real Madrid 2025/26 - Sân nhà', 900000, 'Front_end/assets/images/clubs/real-madrid-2025-home.jpg');">+</button>
                     </div>
                 </div>
             </div>
 
             <!-- SP 2 -->
-            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=26'" style="cursor: pointer;">
+            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=38'" style="cursor: pointer;">
                 <span class="product-badge sale">SALE</span>
                 <img class="product-img" src="Front_end/assets/images/clubs/arsenal-2025-away.jpg"
-                    alt="Áo Arsenal" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&q=80'">
+                    alt="Áo Arsenal 2025/26">
                 <div class="product-info">
-                    <p class="product-category">Áo Đấu</p>
-                    <h3 class="product-title">Áo Đấu Arsenal Away Kit Season 25/26</h3>
+                    <p class="product-category">Premier League</p>
+                    <h3 class="product-title">Arsenal 2025/26 - Sân khách</h3>
                     <div class="product-bottom">
-                        <span class="product-price">1.150.000đ</span>
-                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(26, 'Áo Đấu Arsenal Away Kit Season 25/26', 1150000, 'Front_end/assets/images/clubs/arsenal-2025-away.jpg');">+</button>
+                        <span class="product-price">820.000đ</span>
+                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(38, 'Arsenal 2025/26 - Sân khách', 820000, 'Front_end/assets/images/clubs/arsenal-2025-away.jpg');">+</button>
                     </div>
                 </div>
             </div>
@@ -710,27 +711,27 @@
             <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=1'" style="cursor: pointer;">
                 <span class="product-badge">NEW</span>
                 <img class="product-img" src="Front_end/assets/images/clubs/manchester-united-2025-home.jpg"
-                    alt="Áo Manchester United" onerror="this.src='https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=500&q=80'">
+                    alt="Áo Manchester United 2025/26">
                 <div class="product-info">
-                    <p class="product-category">Áo Đấu</p>
-                    <h3 class="product-title">Áo Đấu Manchester United Home Kit 25/26</h3>
+                    <p class="product-category">Premier League</p>
+                    <h3 class="product-title">Manchester United 2025/26 - Sân nhà</h3>
                     <div class="product-bottom">
                         <span class="product-price">850.000đ</span>
-                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(1, 'Áo Đấu Manchester United Home Kit 25/26', 850000, 'Front_end/assets/images/clubs/manchester-united-2025-home.jpg');">+</button>
+                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(1, 'Manchester United 2025/26 - Sân nhà', 850000, 'Front_end/assets/images/clubs/manchester-united-2025-home.jpg');">+</button>
                     </div>
                 </div>
             </div>
 
             <!-- SP 4 -->
-            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=35'" style="cursor: pointer;">
-                <img class="product-img" src="Front_end/assets/images/clubs/barcelona-2025-home.jpg"
-                    alt="Áo Barcelona" onerror="this.src='https://images.unsplash.com/photo-1614632537190-23e4146777db?w=500&q=80'">
+            <div class="product-card" onclick="location.href='Front_end/pages/home/products/products-detail.html?id=55'" style="cursor: pointer;">
+                <img class="product-img" src="Front_end/assets/images/clubs/vietnam-2026-home.jpg"
+                    alt="Áo Đội tuyển Việt Nam 2026">
                 <div class="product-info">
-                    <p class="product-category">Áo Đấu</p>
-                    <h3 class="product-title">Áo Đấu Barcelona Home Kit 25/26</h3>
+                    <p class="product-category">ĐTQG</p>
+                    <h3 class="product-title">Đội tuyển Việt Nam 2026 - Sân nhà</h3>
                     <div class="product-bottom">
-                        <span class="product-price">950.000đ</span>
-                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(35, 'Áo Đấu Barcelona Home Kit 25/26', 950000, 'Front_end/assets/images/clubs/barcelona-2025-home.jpg');">+</button>
+                        <span class="product-price">650.000đ</span>
+                        <button class="add-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); quickAddHomeProduct(55, 'Đội tuyển Việt Nam 2026 - Sân nhà', 650000, 'Front_end/assets/images/clubs/vietnam-2026-home.jpg');">+</button>
                     </div>
                 </div>
             </div>
@@ -770,16 +771,16 @@
         <div class="footer-grid">
             <div>
                 <h4 style="font-size: 18px; margin-bottom: 12px;">Football Fashion</h4>
-                <p style="line-height: 1.6; margin-bottom: 16px;">Thương hiệu chuyên cung cấp trang phục và phụ kiện
+                <p style="line-height: 1.6; margin-bottom: 16px;">Thương hiệu chuyên cung cấp trang phục và áo đấu
                     bóng đá cao cấp hàng đầu Việt Nam.</p>
             </div>
             <div class="footer-col">
                 <h4>Sản Phẩm</h4>
                 <ul>
-                    <li><a href="Front_end/pages/home/products/products.html">Áo Đấu CLB</a></li>
-                    <li><a href="Front_end/pages/home/products/products.html">Giày Đá Bóng</a></li>
-                    <li><a href="Front_end/pages/home/products/products.html">Bóng Thi Đấu</a></li>
-                    <li><a href="Front_end/pages/home/products/products.html">Phụ Kiện</a></li>
+                    <li><a href="Front_end/pages/home/products/products.html?league=premier-league">Áo Đấu Premier League</a></li>
+                    <li><a href="Front_end/pages/home/products/products.html?league=laliga">Áo Đấu La Liga</a></li>
+                    <li><a href="Front_end/pages/home/products/products.html?league=national">Áo Đấu Đội Tuyển Quốc Gia</a></li>
+                    <li><a href="Front_end/pages/home/products/products.html">Tất Cả Áo Đấu</a></li>
                 </ul>
             </div>
             <div class="footer-col">

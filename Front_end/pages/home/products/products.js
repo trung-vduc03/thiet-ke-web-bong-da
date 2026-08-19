@@ -288,6 +288,17 @@ function getProductSearchText(product) {
     return values.filter(Boolean).join(" ").toLowerCase();
 }
 
+let currentLeagueParam = "";
+
+function initUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    currentLeagueParam = (urlParams.get("league") || urlParams.get("category") || "").trim().toLowerCase();
+    const searchParam = (urlParams.get("search") || "").trim();
+    if (searchParam && productSearch) {
+        productSearch.value = searchParam;
+    }
+}
+
 async function loadProducts() {
     let data = null;
     let lastError = null;
@@ -312,6 +323,7 @@ async function loadProducts() {
     }
 
     allProducts = data.filter(product => product && typeof product === "object");
+    initUrlParams();
     setPriceRange();
     currentPage = 1;
     applyFilters();
@@ -500,6 +512,21 @@ function applyFilters() {
         const colors = getProductColors(product).map(color => color.toLowerCase());
         const category = getProductCategory(product);
         const nameDesc = (product.name + " " + (product.description || "")).toLowerCase();
+        const team = (product.team || "").toLowerCase();
+
+        let leagueMatch = true;
+        if (currentLeagueParam) {
+            if (currentLeagueParam === "premier-league" || currentLeagueParam === "epl") {
+                const eplTeams = ["manchester united", "arsenal", "liverpool", "chelsea", "manchester city", "tottenham"];
+                leagueMatch = eplTeams.some(t => team.includes(t) || nameDesc.includes(t)) || (category.includes("clb") && !team.includes("madrid") && !team.includes("barcelona") && !team.includes("milan"));
+            } else if (currentLeagueParam === "laliga" || currentLeagueParam === "la-liga") {
+                const laligaTeams = ["real madrid", "barcelona", "atletico"];
+                leagueMatch = laligaTeams.some(t => team.includes(t) || nameDesc.includes(t));
+            } else if (currentLeagueParam === "national" || currentLeagueParam === "dtqg" || currentLeagueParam === "world-cup") {
+                const nationalTeams = ["việt nam", "brazil", "argentina", "pháp", "đức", "anh", "ý", "tây ban nha", "bồ đào nha", "nhật bản", "hàn quốc", "hà lan"];
+                leagueMatch = category.includes("đtqg") || category.includes("quốc gia") || nationalTeams.some(t => team.includes(t) || nameDesc.includes(t));
+            }
+        }
 
         const sizeMatch =
             selectedSizes.length === 0 ||
@@ -533,7 +560,7 @@ function applyFilters() {
         const priceMatch = Number.isFinite(price) ? price <= maxPrice : true;
         const searchMatch = keyword === "" || getProductSearchText(product).includes(keyword);
 
-        return sizeMatch && colorMatch && categoryMatch && priceMatch && searchMatch;
+        return leagueMatch && sizeMatch && colorMatch && categoryMatch && priceMatch && searchMatch;
     });
 
     applySorting();
@@ -567,6 +594,27 @@ function renderActiveFilters() {
     if (!activeFilters) return;
     activeFilters.innerHTML = "";
 
+    if (currentLeagueParam) {
+        let leagueName = "Giải đấu";
+        if (currentLeagueParam === "premier-league" || currentLeagueParam === "epl") leagueName = "Premier League";
+        else if (currentLeagueParam === "laliga" || currentLeagueParam === "la-liga") leagueName = "La Liga";
+        else if (currentLeagueParam === "national" || currentLeagueParam === "dtqg") leagueName = "Đội Tuyển Quốc Gia";
+
+        const leagueTag = document.createElement("span");
+        leagueTag.className = "filter-tag";
+        leagueTag.innerHTML = `
+            ${escapeHTML(leagueName)}
+            <button type="button" aria-label="Xóa bộ lọc giải đấu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        `;
+        leagueTag.querySelector("button").addEventListener("click", function () {
+            currentLeagueParam = "";
+            applyFilters();
+        });
+        activeFilters.appendChild(leagueTag);
+    }
+
     const checkedFilters = [
         ...categoryFilters,
         ...sizeFilters,
@@ -593,6 +641,7 @@ function renderActiveFilters() {
 }
 
 function resetFilters() {
+    currentLeagueParam = "";
     [
         ...categoryFilters,
         ...sizeFilters,
