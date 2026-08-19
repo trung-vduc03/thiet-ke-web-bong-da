@@ -3,14 +3,18 @@
 let allProducts = [];
 let filteredProducts = [];
 
+let currentPage = 1;
+const productsPerPage = 12;
 
-/* ========================================
-   DOM
-======================================== */
+let currentQuickProduct = null;
+let selectedQuickSize = "";
+let selectedQuickColor = "";
+let quickQuantity = 1;
 
 const productGrid = document.getElementById("productGrid");
 const productCount = document.getElementById("productCount");
 const noProducts = document.getElementById("noProducts");
+const pagination = document.getElementById("pagination");
 
 const priceFilter = document.getElementById("priceFilter");
 const priceValue = document.getElementById("priceValue");
@@ -18,462 +22,435 @@ const priceValue = document.getElementById("priceValue");
 const sortProducts = document.getElementById("sortProducts");
 const clearFilters = document.getElementById("clearFilters");
 
-const sizeFilters = document.querySelectorAll(
-    'input[name="size"]'
-);
+const productSearch = document.getElementById("productSearch");
+const searchButton = document.getElementById("searchButton");
+const resetSearch = document.getElementById("resetSearch");
+const activeFilters = document.getElementById("activeFilters");
 
-const colorFilters = document.querySelectorAll(
-    'input[name="color"]'
-);
+const sizeFilters = document.querySelectorAll('input[name="size"]');
+const colorFilters = document.querySelectorAll('input[name="color"]');
+const categoryFilters = document.querySelectorAll('input[name="category"]');
 
+const quickViewModal = document.getElementById("quickViewModal");
+const closeQuickView = document.getElementById("closeQuickView");
 
-/* QUICK VIEW */
+const quickViewImage = document.getElementById("quickViewImage");
+const quickViewTitle = document.getElementById("quickViewTitle");
+const quickViewCategory = document.getElementById("quickViewCategory");
+const quickViewPrice = document.getElementById("quickViewPrice");
+const quickViewDescription = document.getElementById("quickViewDescription");
 
-const quickViewModal =
-    document.getElementById("quickViewModal");
+const quickViewSizes = document.getElementById("quickViewSizes");
+const quickViewColors = document.getElementById("quickViewColors");
 
-const closeQuickView =
-    document.getElementById("closeQuickView");
+const quickViewSize = document.getElementById("quickViewSize");
 
-const quickViewImage =
-    document.getElementById("quickViewImage");
+const quantityValue = document.getElementById("quantityValue");
+const quantityMinus = document.getElementById("quantityMinus");
+const quantityPlus = document.getElementById("quantityPlus");
 
-const quickViewTitle =
-    document.getElementById("quickViewTitle");
+const btnAddCart = document.getElementById("btnAddCart") ||
+    document.getElementById("quickAddCart") ||
+    document.querySelector(".btn-add-cart");
 
-const quickViewCategory =
-    document.getElementById("quickViewCategory");
+const btnBuyNow = document.getElementById("btnBuyNow") ||
+    document.getElementById("quickBuyNow") ||
+    document.querySelector(".btn-buy-now");
 
-const quickViewPrice =
-    document.getElementById("quickViewPrice");
-
-const quickViewDescription =
-    document.getElementById("quickViewDescription");
-
-const quickViewDetail =
-    document.getElementById("quickViewDetail");
-
-
-/* ========================================
-   FORMAT PRICE
-======================================== */
+const toast = document.getElementById("toast");
+const toastMessage = document.getElementById("toastMessage");
 
 function formatPrice(price) {
-
-    return Number(price).toLocaleString("vi-VN") + "đ";
-
+    return Number(price || 0).toLocaleString("vi-VN") + "đ";
 }
-
-
-/* ========================================
-   IMAGE PATH
-======================================== */
 
 function convertImagePath(imagePath) {
-
     if (!imagePath) {
-
         return "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
-
     }
-
 
     if (imagePath.startsWith("../assets/")) {
-
-        return "/Front_end/" +
-            imagePath.replace("../", "");
-
+        return "/Front_end/" + imagePath.replace("../", "");
     }
-
 
     if (imagePath.startsWith("./assets/")) {
-
-        return "/Front_end/" +
-            imagePath.replace("./", "");
-
+        return "/Front_end/" + imagePath.replace("./", "");
     }
-
 
     if (imagePath.startsWith("/")) {
-
         return imagePath;
-
     }
 
+    if (imagePath.startsWith("Front_end/")) {
+        return "/" + imagePath;
+    }
 
     return "/Front_end/" + imagePath;
-
 }
 
+function getProductColor(product) {
+    return String(
+        product.color ||
+        product.colors?.[0] ||
+        ""
+    ).toLowerCase();
+}
 
-/* ========================================
-   LOAD PRODUCTS
-======================================== */
+function getProductCategory(product) {
+    return String(
+        product.category ||
+        "Áo đấu"
+    ).toLowerCase();
+}
 
 async function loadProducts() {
-
     try {
-
-        const response =
-            await fetch("/database/products.json");
+        const response = await fetch(
+            "../../../../database/products.json"
+        );
 
         if (!response.ok) {
-
-            throw new Error(
-                "Không thể tải products.json"
-            );
-
+            throw new Error("Không thể tải products.json");
         }
 
-        allProducts =
-            await response.json();
+        allProducts = await response.json();
 
+        if (!Array.isArray(allProducts)) {
+            throw new Error("products.json không phải mảng dữ liệu");
+        }
 
-        filteredProducts =
-            [...allProducts];
-
+        filteredProducts = [...allProducts];
 
         updatePriceValue();
-
-        applySorting();
-
-        renderProducts();
-
+        applyFilters();
     } catch (error) {
-
         console.error(error);
 
-        productGrid.innerHTML = `
-            <div class="no-products">
-                <h2>Không thể tải sản phẩm</h2>
-                <p>Vui lòng kiểm tra lại dữ liệu sản phẩm.</p>
-            </div>
-        `;
+        if (productGrid) {
+            productGrid.innerHTML = "";
+        }
 
-        productCount.textContent = "0";
+        if (noProducts) {
+            noProducts.hidden = false;
 
+            const title = noProducts.querySelector("h2");
+            const text = noProducts.querySelector("p");
+
+            if (title) {
+                title.textContent = "Không thể tải sản phẩm";
+            }
+
+            if (text) {
+                text.textContent =
+                    "Hãy kiểm tra lại đường dẫn database/products.json.";
+            }
+        }
+
+        if (productCount) {
+            productCount.textContent = "0";
+        }
     }
-
 }
-
-
-/* ========================================
-   CREATE PRODUCT CARD
-======================================== */
 
 function createProductCard(product) {
+    const article = document.createElement("article");
+    article.className = "product-card";
 
-    const article =
-        document.createElement("article");
+    const image = convertImagePath(product.image);
+    const category = product.category || "Áo đấu";
+    const rating = product.rating || "4.8";
+    const hasSale = product.discount || product.oldPrice;
 
-    article.className =
-        "product-card";
+    const badge = hasSale
+        ? `<span class="product-badge sale">SALE</span>`
+        : `<span class="product-badge">MỚI</span>`;
 
+    const oldPriceHTML = product.oldPrice
+        ? `
+            <span class="old-price">
+                ${formatPrice(product.oldPrice)}
+            </span>
+        `
+        : "";
 
-    const imageBox =
-        document.createElement("div");
+    article.innerHTML = `
+        <div class="product-img-box">
+            ${badge}
 
-    imageBox.className =
-        "product-img-box";
+            <button
+                type="button"
+                class="wishlist-btn"
+                title="Thêm vào yêu thích"
+                aria-label="Thêm vào yêu thích">
+                <i class="fa-regular fa-heart"></i>
+            </button>
 
+            <img
+                src="${image}"
+                alt="${product.name || "Sản phẩm bóng đá"}"
+                loading="lazy">
+        </div>
 
-    const image =
-        document.createElement("img");
+        <div class="product-card-info">
+            <p class="product-category">
+                ${category}
+            </p>
 
-    image.src =
-        convertImagePath(product.image);
+            <a
+                href="./products-detail.html?id=${encodeURIComponent(product.id)}"
+                class="product-title">
+                ${product.name}
+            </a>
 
-    image.alt =
-        product.name || "Sản phẩm";
+            <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
 
-    image.loading =
-        "lazy";
+                <span>
+                    (${rating})
+                </span>
+            </div>
 
+            <div class="price-box">
+                <p class="product-price">
+                    ${formatPrice(product.price)}
+                </p>
 
-    image.addEventListener(
-        "error",
-        function () {
+                ${oldPriceHTML}
+            </div>
 
+            <div class="card-actions">
+                <button
+                    type="button"
+                    class="quick-view-btn">
+                    Xem nhanh
+                </button>
+
+                <a
+                    href="./products-detail.html?id=${encodeURIComponent(product.id)}"
+                    class="btn-detail">
+                    Chi tiết
+                </a>
+            </div>
+        </div>
+    `;
+
+    const img = article.querySelector("img");
+
+    if (img) {
+        img.addEventListener("error", function () {
             this.onerror = null;
-
             this.src =
                 "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+        });
+    }
 
-        }
-    );
+    const quickButton = article.querySelector(".quick-view-btn");
 
-
-    imageBox.appendChild(image);
-
-
-    const info =
-        document.createElement("div");
-
-    info.className =
-        "product-card-info";
-
-
-    const category =
-        document.createElement("p");
-
-    category.className =
-        "product-category";
-
-    category.textContent =
-        product.category || "Áo đấu";
-
-
-    const title =
-        document.createElement("a");
-
-    title.className =
-        "product-title";
-
-    title.href =
-        `product-detail.html?id=${product.id}`;
-
-    title.textContent =
-        product.name;
-
-
-    const price =
-        document.createElement("p");
-
-    price.className =
-        "product-price";
-
-    price.textContent =
-        formatPrice(product.price);
-
-
-    const actions =
-        document.createElement("div");
-
-    actions.className =
-        "card-actions";
-
-
-    const quickViewButton =
-        document.createElement("button");
-
-    quickViewButton.type =
-        "button";
-
-    quickViewButton.className =
-        "quick-view-btn";
-
-    quickViewButton.textContent =
-        "Xem nhanh";
-
-
-    quickViewButton.addEventListener(
-        "click",
-        function () {
-
+    if (quickButton) {
+        quickButton.addEventListener("click", function () {
             openQuickView(product);
+        });
+    }
 
-        }
-    );
+    const wishlistButton =
+        article.querySelector(".wishlist-btn");
 
+    if (wishlistButton) {
+        updateWishlistIcon(
+            wishlistButton,
+            product.id
+        );
 
-    const detailLink =
-        document.createElement("a");
-
-    detailLink.className =
-        "btn-detail";
-
-    detailLink.href =
-        `product-detail.html?id=${product.id}`;
-
-    detailLink.textContent =
-        "Chi tiết";
-
-
-    actions.appendChild(
-        quickViewButton
-    );
-
-    actions.appendChild(
-        detailLink
-    );
-
-
-    info.appendChild(category);
-
-    info.appendChild(title);
-
-    info.appendChild(price);
-
-    info.appendChild(actions);
-
-
-    article.appendChild(imageBox);
-
-    article.appendChild(info);
-
+        wishlistButton.addEventListener(
+            "click",
+            function () {
+                toggleWishlist(
+                    product,
+                    wishlistButton
+                );
+            }
+        );
+    }
 
     return article;
-
 }
 
-
-/* ========================================
-   RENDER PRODUCTS
-======================================== */
-
 function renderProducts() {
+    if (!productGrid) {
+        return;
+    }
 
     productGrid.innerHTML = "";
 
-    productCount.textContent =
-        filteredProducts.length;
-
-
-    if (
-        filteredProducts.length === 0
-    ) {
-
-        noProducts.hidden = false;
-
-        return;
-
+    if (productCount) {
+        productCount.textContent =
+            filteredProducts.length;
     }
 
-
-    noProducts.hidden = true;
-
-
-    filteredProducts.forEach(
-        function (product) {
-
-            productGrid.appendChild(
-                createProductCard(product)
-            );
-
+    if (filteredProducts.length === 0) {
+        if (noProducts) {
+            noProducts.hidden = false;
         }
-    );
 
+        if (pagination) {
+            pagination.innerHTML = "";
+        }
+
+        return;
+    }
+
+    if (noProducts) {
+        noProducts.hidden = true;
+    }
+
+    const start =
+        (currentPage - 1) * productsPerPage;
+
+    const end =
+        start + productsPerPage;
+
+    const productsToRender =
+        filteredProducts.slice(start, end);
+
+    productsToRender.forEach(function (product) {
+        productGrid.appendChild(
+            createProductCard(product)
+        );
+    });
+
+    renderPagination();
 }
 
-
-/* ========================================
-   FILTER
-======================================== */
-
 function applyFilters() {
-
     const selectedSizes =
         [...sizeFilters]
-            .filter(
-                checkbox => checkbox.checked
-            )
-            .map(
-                checkbox => checkbox.value
-            );
-
+            .filter(item => item.checked)
+            .map(item => item.value);
 
     const selectedColors =
         [...colorFilters]
-            .filter(
-                checkbox => checkbox.checked
-            )
-            .map(
-                checkbox =>
-                    checkbox.value.toLowerCase()
+            .filter(item => item.checked)
+            .map(item =>
+                item.value.toLowerCase()
             );
 
+    const selectedCategories =
+        [...categoryFilters]
+            .filter(item => item.checked)
+            .map(item =>
+                item.value.toLowerCase()
+            );
 
     const maxPrice =
-        Number(priceFilter.value);
+        priceFilter
+            ? Number(priceFilter.value)
+            : Infinity;
 
+    const keyword =
+        productSearch
+            ? productSearch.value.trim().toLowerCase()
+            : "";
 
     filteredProducts =
-        allProducts.filter(
-            function (product) {
+        allProducts.filter(function (product) {
+            const productSizes =
+                Array.isArray(product.sizes)
+                    ? product.sizes
+                    : [];
 
-                const productSizes =
-                    Array.isArray(product.sizes)
-                        ? product.sizes
-                        : [];
-
-
-                const sizeMatch =
-                    selectedSizes.length === 0 ||
-                    selectedSizes.some(
-                        size =>
-                            productSizes.includes(size)
-                    );
-
-
-                const productColor =
-                    String(
-                        product.color || ""
-                    ).toLowerCase();
-
-
-                const colorMatch =
-                    selectedColors.length === 0 ||
-                    selectedColors.includes(
-                        productColor
-                    );
-
-
-                const priceMatch =
-                    Number(product.price) <=
-                    maxPrice;
-
-
-                return (
-                    sizeMatch &&
-                    colorMatch &&
-                    priceMatch
+            const sizeMatch =
+                selectedSizes.length === 0 ||
+                selectedSizes.some(
+                    size =>
+                        productSizes.includes(size)
                 );
 
-            }
-        );
+            const productColor =
+                getProductColor(product);
 
+            const colorMatch =
+                selectedColors.length === 0 ||
+                selectedColors.some(
+                    color =>
+                        productColor.includes(color)
+                );
+
+            const productCategory =
+                getProductCategory(product);
+
+            const categoryMatch =
+                selectedCategories.length === 0 ||
+                selectedCategories.some(
+                    category =>
+                        productCategory.includes(category)
+                );
+
+            const priceMatch =
+                Number(product.price) <= maxPrice;
+
+            const searchableText = [
+                product.name,
+                product.category,
+                product.color,
+                product.brand,
+                product.club,
+                product.description
+            ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+            const searchMatch =
+                keyword === "" ||
+                searchableText.includes(keyword);
+
+            return (
+                sizeMatch &&
+                colorMatch &&
+                categoryMatch &&
+                priceMatch &&
+                searchMatch
+            );
+        });
 
     applySorting();
 
-    renderProducts();
+    currentPage = 1;
 
+    updatePriceValue();
+    renderActiveFilters();
+    renderProducts();
 }
 
-
-/* ========================================
-   SORT
-======================================== */
-
 function applySorting() {
+    if (!sortProducts) {
+        return;
+    }
 
     const sortType =
         sortProducts.value;
 
-
     if (sortType === "price-low") {
-
         filteredProducts.sort(
             (a, b) =>
                 Number(a.price) -
                 Number(b.price)
         );
-
     }
 
-
-    else if (sortType === "price-high") {
-
+    if (sortType === "price-high") {
         filteredProducts.sort(
             (a, b) =>
                 Number(b.price) -
                 Number(a.price)
         );
-
     }
 
-
-    else if (sortType === "name-az") {
-
+    if (sortType === "name-az") {
         filteredProducts.sort(
             (a, b) =>
                 String(a.name).localeCompare(
@@ -481,12 +458,9 @@ function applySorting() {
                     "vi"
                 )
         );
-
     }
 
-
-    else if (sortType === "name-za") {
-
+    if (sortType === "name-za") {
         filteredProducts.sort(
             (a, b) =>
                 String(b.name).localeCompare(
@@ -494,232 +468,657 @@ function applySorting() {
                     "vi"
                 )
         );
-
     }
-
 }
-
-
-/* ========================================
-   PRICE
-======================================== */
 
 function updatePriceValue() {
+    if (!priceFilter || !priceValue) {
+        return;
+    }
 
     priceValue.textContent =
-        formatPrice(
-            priceFilter.value
-        );
-
+        formatPrice(priceFilter.value);
 }
 
+function renderActiveFilters() {
+    if (!activeFilters) {
+        return;
+    }
 
-/* ========================================
-   CLEAR FILTERS
-======================================== */
+    activeFilters.innerHTML = "";
+
+    const checkedFilters = [
+        ...categoryFilters,
+        ...sizeFilters,
+        ...colorFilters
+    ].filter(item => item.checked);
+
+    checkedFilters.forEach(function (input) {
+        const tag =
+            document.createElement("span");
+
+        tag.className = "filter-tag";
+
+        tag.innerHTML = `
+            ${input.value}
+
+            <button
+                type="button"
+                aria-label="Xóa bộ lọc">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        `;
+
+        const removeButton =
+            tag.querySelector("button");
+
+        if (removeButton) {
+            removeButton.addEventListener(
+                "click",
+                function () {
+                    input.checked = false;
+                    applyFilters();
+                }
+            );
+        }
+
+        activeFilters.appendChild(tag);
+    });
+}
 
 function resetFilters() {
+    categoryFilters.forEach(
+        input => input.checked = false
+    );
 
     sizeFilters.forEach(
-        checkbox => {
-            checkbox.checked = false;
-        }
+        input => input.checked = false
     );
-
 
     colorFilters.forEach(
-        checkbox => {
-            checkbox.checked = false;
-        }
+        input => input.checked = false
     );
 
+    if (priceFilter) {
+        priceFilter.value =
+            priceFilter.max;
+    }
 
-    priceFilter.value =
-        priceFilter.max;
+    if (sortProducts) {
+        sortProducts.value = "default";
+    }
 
-
-    sortProducts.value =
-        "default";
-
+    if (productSearch) {
+        productSearch.value = "";
+    }
 
     updatePriceValue();
-
-
-    filteredProducts =
-        [...allProducts];
-
-
-    renderProducts();
-
+    applyFilters();
 }
 
+function renderPagination() {
+    if (!pagination) {
+        return;
+    }
 
-/* ========================================
-   QUICK VIEW
-======================================== */
+    pagination.innerHTML = "";
+
+    const totalPages =
+        Math.ceil(
+            filteredProducts.length /
+            productsPerPage
+        );
+
+    if (totalPages <= 1) {
+        return;
+    }
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+        button.className = "page-btn";
+        button.textContent = page;
+
+        if (page === currentPage) {
+            button.classList.add("active");
+        }
+
+        button.addEventListener(
+            "click",
+            function () {
+                currentPage = page;
+
+                renderProducts();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        );
+
+        pagination.appendChild(button);
+    }
+}
 
 function openQuickView(product) {
+    if (!quickViewModal) {
+        window.location.href =
+            `./products-detail.html?id=${encodeURIComponent(product.id)}`;
+        return;
+    }
 
-    quickViewImage.src =
-        convertImagePath(product.image);
+    currentQuickProduct = product;
 
-    quickViewImage.alt =
-        product.name;
+    selectedQuickSize = "";
+    selectedQuickColor = "";
+    quickQuantity = 1;
 
+    if (quantityValue) {
+        quantityValue.textContent =
+            quickQuantity;
+    }
 
-    quickViewTitle.textContent =
-        product.name;
+    if (quickViewImage) {
+        quickViewImage.src =
+            convertImagePath(product.image);
 
+        quickViewImage.alt =
+            product.name || "Sản phẩm bóng đá";
+    }
 
-    quickViewCategory.textContent =
-        product.category || "Áo đấu";
+    if (quickViewTitle) {
+        quickViewTitle.textContent =
+            product.name || "Sản phẩm";
+    }
 
+    if (quickViewCategory) {
+        quickViewCategory.textContent =
+            product.category ||
+            "Áo đấu bóng đá";
+    }
 
-    quickViewPrice.textContent =
-        formatPrice(product.price);
+    if (quickViewPrice) {
+        quickViewPrice.textContent =
+            formatPrice(product.price);
+    }
 
+    if (quickViewDescription) {
+        quickViewDescription.textContent =
+            product.description ||
+            "Sản phẩm thời trang bóng đá chất lượng cao.";
+    }
 
-    quickViewDescription.textContent =
-        product.description ||
-        "Sản phẩm thời trang bóng đá chính hãng."
+    if (quickViewSizes) {
+        renderQuickSizes(product);
+    }
 
+    if (quickViewColors) {
+        renderQuickColors(product);
+    }
 
-    quickViewDetail.href =
-        `product-detail.html?id=${product.id}`;
+    if (quickViewSize) {
+        quickViewSize.value = "";
+    }
 
-
-    quickViewModal.hidden =
-        false;
+    quickViewModal.hidden = false;
 
     quickViewModal.setAttribute(
         "aria-hidden",
         "false"
     );
 
-
     document.body.classList.add(
         "modal-open"
     );
-
 }
 
+function renderQuickSizes(product) {
+    if (!quickViewSizes) {
+        return;
+    }
+
+    quickViewSizes.innerHTML = "";
+
+    const sizes =
+        Array.isArray(product.sizes)
+            ? product.sizes
+            : ["S", "M", "L", "XL"];
+
+    sizes.forEach(function (size) {
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+        button.className = "option-btn";
+        button.textContent = size;
+
+        button.addEventListener(
+            "click",
+            function () {
+                selectedQuickSize = size;
+
+                quickViewSizes
+                    .querySelectorAll(".option-btn")
+                    .forEach(
+                        btn =>
+                            btn.classList.remove(
+                                "active"
+                            )
+                    );
+
+                button.classList.add("active");
+            }
+        );
+
+        quickViewSizes.appendChild(button);
+    });
+}
+
+function renderQuickColors(product) {
+    if (!quickViewColors) {
+        return;
+    }
+
+    quickViewColors.innerHTML = "";
+
+    let colors = [];
+
+    if (Array.isArray(product.colors)) {
+        colors = product.colors;
+    } else if (product.color) {
+        colors = [product.color];
+    } else {
+        colors = ["Đỏ"];
+    }
+
+    colors.forEach(function (color) {
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+        button.className = "option-btn";
+        button.textContent = color;
+
+        button.addEventListener(
+            "click",
+            function () {
+                selectedQuickColor = color;
+
+                quickViewColors
+                    .querySelectorAll(".option-btn")
+                    .forEach(
+                        btn =>
+                            btn.classList.remove(
+                                "active"
+                            )
+                    );
+
+                button.classList.add("active");
+            }
+        );
+
+        quickViewColors.appendChild(button);
+    });
+}
 
 function closeQuickViewModal() {
+    if (!quickViewModal) {
+        return;
+    }
 
-    quickViewModal.hidden =
-        true;
+    quickViewModal.hidden = true;
 
     quickViewModal.setAttribute(
         "aria-hidden",
         "true"
     );
 
-
     document.body.classList.remove(
         "modal-open"
     );
-
 }
 
-
-/* ========================================
-   EVENTS
-======================================== */
-
-sizeFilters.forEach(
-    checkbox => {
-
-        checkbox.addEventListener(
-            "change",
-            applyFilters
-        );
-
-    }
-);
-
-
-colorFilters.forEach(
-    checkbox => {
-
-        checkbox.addEventListener(
-            "change",
-            applyFilters
-        );
-
-    }
-);
-
-
-priceFilter.addEventListener(
-    "input",
-    function () {
-
-        updatePriceValue();
-
-        applyFilters();
-
-    }
-);
-
-
-sortProducts.addEventListener(
-    "change",
-    function () {
-
-        applySorting();
-
-        renderProducts();
-
-    }
-);
-
-
-clearFilters.addEventListener(
-    "click",
-    resetFilters
-);
-
-
-closeQuickView.addEventListener(
-    "click",
-    closeQuickViewModal
-);
-
-
-quickViewModal.addEventListener(
-    "click",
-    function (event) {
-
-        if (
-            event.target.hasAttribute(
-                "data-close-modal"
+function getCart() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(
+                "footballFashionCart"
             )
-        ) {
-
-            closeQuickViewModal();
-
-        }
-
+        ) || [];
+    } catch {
+        return [];
     }
-);
+}
 
+function saveCart(cart) {
+    localStorage.setItem(
+        "footballFashionCart",
+        JSON.stringify(cart)
+    );
+}
+
+function addToCart(product) {
+    const cart = getCart();
+
+    const size =
+        selectedQuickSize ||
+        quickViewSize?.value ||
+        product.sizes?.[0] ||
+        "M";
+
+    const color =
+        selectedQuickColor ||
+        product.color ||
+        product.colors?.[0] ||
+        "";
+
+    const cartId =
+        `${product.id}-${size}-${color}`;
+
+    const existing =
+        cart.find(
+            item =>
+                String(item.cartId) ===
+                String(cartId)
+        );
+
+    if (existing) {
+        existing.quantity +=
+            quickQuantity;
+    } else {
+        cart.push({
+            cartId,
+            id: product.id,
+            name: product.name,
+            price: Number(product.price),
+            image: product.image,
+            size,
+            color,
+            quantity: quickQuantity
+        });
+    }
+
+    saveCart(cart);
+
+    showToast(
+        `Đã thêm "${product.name}" vào giỏ hàng`
+    );
+}
+
+function getWishlist() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(
+                "footballFashionWishlist"
+            )
+        ) || [];
+    } catch {
+        return [];
+    }
+}
+
+function saveWishlist(wishlist) {
+    localStorage.setItem(
+        "footballFashionWishlist",
+        JSON.stringify(wishlist)
+    );
+}
+
+function toggleWishlist(product, button) {
+    let wishlist = getWishlist();
+
+    const exists =
+        wishlist.some(
+            item =>
+                String(item.id) ===
+                String(product.id)
+        );
+
+    if (exists) {
+        wishlist =
+            wishlist.filter(
+                item =>
+                    String(item.id) !==
+                    String(product.id)
+            );
+
+        button.classList.remove("active");
+
+        button.innerHTML =
+            '<i class="fa-regular fa-heart"></i>';
+
+        showToast(
+            "Đã xóa khỏi yêu thích"
+        );
+    } else {
+        wishlist.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image
+        });
+
+        button.classList.add("active");
+
+        button.innerHTML =
+            '<i class="fa-solid fa-heart"></i>';
+
+        showToast(
+            "Đã thêm vào yêu thích"
+        );
+    }
+
+    saveWishlist(wishlist);
+}
+
+function updateWishlistIcon(button, productId) {
+    const wishlist = getWishlist();
+
+    const exists =
+        wishlist.some(
+            item =>
+                String(item.id) ===
+                String(productId)
+        );
+
+    if (exists) {
+        button.classList.add("active");
+
+        button.innerHTML =
+            '<i class="fa-solid fa-heart"></i>';
+    }
+}
+
+let toastTimer;
+
+function showToast(message) {
+    if (!toast || !toastMessage) {
+        return;
+    }
+
+    toastMessage.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(function () {
+            toast.classList.remove("show");
+        }, 2500);
+}
+
+if (quantityMinus) {
+    quantityMinus.addEventListener(
+        "click",
+        function () {
+            if (quickQuantity > 1) {
+                quickQuantity--;
+            }
+
+            if (quantityValue) {
+                quantityValue.textContent =
+                    quickQuantity;
+            }
+        }
+    );
+}
+
+if (quantityPlus) {
+    quantityPlus.addEventListener(
+        "click",
+        function () {
+            if (quickQuantity < 10) {
+                quickQuantity++;
+            }
+
+            if (quantityValue) {
+                quantityValue.textContent =
+                    quickQuantity;
+            }
+        }
+    );
+}
+
+if (btnAddCart) {
+    btnAddCart.addEventListener(
+        "click",
+        function () {
+            if (!currentQuickProduct) {
+                return;
+            }
+
+            addToCart(
+                currentQuickProduct
+            );
+        }
+    );
+}
+
+if (btnBuyNow) {
+    btnBuyNow.addEventListener(
+        "click",
+        function () {
+            if (!currentQuickProduct) {
+                return;
+            }
+
+            addToCart(
+                currentQuickProduct
+            );
+
+            window.location.href =
+                "../../cart-checkout/cart.html";
+        }
+    );
+}
+
+if (productSearch) {
+    productSearch.addEventListener(
+        "input",
+        applyFilters
+    );
+}
+
+if (searchButton) {
+    searchButton.addEventListener(
+        "click",
+        applyFilters
+    );
+}
+
+categoryFilters.forEach(function (input) {
+    input.addEventListener(
+        "change",
+        applyFilters
+    );
+});
+
+sizeFilters.forEach(function (input) {
+    input.addEventListener(
+        "change",
+        applyFilters
+    );
+});
+
+colorFilters.forEach(function (input) {
+    input.addEventListener(
+        "change",
+        applyFilters
+    );
+});
+
+if (priceFilter) {
+    priceFilter.addEventListener(
+        "input",
+        function () {
+            updatePriceValue();
+            applyFilters();
+        }
+    );
+}
+
+if (sortProducts) {
+    sortProducts.addEventListener(
+        "change",
+        applyFilters
+    );
+}
+
+if (clearFilters) {
+    clearFilters.addEventListener(
+        "click",
+        resetFilters
+    );
+}
+
+if (resetSearch) {
+    resetSearch.addEventListener(
+        "click",
+        resetFilters
+    );
+}
+
+if (closeQuickView) {
+    closeQuickView.addEventListener(
+        "click",
+        closeQuickViewModal
+    );
+}
+
+if (quickViewModal) {
+    quickViewModal.addEventListener(
+        "click",
+        function (event) {
+            if (
+                event.target.hasAttribute(
+                    "data-close-modal"
+                )
+            ) {
+                closeQuickViewModal();
+            }
+        }
+    );
+}
 
 document.addEventListener(
     "keydown",
     function (event) {
-
-        if (event.key === "Escape") {
-
+        if (
+            event.key === "Escape" &&
+            quickViewModal &&
+            !quickViewModal.hidden
+        ) {
             closeQuickViewModal();
-
         }
-
     }
 );
-
-
-/* ========================================
-   START
-======================================== */
 
 loadProducts();
