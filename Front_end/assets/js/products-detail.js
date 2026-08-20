@@ -56,23 +56,16 @@ function getProductId() {
    IMAGE PATH
 ======================================== */
 function convertImagePath(imagePath) {
-    if (!imagePath) {
-        return "../assets/images/clubs/manchester-united-2025-home.jpg";
-    }
-
-    if (imagePath.startsWith("../assets/")) {
-        return imagePath;
-    }
-
-    if (imagePath.startsWith("assets/")) {
-        return "../" + imagePath;
-    }
-
-    if (imagePath.startsWith("./assets/")) {
-        return "../" + imagePath.replace("./", "");
-    }
-
-    return "../" + imagePath;
+    if (!imagePath) return '/Front_end/assets/images/clubs/manchester-united-2025-home.jpg';
+    if (typeof normalizeProductImage === 'function') return normalizeProductImage(imagePath);
+    const p = String(imagePath).replace(/\\/g, '/');
+    const i = p.lastIndexOf('Front_end/assets/');
+    if (i >= 0) return '/' + p.substring(i);
+    if (p.startsWith('../assets/')) return '/Front_end/' + p.substring(3);
+    if (p.startsWith('./assets/')) return '/Front_end/' + p.substring(2);
+    if (p.startsWith('/')) return p;
+    if (p.startsWith('assets/')) return '/Front_end/' + p;
+    return '/Front_end/assets/images/clubs/' + p.split('/').pop();
 }
 
 /* ========================================
@@ -80,7 +73,8 @@ function convertImagePath(imagePath) {
 ======================================== */
 async function loadProductsData() {
     const paths = [
-        "../data/products.json"
+        "../../../../database/products.json",
+        "/database/products.json"
     ];
 
     for (const path of paths) {
@@ -173,7 +167,7 @@ function getProductImages() {
         return [convertImagePath(currentProduct.image)];
     }
 
-    return ["../assets/images/clubs/manchester-united-2025-home.jpg"];
+    return [normalizeProductImage("manchester-united-2025-home.jpg")];
 }
 
 /* ========================================
@@ -189,7 +183,7 @@ function renderMainImage() {
 
     productImage.onerror = function () {
         this.onerror = null;
-        this.src = "../assets/images/clubs/manchester-united-2025-home.jpg";
+        this.src = normalizeProductImage("manchester-united-2025-home.jpg");
     };
 }
 
@@ -394,7 +388,7 @@ function addToCart() {
             id: currentProduct.id,
             name: currentProduct.name,
             price: Number(currentProduct.price),
-            image: currentProduct.image,
+            image: convertImagePath(currentProduct.image),
             size: selectedSize,
             color: selectedColor,
             quantity: quantity
@@ -472,6 +466,10 @@ function renderRelatedProducts() {
 
         const image = document.createElement("img");
         image.src = convertImagePath(product.image);
+        image.addEventListener("error", function () {
+            this.onerror = null;
+            this.src = "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+        });
         image.alt = product.name;
 
         const info = document.createElement("div");

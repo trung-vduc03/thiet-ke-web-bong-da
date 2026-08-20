@@ -64,28 +64,32 @@ function formatPrice(price) {
     return Number(price || 0).toLocaleString("vi-VN") + "đ";
 }
 
+function getProjectRootUrl() {
+    const marker = "/Front_end/";
+    const path = window.location.pathname;
+    const index = path.indexOf(marker);
+
+    if (index >= 0) {
+        return `${window.location.origin}${path.slice(0, index)}`;
+    }
+
+    return window.location.origin;
+}
+
 function convertImagePath(imagePath) {
-    if (!imagePath) {
-        return "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
-    }
+    // Database stores mixed relative paths. Always resolve the image
+    // against the actual project root so this page works from Live Server
+    // regardless of the folder name used for the project.
+    const fallback = "manchester-united-2025-home.jpg";
+    const raw = String(imagePath || "").trim().replace(/\\/g, "/");
+    const fileName = raw.split("/").pop() || fallback;
+    const safeFileName = encodeURIComponent(fileName);
 
-    if (imagePath.startsWith("../assets/")) {
-        return "/Front_end/" + imagePath.replace("../", "");
-    }
+    return `${getProjectRootUrl()}/Front_end/assets/images/clubs/${safeFileName}`;
+}
 
-    if (imagePath.startsWith("./assets/")) {
-        return "/Front_end/" + imagePath.replace("./", "");
-    }
-
-    if (imagePath.startsWith("/")) {
-        return imagePath;
-    }
-
-    if (imagePath.startsWith("Front_end/")) {
-        return "/" + imagePath;
-    }
-
-    return "/Front_end/" + imagePath;
+function convertDatabasePath() {
+    return `${getProjectRootUrl()}/database/products.json`;
 }
 
 function getProductColor(product) {
@@ -105,9 +109,9 @@ function getProductCategory(product) {
 
 async function loadProducts() {
     try {
-        const response = await fetch(
-            "../../../../database/products.json"
-        );
+        const response = await fetch(convertDatabasePath(), {
+            cache: "no-store"
+        });
 
         if (!response.ok) {
             throw new Error("Không thể tải products.json");
@@ -186,9 +190,10 @@ function createProductCard(product) {
             </button>
 
             <img
+                class="product-image"
                 src="${image}"
                 alt="${product.name || "Sản phẩm bóng đá"}"
-                loading="lazy">
+                decoding="async">
         </div>
 
         <div class="product-card-info">
@@ -241,10 +246,18 @@ function createProductCard(product) {
     const img = article.querySelector("img");
 
     if (img) {
+        // Set the source through the DOM after the card is inserted. This
+        // avoids browser placeholder/lazy-loading heuristics and makes the
+        // actual resolved URL visible to the browser immediately.
+        img.loading = "eager";
+        img.fetchPriority = "high";
+        img.width = 600;
+        img.height = 600;
+        img.src = convertImagePath(product.image);
+
         img.addEventListener("error", function () {
             this.onerror = null;
-            this.src =
-                "/Front_end/assets/images/clubs/manchester-united-2025-home.jpg";
+            this.src = convertImagePath("manchester-united-2025-home.jpg");
         });
     }
 
@@ -773,6 +786,12 @@ function closeQuickViewModal() {
         return;
     }
 
+    // Remove focus before hiding the modal. Otherwise Chrome correctly warns
+    // that aria-hidden would hide the currently focused close button.
+    if (quickViewModal.contains(document.activeElement)) {
+        document.activeElement.blur();
+    }
+
     quickViewModal.hidden = true;
 
     quickViewModal.setAttribute(
@@ -789,7 +808,7 @@ function getCart() {
     try {
         return JSON.parse(
             localStorage.getItem(
-                "footballFashionCart"
+                "cart"
             )
         ) || [];
     } catch {
@@ -799,7 +818,7 @@ function getCart() {
 
 function saveCart(cart) {
     localStorage.setItem(
-        "footballFashionCart",
+        "cart",
         JSON.stringify(cart)
     );
 }
@@ -838,7 +857,7 @@ function addToCart(product) {
             id: product.id,
             name: product.name,
             price: Number(product.price),
-            image: product.image,
+            image: convertImagePath(product.image),
             size,
             color,
             quantity: quickQuantity
@@ -856,7 +875,7 @@ function getWishlist() {
     try {
         return JSON.parse(
             localStorage.getItem(
-                "footballFashionWishlist"
+                "wishlist"
             )
         ) || [];
     } catch {
@@ -866,7 +885,7 @@ function getWishlist() {
 
 function saveWishlist(wishlist) {
     localStorage.setItem(
-        "footballFashionWishlist",
+        "wishlist",
         JSON.stringify(wishlist)
     );
 }

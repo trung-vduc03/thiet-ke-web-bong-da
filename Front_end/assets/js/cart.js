@@ -1,97 +1,120 @@
-document.addEventListener("DOMContentLoaded", () => {
-    renderCart();
-    updateBadges(); 
-});
-
+// FOOTBALL FASHION - CART.JS
 function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
+    try { return JSON.parse(localStorage.getItem('cart')) || []; }
+    catch { return []; }
 }
 
 function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateBadges(); // Cập nhật số lượng trên icon mỗi khi thay đổi
+    localStorage.setItem('cart', JSON.stringify(cart));
+    if (typeof updateBadges === 'function') updateBadges();
+}
+
+function normalizeCartImage(image) {
+    if (typeof normalizeProductImage === 'function') return normalizeProductImage(image);
+    const p = String(image || '');
+    const i = p.lastIndexOf('Front_end/assets/');
+    if (i >= 0) return '/' + p.substring(i);
+    if (p.startsWith('../assets/')) return '/Front_end/' + p.substring(3);
+    if (p.startsWith('./assets/')) return '/Front_end/' + p.substring(2);
+    if (!p.includes('/')) return '/Front_end/assets/images/clubs/' + p;
+    return p;
 }
 
 function renderCart() {
     const cart = getCart();
-    const tableBody = document.getElementById("cartTableBody");
-    const giftWrapChecked = document.getElementById("giftWrap")?.checked || false;
-    const shippingNotice = document.getElementById("shippingNotice");
-    
-    let subTotal = 0;
-    const shippingThreshold = 2000000; // Miễn phí vận chuyển cho đơn trên 2tr
+    const tableBody = document.getElementById('cartTableBody');
+    const giftWrap = document.getElementById('giftWrap');
+    const shippingNotice = document.getElementById('shippingNotice');
+    if (!tableBody) return;
+
+    const giftWrapChecked = !!(giftWrap && giftWrap.checked);
+    const threshold = 2000000;
 
     if (cart.length === 0) {
-        document.getElementById("cartContent").innerHTML = `
-            <div class="empty-box">
+        tableBody.innerHTML = `
+            <div class="cart-empty">
                 <p class="empty-text">Giỏ hàng trống! Hãy chọn áo đấu yêu thích.</p>
                 <a href="../home/products/products.html" class="btn-primary">Khám phá sản phẩm</a>
             </div>`;
+        updateTotals(0, giftWrapChecked);
+        if (shippingNotice) shippingNotice.innerHTML = 'Mua thêm <strong>2.000.000đ</strong> để được miễn phí vận chuyển';
         return;
     }
 
+    let subtotal = 0;
     tableBody.innerHTML = cart.map((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        subTotal += itemTotal;
+        const price = Number(item.price) || 0;
+        const quantity = Math.max(1, Number(item.quantity) || 1);
+        const total = price * quantity;
+        subtotal += total;
         return `
-            <tr>
-                <td>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <img src="${item.image}" width="60" alt="${item.name}">
-                        <div>
-                            <strong>${item.name}</strong><br>
-                            <small class="text-muted">Size: ${item.size || 'M'}</small>
-                        </div>
-                    </div>
-                </td>
-                <td>${Number(item.price).toLocaleString("vi-VN")}đ</td>
-                <td>
-                    <input type="number" min="1" value="${item.quantity}" 
-                    onchange="updateQuantity(${index}, this.value)" style="width: 50px;">
-                </td>
-                <td>${itemTotal.toLocaleString("vi-VN")}đ</td>
-                <td><button onclick="removeItem(${index})" style="color: var(--color-danger); cursor:pointer; border:none; background:none;">Xóa</button></td>
-            </tr>`;
-    }).join("");
+            <article class="cart-item">
+                <img class="cart-item-image" src="${normalizeCartImage(item.image)}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <a class="cart-item-name" href="../home/products/products-detail.html?id=${encodeURIComponent(item.id)}">${item.name}</a>
+                    <p class="cart-item-meta">Size: ${item.size || 'M'}</p>
+                    <p class="cart-item-price">${price.toLocaleString('vi-VN')}đ</p>
+                </div>
+                <div class="cart-item-controls">
+                    <label class="quantity-control-label" for="cartQty-${index}">Số lượng</label>
+                    <input id="cartQty-${index}" class="cart-quantity" type="number" min="1" value="${quantity}" data-cart-quantity="${index}">
+                    <strong class="cart-item-total">${total.toLocaleString('vi-VN')}đ</strong>
+                    <button type="button" class="cart-remove" data-cart-remove="${index}">Xóa</button>
+                </div>
+            </article>`;
+    }).join('');
 
-    //  Thông báo vận chuyển 
-    if (subTotal < shippingThreshold) {
-        const remaining = shippingThreshold - subTotal;
-        shippingNotice.innerHTML = `Mua thêm <strong>${remaining.toLocaleString("vi-VN")}đ</strong> để được miễn phí vận chuyển`;
-    } else {
-        shippingNotice.innerHTML = `Chúc mừng! Đơn hàng của bạn được <strong>Miễn phí vận chuyển</strong>`;
+    if (shippingNotice) {
+        shippingNotice.innerHTML = subtotal < threshold
+            ? `Mua thêm <strong>${(threshold-subtotal).toLocaleString('vi-VN')}đ</strong> để được miễn phí vận chuyển`
+            : 'Chúc mừng! Đơn hàng của bạn được <strong>Miễn phí vận chuyển</strong>';
     }
+    updateTotals(subtotal, giftWrapChecked);
 
-    const giftWrapFee = giftWrapChecked ? 10000 : 0;
-    const shippingFee = subTotal >= shippingThreshold ? 0 : 30000;
-
-    document.getElementById("subTotal").textContent = subTotal.toLocaleString("vi-VN") + "đ";
-    document.getElementById("giftWrapPrice").textContent = giftWrapFee.toLocaleString("vi-VN") + "đ";
-    document.getElementById("grandTotal").textContent = (subTotal + shippingFee + giftWrapFee).toLocaleString("vi-VN") + "đ";
+    tableBody.querySelectorAll('[data-cart-quantity]').forEach(function (input) {
+        input.addEventListener('change', function () {
+            updateQuantity(Number(this.dataset.cartQuantity), this.value);
+        });
+    });
+    tableBody.querySelectorAll('[data-cart-remove]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            removeItem(Number(this.dataset.cartRemove));
+        });
+    });
 }
 
-function updateQuantity(index, qty) {
+function updateTotals(subtotal, giftWrapChecked) {
+    const gift = giftWrapChecked ? 10000 : 0;
+    const shipping = subtotal >= 2000000 ? 0 : 30000;
+    const sub = document.getElementById('subTotal');
+    const giftEl = document.getElementById('giftWrapPrice');
+    const grand = document.getElementById('grandTotal');
+    if (sub) sub.textContent = subtotal.toLocaleString('vi-VN') + 'đ';
+    if (giftEl) giftEl.textContent = gift.toLocaleString('vi-VN') + 'đ';
+    if (grand) grand.textContent = (subtotal + gift + shipping).toLocaleString('vi-VN') + 'đ';
+}
+
+function updateQuantity(index, value) {
     const cart = getCart();
-    if (qty > 0) {
-        cart[index].quantity = parseInt(qty);
+    const qty = parseInt(value, 10);
+    if (!cart[index] || !Number.isFinite(qty) || qty < 1) return;
+    cart[index].quantity = qty;
+    saveCart(cart);
+    renderCart();
+}
+
+function removeItem(index) {
+    const cart = getCart();
+    if (cart[index]) {
+        cart.splice(index, 1);
         saveCart(cart);
         renderCart();
     }
 }
 
-function removeItem(index) {
-    const cart = getCart();
-    cart.splice(index, 1);
-    saveCart(cart);
+document.addEventListener('DOMContentLoaded', () => {
+    const giftWrap = document.getElementById('giftWrap');
+    if (giftWrap) giftWrap.addEventListener('change', renderCart);
     renderCart();
-}
-function updateBadges() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    
-    const cartBadge = document.getElementById("cart-badge");
-    const wishlistBadge = document.getElementById("wishlist-badge");
-    
-    if (cartBadge) cartBadge.textContent = cart.length;
-    if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
-}
+    if (typeof updateBadges === 'function') updateBadges();
+});

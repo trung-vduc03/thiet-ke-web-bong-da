@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết sản phẩm | Football Fashion</title>
     <meta name="description" content="Xem chi tiết sản phẩm thời trang bóng đá tại Football Fashion.">
 
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/product-detail.css">
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link rel="stylesheet" href="../../../styles/products.css">
+    <link rel="stylesheet" href="../../../css/products-detail.css">
+    <link rel="stylesheet" href="../../../styles/navigation.css">
+    <link rel="stylesheet" href="../../../styles/responsive.css">
 </head>
 
 <body>
 
-<header class="site-header">
+<header class="site-header" data-mobile-nav>
     <div class="container header-inner">
-        <a href="../index.html" class="logo">
+        <a href="../../../../index.html" class="logo">
             Football Fashion
         </a>
 
-        <nav class="main-nav" aria-label="Điều hướng chính">
-            <a href="../index.html">Trang chủ</a>
+        <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+            <nav class="main-nav" aria-label="Điều hướng chính">
+            <a href="../../../../index.html">Trang chủ</a>
             <a href="products.html">Sản phẩm</a>
-            <a href="favorites.html">Yêu thích</a>
-            <a href="cart.html">Giỏ hàng</a>
-        </nav>
+            <a href="../../cart-checkout/wishlist.html">Yêu thích</a>
+            <a href="../../cart-checkout/cart.html">Giỏ hàng</a>
+        
+                <a href="../../user/login.html" class="login-link">Đăng nhập</a>
+            </nav>
 
-        <a href="login.html" class="login-link">
-            Đăng nhập
-        </a>
     </div>
 </header>
 
@@ -35,7 +39,7 @@
     <div class="container">
 
         <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../index.html">Trang chủ</a>
+            <a href="../../../../index.html">Trang chủ</a>
             <span>/</span>
             <a href="products.html">Sản phẩm</a>
             <span>/</span>
@@ -127,7 +131,9 @@
     </div>
 </footer>
 
-<script src="../js/product-detail.js"></script>
+<script src="../../../app.js"></script>
+<script src="../../../assets/js/products-detail.js"></script>
 
+    <script src="../../../assets/js/navigation.js"></script>
 </body>
 </html>

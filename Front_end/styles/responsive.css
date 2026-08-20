@@ -1,0 +1,174 @@
+/* Football Fashion - unified 3-range responsive system.
+   Visual language remains the v10 theme; this file only controls layout/structure. */
+
+/* ---------- MOBILE: 0-767px ---------- */
+@media (max-width: 767px) {
+  .container { padding-left: 14px; padding-right: 14px; }
+  .mobile-menu-toggle { display: inline-flex; }
+  .site-header[data-mobile-nav] .header-inner,
+  .simple-header[data-mobile-nav] .simple-header-inner { min-height: 64px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; }
+  .site-header[data-mobile-nav] .main-nav,
+  .site-header[data-mobile-nav] .login-link,
+  .simple-header[data-mobile-nav] .simple-nav { display:none; }
+  .site-header[data-mobile-nav].menu-open .main-nav,
+  .simple-header[data-mobile-nav].menu-open .simple-nav { display:flex; position:absolute; z-index:2000; left:0; right:0; top:100%; flex-direction:column; align-items:stretch; gap:0; padding:0; background:#071a2b; border:1px solid rgba(255,255,255,.12); border-top:0; box-shadow:0 14px 30px rgba(0,0,0,.24); border-radius:0 0 10px 10px; overflow:hidden; }
+  .site-header[data-mobile-nav].menu-open .main-nav a,
+  .simple-header[data-mobile-nav].menu-open .simple-nav a { display:flex; align-items:center; min-height:49px; padding:0 20px; border-bottom:1px solid rgba(255,255,255,.1); color:#fff; background:transparent; text-decoration:none; font-size:14px; font-weight:700; }
+  .site-header[data-mobile-nav].menu-open .main-nav a:hover,
+  .site-header[data-mobile-nav].menu-open .main-nav a:focus-visible,
+  .site-header[data-mobile-nav].menu-open .main-nav a.active { color:#18d900; background:rgba(255,255,255,.04); }
+
+  .hero-banner { min-height:400px; padding:60px 20px; }
+  .hero-title { font-size:32px; }
+  .hero-desc { font-size:13px; }
+  .hero-actions { flex-direction:column; width:100%; max-width:280px; }
+  .hero-actions .btn { width:100%; }
+  .trust-container { grid-template-columns:1fr; }
+  .category-grid { grid-template-columns:1fr; }
+  .category-card { height:210px; }
+  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 10px; }
+  .product-info { padding:10px; }
+  .product-title { min-height:37px; font-size:12px; }
+  .product-price { font-size:13px; }
+  .old-price { display:none; }
+  .add-btn { width:30px; height:30px; }
+  .promo-banner { flex-direction:column; align-items:flex-start; padding:30px 22px; }
+  .promo-content h2 { font-size:23px; }
+  .footer-container { grid-template-columns:1fr !important; gap:32px; }
+
+  .catalog-section { padding:15px 14px 50px; }
+  .catalog-layout { grid-template-columns:1fr; }
+  .filter-sidebar { position:static; }
+  .catalog-header { flex-direction:column; align-items:flex-start; gap:14px; }
+  .catalog-sort { width:100%; justify-content:space-between; }
+  .catalog-sort select { flex:1; min-width:0; }
+  .category-banner { min-height:190px; padding:30px 22px; }
+  .banner-content h1 { font-size:27px; }
+  .product-grid .card-actions, .card-actions { grid-template-columns:1fr; }
+  .quick-view-btn, .btn-detail { width:100%; }
+  .quick-view-grid { grid-template-columns:1fr; gap:20px; }
+  .modal-content { padding:20px 15px; }
+  .quick-view-info h2 { font-size:20px; }
+  .quick-view-price { font-size:20px; }
+  .action-buttons { grid-template-columns:1fr; }
+  .toast { right:15px; left:15px; bottom:15px; justify-content:center; }
+
+  .product-page-layout, .product-detail { grid-template-columns:1fr; }
+  .product-gallery { position:static; }
+  .product-info h1 { font-size:30px; }
+  .related-grid { grid-template-columns:repeat(2,1fr); }
+  .detail-page { padding-top:25px; }
+  .detail-actions { flex-direction:column; }
+  .add-cart-button, .wishlist-button { width:100%; }
+  .thumbnail { width:65px; height:65px; }
+
+  .cart-grid, .checkout-grid { grid-template-columns:1fr; }
+  .cart-table-head { display:none; }
+  .cart-item { grid-template-columns:72px minmax(0,1fr); gap:12px; }
+  .cart-item-image { width:72px; height:88px; }
+  .cart-item-controls { grid-column:1 / -1; grid-template-columns:1fr 80px auto; justify-items:stretch; align-items:center; }
+  .cart-table-head { display:none; }
+  .cart-item-total { grid-column:auto; text-align:right; }
+  .cart-remove { grid-column:auto; text-align:right; }
+  .quantity-control-label { grid-column:1; }
+  .cart-quantity { width:80px; }
+  .summary-box { position:static; }
+  .wishlist-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .card-flex { padding:18px; }
+  .grid-2-col { grid-template-columns:1fr; }
+  .discount-box { flex-direction:column; }
+  .discount-btn { width:100%; }
+  .page-title { margin-top:24px; }
+  .simple-header-inner { padding-top:12px; padding-bottom:12px; }
+
+  /* Figma-like structure, Football Fashion visuals */
+  .auth-shell { width:100%; max-width:520px; display:grid; grid-template-columns:1fr; background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:0 10px 30px rgba(7,26,43,.08); }
+  .auth-visual { min-height:180px; order:0; background-color:#071a2b; background-image:none; }
+  .auth-panel { width:100% !important; max-width:none !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; padding:28px 22px !important; }
+  .auth-page-title { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .back-home { position:static; align-self:flex-start; margin-bottom:12px; }
+}
+
+/* ---------- TABLET: 768-1023px ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container { padding-left:25px; padding-right:25px; }
+  .site-header[data-mobile-nav] .header-inner,
+  .simple-header[data-mobile-nav] .simple-header-inner { min-height:65px; }
+  .mobile-menu-toggle { display:none; }
+  .main-nav { gap:16px; }
+  .main-nav a, .login-link { font-size:13px; }
+  .trust-container { grid-template-columns:repeat(2,1fr); }
+  .category-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .promo-banner { flex-direction:column; align-items:flex-start; }
+  .footer-container { grid-template-columns:repeat(2,1fr); }
+
+  .catalog-section { padding-left:25px; padding-right:25px; }
+  .catalog-layout { grid-template-columns:220px minmax(0,1fr); gap:25px; }
+  .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .category-banner { padding:38px 34px; }
+
+  .product-page-layout, .product-detail { grid-template-columns:1fr 1fr; gap:35px; }
+  .product-info h1 { font-size:32px; }
+  .related-grid { grid-template-columns:repeat(3,1fr); }
+
+  .cart-grid { grid-template-columns:1.6fr 1fr; gap:24px; }
+  .cart-table-head { grid-template-columns:minmax(0,1.6fr) 110px 110px 100px; gap:10px; }
+  .cart-item { grid-template-columns:80px minmax(0,1fr) 235px; gap:12px; }
+  .cart-item-image { width:80px; height:96px; }
+  .cart-item-controls { grid-column:3; grid-template-columns:58px 62px minmax(70px,1fr) 36px; gap:7px; }
+  .checkout-grid { grid-template-columns:1.4fr 1fr; gap:24px; }
+  .wishlist-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .grid-2-col { grid-template-columns:1fr 1fr; }
+  .summary-box { position:sticky; top:20px; }
+
+  .auth-shell { width:min(920px,calc(100% - 48px)); display:grid; grid-template-columns:minmax(300px,.9fr) minmax(360px,1.1fr); background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:0 10px 30px rgba(7,26,43,.08); }
+  .auth-visual { min-height:600px; background-color:#071a2b; background-image:none; }
+  .auth-panel { width:100% !important; max-width:none !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; padding:40px 36px !important; }
+  .auth-page-title { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+}
+
+/* ---------- DESKTOP: 1024px+ ---------- */
+@media (min-width: 1024px) {
+  .container { padding-left:40px; padding-right:40px; }
+  .site-header[data-mobile-nav] .header-inner,
+  .simple-header[data-mobile-nav] .simple-header-inner { display:flex; align-items:center; }
+  .mobile-menu-toggle { display:none; }
+  .cart-grid { grid-template-columns:2fr 1.2fr; }
+  .cart-item { grid-template-columns:96px minmax(0,1fr) 290px; }
+  .cart-item-controls { grid-column:3; grid-template-columns:70px 72px minmax(90px,1fr) 48px; }
+  .checkout-grid { grid-template-columns:1.5fr 1fr; }
+  .wishlist-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .catalog-layout { grid-template-columns:260px minmax(0,1fr); gap:32px; }
+  .product-page-layout, .product-detail { grid-template-columns:1fr 1fr; }
+  .related-grid { grid-template-columns:repeat(4,1fr); }
+  .summary-box { position:sticky; top:20px; }
+  .auth-shell { width:min(1080px,calc(100% - 64px)); display:grid; grid-template-columns:minmax(360px,.9fr) minmax(420px,1.1fr); background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:0 10px 30px rgba(7,26,43,.08); }
+  .auth-visual { min-height:650px; background-color:#071a2b; background-image:none; }
+  .auth-panel { width:100% !important; max-width:none !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; padding:48px 48px !important; }
+  .auth-page-title { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+}
+
+/* Shared accessibility helpers */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+:focus-visible { outline:3px solid rgba(24,217,0,.45); outline-offset:2px; }
+
+
+/* Auth visual sizing across the same three responsive ranges. */
+@media (max-width: 767px) {
+  .auth-visual { min-height: 220px; }
+  .auth-visual-content { min-height: 220px; padding: 30px 24px; justify-content: flex-end; }
+  .auth-visual-content h2 { font-size: 27px; }
+  .auth-visual-content p { font-size: 12px; max-width: 330px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .auth-visual { min-height: 600px; }
+  .auth-visual-content { min-height: 600px; padding: 38px 32px; }
+}
+
+@media (min-width: 1024px) {
+  .auth-visual { min-height: 650px; }
+  .auth-visual-content { min-height: 650px; padding: 46px 42px; }
+}

@@ -1,0 +1,4 @@
+/* Tailwind entry point. The production theme continues to use external v10 CSS. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

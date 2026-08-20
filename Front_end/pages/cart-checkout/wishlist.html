@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <meta name="description" content="Football Fashion - Danh sách sản phẩm yêu thích.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Danh Sách Yêu Thích</title>
    
-    <!-- Trỏ đến thư mục styles/ ở Front_end -->
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
+    <link rel="stylesheet" href="../../styles/navigation.css">
+    <link rel="stylesheet" href="../../styles/responsive.css">
 </head>
 <body>
-    <div id="app-header"></div>
+    <header class="simple-header" data-mobile-nav><div class="container simple-header-inner"><a href="../../../index.html" class="site-logo">Football Fashion</a><button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><span aria-hidden="true">☰</span></button><nav class="simple-nav" aria-label="Điều hướng chính"><a href="../../../index.html">Trang chủ</a><a href="../home/products/products.html">Sản phẩm</a><a href="wishlist.html">Yêu thích</a><a href="cart.html">Giỏ hàng</a><a href="../user/login.html">Đăng nhập</a></nav></div></header>
 
     <main class="container">
         <!-- Thẻ H1 duy nhất -->
@@ -23,51 +25,11 @@
         </div>
     </main>
 
-    <div id="app-footer"></div>
 
     <script src="../../app.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", renderWishlist);
-
-        function renderWishlist() {
-            const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            const grid = document.getElementById("wishlistGrid");
-            const emptyMsg = document.getElementById("emptyWishlistMsg");
-
-            if (wishlist.length === 0) {
-                grid.classList.add("hidden");
-                emptyMsg.classList.remove("hidden");
-                return;
-            }
-
-            grid.classList.remove("hidden");
-            emptyMsg.classList.add("hidden");
-
-            grid.innerHTML = wishlist.map(item => `
-                <div class="wishlist-card">
-                    <img src="${item.image}" alt="${item.name}" class="wishlist-thumb">
-                    <h2>${item.name}</h2>
-                    <p class="price-text">${Number(item.price).toLocaleString("vi-VN")}đ</p>
-                    <button onclick="removeWishlist(${item.id})" class="btn-delete">Xóa khỏi Yêu thích</button>
-                </div>
-            `).join('');
-        }
-
-        function removeWishlist(id) {
-            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            wishlist = wishlist.filter(item => item.id !== id);
-            localStorage.setItem("wishlist", JSON.stringify(wishlist));
-            renderWishlist();
-        }
-        function updateBadges() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-            const cartBadge = document.getElementById("cart-badge");
-            const wishlistBadge = document.getElementById("wishlist-badge");
+    <script
+       src="../../assets/js/wishlist.js"> </script>
     
-    if (cartBadge) cartBadge.textContent = cart.length;
-    if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
-}
-    </script>
+    <script src="../../assets/js/navigation.js"></script>
 </body>
 </html>
