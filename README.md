@@ -89,10 +89,10 @@ Kết quả kiểm tra hiện tại trên trang chủ ở mobile:
 
 | Hạng mục | Điểm | Trạng thái |
 |---|---:|---|
-| Performance | **78** | ⚠️ Chưa đạt mục tiêu 85 |
-| Accessibility | **95** | ✅ Tốt |
-| Best Practices | **100** | ✅ Tốt |
-| SEO | **100** | ✅ Tốt |
+| Performance | **78** | Chưa đạt mục tiêu 85 |
+| Accessibility | **95** | Tốt |
+| Best Practices | **100** |  Tốt |
+| SEO | **100** | Tốt |
 
 ### Các cảnh báo Performance đã ghi nhận
 
