@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- Thiết lập bộ mã ký tự và chế độ co giãn màn hình responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Tiêu đề trang và thẻ meta mô tả cho SEO -->
     <title>Sản phẩm | Football Fashion</title>
-
     <meta
         name="description"
         content="Khám phá bộ sưu tập áo đấu và thời trang bóng đá tại Football Fashion."
     >
 
+    <!-- Thư viện Icon Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     >
 
+    <!-- Google Font Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
+    <!-- File định dạng giao diện CSS cho trang sản phẩm và thanh điều hướng -->
     <link rel="stylesheet" href="./products.css">
     <link rel="stylesheet" href="../../../styles/navigation.css">
     <link rel="stylesheet" href="../../../styles/responsive.css">
@@ -31,16 +34,24 @@
 
 <body>
 
+<!-- ========================================================================== -->
+<!-- 1. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVIGATION) -->
+<!-- ========================================================================== -->
 <header class="site-header" data-mobile-nav>
     <div class="container header-inner">
 
+        <!-- Logo thương hiệu -->
         <a href="../../../../index.html" class="logo">
             Football Fashion
         </a>
 
-        <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-            <nav class="main-nav" aria-label="Điều hướng chính">
+        <!-- Nút bật/tắt menu trên thiết bị di động (Mobile Menu Toggle) -->
+        <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
+        <!-- Menu điều hướng chính -->
+        <nav class="main-nav" aria-label="Điều hướng chính">
             <a href="../../../../index.html">
                 Trang chủ
             </a>
@@ -58,17 +69,21 @@
                 <i class="fa-solid fa-bag-shopping"></i>
                 Giỏ hàng
             </a>
-                <a href="../../user/login.html" class="login-link">
-                    Đăng nhập
-                </a>
-</nav>
-</div>
+
+            <a href="../../user/login.html" class="login-link">
+                Đăng nhập
+            </a>
+        </nav>
+    </div>
 </header>
 
+<!-- ========================================================================== -->
+<!-- 2. NỘI DUNG CHÍNH TRANG SẢN PHẨM (MAIN CATALOG SECTION) -->
+<!-- ========================================================================== -->
 <main class="catalog-section">
 
+    <!-- Thanh điều hướng phân cấp (Breadcrumb) -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
-
         <a href="../../../../index.html">
             <i class="fa-solid fa-house"></i>
             Trang chủ
@@ -77,13 +92,11 @@
         <i class="fa-solid fa-chevron-right separator"></i>
 
         <span>Sản phẩm</span>
-
     </nav>
 
+    <!-- Banner tiêu đề danh mục sản phẩm -->
     <header class="category-banner">
-
         <div class="banner-content">
-
             <span class="banner-subtitle">
                 FOOTBALL FASHION
             </span>
@@ -93,16 +106,13 @@
             </h1>
 
             <p>
-                Khám phá bộ sưu tập áo đấu bóng đá mới nhất
-                dành cho những người yêu bóng đá.
+                Khám phá bộ sưu tập áo đấu bóng đá mới nhất dành cho những người yêu bóng đá.
             </p>
-
         </div>
-
     </header>
 
+    <!-- Thanh tìm kiếm sản phẩm tức thì (Live Search) -->
     <div class="product-search">
-
         <label for="productSearch" class="sr-only">
             Tìm kiếm sản phẩm
         </label>
@@ -121,13 +131,11 @@
         >
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-
     </div>
 
+    <!-- Tiêu đề trang và thanh chọn sắp xếp (Sort dropdown) -->
     <div class="catalog-header">
-
         <div class="catalog-title-box">
-
             <h2>
                 Tất Cả Sản Phẩm
             </h2>
@@ -135,18 +143,16 @@
             <p class="catalog-description">
                 Khám phá những mẫu áo đấu bóng đá mới nhất
             </p>
-
         </div>
 
+        <!-- Bộ chọn chế độ sắp xếp -->
         <div class="catalog-sort">
-
             <label for="sortProducts">
                 <i class="fa-solid fa-arrow-down-short-wide"></i>
                 Sắp xếp:
             </label>
 
             <select id="sortProducts">
-
                 <option value="default">
                     Mặc định
                 </option>
@@ -166,19 +172,20 @@
                 <option value="name-za">
                     Tên Z - A
                 </option>
-
             </select>
-
         </div>
-
     </div>
 
+    <!-- Bố cục 2 cột: Sidebar bộ lọc bên trái và Lưới sản phẩm bên phải -->
     <div class="catalog-layout">
 
+        <!-- ================================================================== -->
+        <!-- SIDEBAR BỘ LỌC ĐA TIÊU CHÍ (FILTER SIDEBAR) -->
+        <!-- ================================================================== -->
         <aside class="filter-sidebar">
 
+            <!-- Tiêu đề bộ lọc & Nút xóa toàn bộ lọc -->
             <div class="filter-header">
-
                 <h2>
                     <i class="fa-solid fa-sliders"></i>
                     Bộ lọc
@@ -191,92 +198,58 @@
                 >
                     Xóa lọc
                 </button>
-
             </div>
 
+            <!-- Nhóm lọc theo Kích thước (Size) -->
             <div class="filter-group">
-
                 <h3>
                     Kích thước
                 </h3>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="size"
-                        value="S"
-                    >
+                    <input type="checkbox" name="size" value="S">
                     <span>S</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="size"
-                        value="M"
-                    >
+                    <input type="checkbox" name="size" value="M">
                     <span>M</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="size"
-                        value="L"
-                    >
+                    <input type="checkbox" name="size" value="L">
                     <span>L</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="size"
-                        value="XL"
-                    >
+                    <input type="checkbox" name="size" value="XL">
                     <span>XL</span>
                 </label>
-
             </div>
 
+            <!-- Nhóm lọc theo Màu sắc (Color) -->
             <div class="filter-group">
-
                 <h3>
                     Màu sắc
                 </h3>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="color"
-                        value="red"
-                    >
+                    <input type="checkbox" name="color" value="red">
                     <span>Đỏ</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="color"
-                        value="white"
-                    >
+                    <input type="checkbox" name="color" value="white">
                     <span>Trắng</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="color"
-                        value="black"
-                    >
+                    <input type="checkbox" name="color" value="black">
                     <span>Đen</span>
                 </label>
 
                 <label class="filter-checkbox">
-                    <input
-                        type="checkbox"
-                        name="color"
-                        value="blue"
-                    >
+                    <input type="checkbox" name="color" value="blue">
                     <span>Xanh</span>
                 </label>
 
@@ -289,13 +262,11 @@
                     <input type="checkbox" name="color" value="orange">
                     <span>Cam</span>
                 </label>
-
             </div>
 
+            <!-- Nhóm lọc theo Khoảng giá (Price Slider) -->
             <div class="filter-group">
-
                 <div class="price-filter-header">
-
                     <h3>
                         Khoảng giá
                     </h3>
@@ -303,7 +274,6 @@
                     <span id="priceValue">
                         3.000.000đ
                     </span>
-
                 </div>
 
                 <input
@@ -316,55 +286,48 @@
                 >
 
                 <div class="price-range">
-
-                    <span>
-                        0đ
-                    </span>
-
-                    <span>
-                        3.000.000đ
-                    </span>
-
+                    <span>0đ</span>
+                    <span>3.000.000đ</span>
                 </div>
-
             </div>
 
         </aside>
 
+        <!-- ================================================================== -->
+        <!-- KHU VỰC HIỂN THỊ SẢN PHẨM (PRODUCT AREA) -->
+        <!-- ================================================================== -->
         <section class="product-area">
 
+            <!-- Thanh trạng thái hiển thị số lượng sản phẩm tìm thấy -->
             <div class="product-toolbar">
-
                 <p>
-                    Hiển thị
-                    <strong id="productCount">0</strong>
-                    sản phẩm
+                    Hiển thị <strong id="productCount">0</strong> sản phẩm
                 </p>
-
             </div>
 
+            <!-- Thẻ chứa các tag bộ lọc đang được chọn -->
+            <div id="activeFilters" class="active-filters"></div>
+
+            <!-- Lưới hiển thị danh sách thẻ sản phẩm (Render bằng JavaScript) -->
             <div
                 id="productGrid"
                 class="product-grid"
                 aria-live="polite"
             ></div>
 
+            <!-- Khối thông báo khi không tìm thấy sản phẩm nào khớp bộ lọc -->
             <div
                 id="noProducts"
                 class="no-products"
                 hidden
             >
-
                 <i class="fa-solid fa-box-open no-product-icon"></i>
-
                 <h2>
                     Không tìm thấy sản phẩm
                 </h2>
-
                 <p>
                     Hãy thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.
                 </p>
-
                 <button
                     type="button"
                     id="resetSearch"
@@ -372,49 +335,14 @@
                 >
                     Xóa bộ lọc
                 </button>
-
             </div>
 
+            <!-- Thanh phân trang (Pagination - Render bằng JavaScript) -->
             <div
                 class="pagination"
                 id="pagination"
                 aria-label="Phân trang"
-            >
-
-                <button
-                    type="button"
-                    class="page-btn active"
-                    data-page="1"
-                >
-                    1
-                </button>
-
-                <button
-                    type="button"
-                    class="page-btn"
-                    data-page="2"
-                >
-                    2
-                </button>
-
-                <button
-                    type="button"
-                    class="page-btn"
-                    data-page="3"
-                >
-                    3
-                </button>
-
-                <button
-                    type="button"
-                    class="page-btn"
-                    data-page="next"
-                    aria-label="Trang tiếp theo"
-                >
-                    <i class="fa-solid fa-angle-right"></i>
-                </button>
-
-            </div>
+            ></div>
 
         </section>
 
@@ -422,13 +350,16 @@
 
 </main>
 
+<!-- ========================================================================== -->
+<!-- 3. CỬA SỔ XEM NHANH SẢN PHẨM (QUICK VIEW MODAL) -->
+<!-- ========================================================================== -->
 <div
     id="quickViewModal"
     class="modal"
     hidden
     aria-hidden="true"
 >
-
+    <!-- Lớp nền mờ overlay (click để đóng modal) -->
     <div
         class="modal-overlay"
         data-close-modal
@@ -440,7 +371,7 @@
         aria-modal="true"
         aria-labelledby="quickViewTitle"
     >
-
+        <!-- Nút đóng modal (X) -->
         <button
             type="button"
             id="closeQuickView"
@@ -454,19 +385,17 @@
             id="quickViewContent"
             class="quick-view-grid"
         >
-
+            <!-- Hình ảnh xem nhanh -->
             <div class="quick-view-image">
-
                 <img
                     id="quickViewImage"
                     src=""
                     alt=""
                 >
-
             </div>
 
+            <!-- Thông tin và tùy chọn sản phẩm trong Quick View -->
             <div class="quick-view-info">
-
                 <p
                     id="quickViewCategory"
                     class="product-category"
@@ -486,40 +415,25 @@
                     class="quick-view-description"
                 ></p>
 
+                <!-- Lựa chọn Size -->
                 <div class="quick-view-option">
-
                     <label for="quickViewSize">
                         Kích thước
                     </label>
 
                     <select id="quickViewSize">
-
                         <option value="">
                             Chọn size
                         </option>
-
-                        <option value="S">
-                            S
-                        </option>
-
-                        <option value="M">
-                            M
-                        </option>
-
-                        <option value="L">
-                            L
-                        </option>
-
-                        <option value="XL">
-                            XL
-                        </option>
-
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
                     </select>
-
                 </div>
 
+                <!-- Các nút hành động: Thêm giỏ & Mua ngay -->
                 <div class="action-buttons">
-
                     <button
                         type="button"
                         class="btn-add-cart"
@@ -536,9 +450,9 @@
                     >
                         Mua ngay
                     </button>
-
                 </div>
 
+                <!-- Đường dẫn xem trang chi tiết đầy đủ -->
                 <a
                     href="./products-detail.html"
                     id="quickViewDetail"
@@ -547,30 +461,35 @@
                     Xem chi tiết sản phẩm
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
+<!-- ========================================================================== -->
+<!-- 4. THÔNG BÁO TOAST (TOAST NOTIFICATION) -->
+<!-- ========================================================================== -->
+<div id="toast" class="toast" aria-live="polite">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Đã thêm vào giỏ hàng</span>
+</div>
+
+<!-- ========================================================================== -->
+<!-- 5. CHÂN TRANG (FOOTER) -->
+<!-- ========================================================================== -->
 <footer class="site-footer">
-
     <div class="container">
-
         <p>
             © 2026 Football Fashion. All rights reserved.
         </p>
-
     </div>
-
 </footer>
 
+<!-- ========================================================================== -->
+<!-- 6. CÁC TỆP SCRIPT JAVASCRIPT -->
+<!-- ========================================================================== -->
 <script src="../../../app.js"></script>
 <script src="./products.js"></script>
-
-    <script src="../../../assets/js/navigation.js"></script>
+<script src="../../../assets/js/navigation.js"></script>
 </body>
 </html>

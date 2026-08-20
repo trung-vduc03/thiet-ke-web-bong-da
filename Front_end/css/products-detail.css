@@ -1,7 +1,14 @@
+/* ==========================================================================
+   FOOTBALL FASHION - PRODUCTS-DETAIL.CSS
+   File định dạng giao diện chi tiết sản phẩm (Product Detail Page)
+   ========================================================================== */
+
+/* 1. Khung trang chi tiết */
 .detail-page {
     padding: 40px 0 80px;
 }
 
+/* 2. Thanh điều hướng phân cấp (Breadcrumb) */
 .breadcrumb {
     display: flex;
     align-items: center;
@@ -14,6 +21,7 @@
     text-decoration: none;
 }
 
+/* 3. Bố cục 2 cột chi tiết sản phẩm: Gallery ảnh (trái) và Thông tin sản phẩm (phải) */
 .product-detail {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -21,6 +29,7 @@
     align-items: start;
 }
 
+/* 4. Bộ sưu tập hình ảnh sản phẩm (Gallery) */
 .product-gallery {
     position: sticky;
     top: 20px;
@@ -38,6 +47,7 @@
     display: block;
 }
 
+/* Nút chuyển ảnh Trước/Sau (Prev/Next) */
 .gallery-button {
     position: absolute;
     top: 50%;
@@ -64,6 +74,7 @@
     right: 15px;
 }
 
+/* Danh sách ảnh thu nhỏ (Thumbnails) */
 .product-thumbnails {
     display: flex;
     gap: 12px;
@@ -91,6 +102,7 @@
     object-fit: contain;
 }
 
+/* 5. Cột thông tin chi tiết sản phẩm */
 .product-category {
     color: #777;
     font-size: 14px;
@@ -103,6 +115,7 @@
     margin: 0 0 15px;
 }
 
+/* Đánh giá sao & trạng thái tồn kho */
 .rating {
     display: flex;
     align-items: center;
@@ -120,12 +133,14 @@
     color: #188038;
 }
 
+/* Giá sản phẩm */
 .detail-price {
     font-size: 28px;
     font-weight: 700;
     margin: 0 0 30px;
 }
 
+/* Mô tả sản phẩm */
 .description {
     border-top: 1px solid #eee;
     padding-top: 25px;
@@ -144,6 +159,7 @@
     color: #555;
 }
 
+/* 6. Khu vực tùy chọn Size & Màu sắc */
 .option-section {
     padding: 20px 0;
     border-top: 1px solid #eee;
@@ -178,6 +194,7 @@
     border-color: #111;
 }
 
+/* Thông báo lỗi khi chưa chọn size/màu */
 .error-message {
     min-height: 20px;
     margin: 8px 0 0;
@@ -185,6 +202,7 @@
     color: #d32f2f;
 }
 
+/* 7. Nút tăng giảm số lượng */
 .quantity-control {
     display: inline-flex;
     align-items: center;
@@ -205,6 +223,7 @@
     text-align: center;
 }
 
+/* 8. Nút hành động: Thêm vào giỏ hàng & Thêm vào yêu thích */
 .detail-actions {
     display: flex;
     gap: 12px;
@@ -231,6 +250,7 @@
     background: #fff;
 }
 
+/* Thông báo thêm giỏ hàng thành công */
 .cart-message {
     min-height: 22px;
     margin-top: 15px;
@@ -238,6 +258,7 @@
     color: #2e7d32;
 }
 
+/* 9. Danh sách sản phẩm liên quan */
 .related-section {
     margin-top: 80px;
     padding-top: 40px;

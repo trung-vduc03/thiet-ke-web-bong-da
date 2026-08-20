@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- Thiết lập mã hóa và viewport responsive -->
     <meta name="description" content="Football Fashion - Đăng nhập tài khoản.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    
-<link rel="stylesheet" href="../../styles/auth.css">
+    <!-- File định dạng giao diện CSS cho trang xác thực (Auth) và responsive -->
+    <link rel="stylesheet" href="../../styles/auth.css">
     <link rel="stylesheet" href="../../styles/responsive.css">
 </head>
 <body>
 
+    <!-- Nút quay lại trang chủ -->
     <a href="../../../index.html" class="back-home">
         <i class="fa-solid fa-arrow-left"></i>
         Trở về trang chủ
     </a>
 
+    <!-- ====================================================================== -->
+    <!-- BỐ CỤC KHUNG XÁC THỰC (AUTH SHELL) -->
+    <!-- ====================================================================== -->
     <main class="auth-shell auth-login-shell">
+
+        <!-- Cột trái: Khối hình ảnh & Slogan quảng bá thương hiệu -->
         <aside class="auth-visual" aria-label="Football Fashion - Áo đấu và trang phục bóng đá">
             <div class="auth-visual-content">
                 <span class="auth-visual-subtitle">FOOTBALL FASHION</span>
@@ -29,62 +36,73 @@
                 <p>Khám phá bộ sưu tập áo đấu bóng đá mới nhất dành cho những người yêu bóng đá.</p>
             </div>
         </aside>
+
+        <!-- Cột phải: Thẻ Form Đăng Nhập -->
         <section class="login-card auth-panel">
             <h1 class="auth-page-title">Đăng nhập tài khoản</h1>
 
-        <div class="login-header">
-            <a href="../../../index.html" class="logo">Football Fashion</a>
-            <p>Đăng nhập để trải nghiệm mua sắm tuyệt vời</p>
-        </div>
+            <!-- Tiêu đề và logo -->
+            <div class="login-header">
+                <a href="../../../index.html" class="logo">Football Fashion</a>
+                <p>Đăng nhập để trải nghiệm mua sắm tuyệt vời</p>
+            </div>
 
-        <form action="#" method="POST">
+            <!-- Form điền thông tin đăng nhập -->
+            <form action="#" method="POST">
 
-            <div class="form-group">
-                <label class="form-label" for="email">Email hoặc Số điện thoại</label>
-                <div class="input-wrapper">
-                    <i class="fa-regular fa-envelope"></i>
-                    <input type="text" id="email" class="form-input" placeholder="nhapemail@example.com" required>
+                <!-- Trường Email / Số điện thoại -->
+                <div class="form-group">
+                    <label class="form-label" for="email">Email hoặc Số điện thoại</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="text" id="email" class="form-input" placeholder="nhapemail@example.com" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="form-label" for="password">Mật khẩu</label>
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                <!-- Trường Mật khẩu -->
+                <div class="form-group">
+                    <label class="form-label" for="password">Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
                 </div>
+
+                <!-- Tùy chọn Ghi nhớ & Quên mật khẩu -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Ghi nhớ đăng nhập</span>
+                    </label>
+                    <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+                </div>
+
+                <!-- Nút Submit Đăng nhập -->
+                <button type="submit" class="btn-submit">Đăng nhập</button>
+
+            </form>
+
+            <!-- Đường phân cách -->
+            <div class="divider">
+                <span>hoặc đăng nhập bằng</span>
             </div>
 
-            <div class="form-options">
-                <label class="remember-me">
-                    <input type="checkbox">
-                    <span>Ghi nhớ đăng nhập</span>
-                </label>
-                <a href="#" class="forgot-pass">Quên mật khẩu?</a>
+            <!-- Đăng nhập bằng mạng xã hội Google / Facebook -->
+            <div class="social-login">
+                <button class="btn-social">
+                    <i class="fa-brands fa-google social-google"></i>
+                    Google
+                </button>
+                <button class="btn-social">
+                    <i class="fa-brands fa-facebook social-facebook"></i>
+                    Facebook
+                </button>
             </div>
 
-            <button type="submit" class="btn-submit">Đăng nhập</button>
-
-        </form>
-
-        <div class="divider">
-            <span>hoặc đăng nhập bằng</span>
-        </div>
-
-        <div class="social-login">
-            <button class="btn-social">
-                <i class="fa-brands fa-google social-google"></i>
-                Google
-            </button>
-            <button class="btn-social">
-                <i class="fa-brands fa-facebook social-facebook"></i>
-                Facebook
-            </button>
-        </div>
-
-        <div class="signup-link">
-    Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
-</div>
+            <!-- Liên kết chuyển sang trang Đăng ký -->
+            <div class="signup-link">
+                Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+            </div>
 
         </section>
     </main>

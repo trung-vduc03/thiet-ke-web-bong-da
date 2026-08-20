@@ -1,53 +1,98 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- Thiết lập mã hóa và viewport responsive -->
     <meta name="description" content="Football Fashion - Giỏ hàng sản phẩm bóng đá.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Giỏ Hàng</title>
-    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+
+    <!-- File định dạng giao diện CSS cho giỏ hàng, thanh điều hướng và responsive -->
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
     <link rel="stylesheet" href="../../styles/navigation.css">
     <link rel="stylesheet" href="../../styles/responsive.css">
 </head>
 <body>
-    <header class="simple-header" data-mobile-nav><div class="container simple-header-inner"><a href="../../../index.html" class="site-logo">Football Fashion</a><button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><span aria-hidden="true">☰</span></button><nav class="simple-nav" aria-label="Điều hướng chính"><a href="../../../index.html">Trang chủ</a><a href="../home/products/products.html">Sản phẩm</a><a href="wishlist.html">Yêu thích</a><a href="cart.html">Giỏ hàng</a><a href="../user/login.html">Đăng nhập</a></nav></div></header>
+
+    <!-- ====================================================================== -->
+    <!-- 1. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVIGATION) -->
+    <!-- ====================================================================== -->
+    <header class="simple-header" data-mobile-nav>
+        <div class="container simple-header-inner">
+            <!-- Logo thương hiệu -->
+            <a href="../../../index.html" class="site-logo">Football Fashion</a>
+
+            <!-- Nút mở menu mobile -->
+            <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+            </button>
+
+            <!-- Menu liên kết chính -->
+            <nav class="simple-nav" aria-label="Điều hướng chính">
+                <a href="../../../index.html">Trang chủ</a>
+                <a href="../home/products/products.html">Sản phẩm</a>
+                <a href="wishlist.html">Yêu thích</a>
+                <a href="cart.html">Giỏ hàng</a>
+                <a href="../user/login.html">Đăng nhập</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====================================================================== -->
+    <!-- 2. NỘI DUNG CHÍNH TRANG GIỎ HÀNG (SHOPPING CART MAIN) -->
+    <!-- ====================================================================== -->
     <main class="container">
-        <!-- Thông báo vận chuyển -->
+        <!-- Thông báo miễn phí vận chuyển -->
         <div class="shipping-notice" id="shippingNotice">
             Mua thêm <strong>500.000đ</strong> để được miễn phí vận chuyển
         </div>
+
         <h1 class="page-title">Giỏ hàng</h1>
         
+        <!-- Bố cục lưới giỏ hàng: Danh sách món hàng bên trái, Tóm tắt hóa đơn bên phải -->
         <div class="cart-grid cart-figma-structure">
+
+            <!-- Cột trái: Bảng danh sách sản phẩm trong giỏ -->
             <section class="cart-products-section" aria-labelledby="cartProductsHeading">
+                <!-- Tiêu đề các cột -->
                 <div class="cart-table-head" id="cartProductsHeading" aria-hidden="true">
                     <span>Sản phẩm</span>
                     <span>Đơn giá</span>
                     <span>Số lượng</span>
                     <span>Thành tiền</span>
                 </div>
+
+                <!-- Thân bảng danh sách sản phẩm (Render động bằng JavaScript) -->
                 <div class="cart-items" id="cartTableBody" aria-live="polite"></div>
             </section>
+
+            <!-- Cột phải: Hộp tính toán tổng tiền đơn hàng (Summary Box) -->
             <aside class="summary-box card-flex" aria-labelledby="cartSummaryHeading">
                 <h2 class="section-title" id="cartSummaryHeading">Đơn hàng</h2>
                 
-                <!-- Tùy chọn gói quà chuẩn FASCO -->
+                <!-- Tùy chọn gói quà tặng kèm -->
                 <div class="gift-wrap-box">
                     <label class="gift-wrap-label">
                         <input type="checkbox" id="giftWrap">
                         <span>Thêm 10.000đ để gói quà sản phẩm</span>
                     </label>
                 </div>
+
+                <!-- Các dòng tính toán chi tiết -->
                 <div class="summary-row"><span>Tạm tính:</span><strong id="subTotal">0đ</strong></div>
                 <div class="summary-row"><span>Phí gói quà:</span><strong id="giftWrapPrice">0đ</strong></div>
                 <div class="summary-row"><span>Phí vận chuyển:</span><span>30.000đ</span></div>
                 <div class="summary-row summary-total"><span>Tổng tiền:</span><strong id="grandTotal">0đ</strong></div>
                 
+                <!-- Nút chuyển sang trang thanh toán -->
                 <a href="checkout.html" class="btn-primary checkout-btn-link">Thanh toán</a>
             </aside>
         </div>
     </main>
+
+    <!-- ====================================================================== -->
+    <!-- 3. CÁC TỆP SCRIPT JAVASCRIPT -->
+    <!-- ====================================================================== -->
     <script src="../../app.js"></script>
     <script src="../../assets/js/cart.js"></script>
     <script src="../../assets/js/navigation.js"></script>

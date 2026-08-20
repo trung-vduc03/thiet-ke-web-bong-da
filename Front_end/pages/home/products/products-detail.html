@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Thiết lập bộ mã ký tự và chế độ co giãn màn hình responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tiêu đề trang và thẻ meta mô tả cho SEO -->
     <title>Chi tiết sản phẩm | Football Fashion</title>
     <meta name="description" content="Xem chi tiết sản phẩm thời trang bóng đá tại Football Fashion.">
 
+    <!-- Thư viện Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Các file định dạng giao diện CSS -->
     <link rel="stylesheet" href="../../../styles/styles.css">
     <link rel="stylesheet" href="../../../styles/products.css">
     <link rel="stylesheet" href="../../../css/products-detail.css">
@@ -16,28 +22,39 @@
 
 <body>
 
+<!-- ========================================================================== -->
+<!-- 1. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVIGATION) -->
+<!-- ========================================================================== -->
 <header class="site-header" data-mobile-nav>
     <div class="container header-inner">
+        <!-- Logo thương hiệu -->
         <a href="../../../../index.html" class="logo">
             Football Fashion
         </a>
 
-        <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-            <nav class="main-nav" aria-label="Điều hướng chính">
+        <!-- Nút bật/tắt menu trên thiết bị di động (Mobile Menu Toggle) -->
+        <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Menu điều hướng chính -->
+        <nav class="main-nav" aria-label="Điều hướng chính">
             <a href="../../../../index.html">Trang chủ</a>
             <a href="products.html">Sản phẩm</a>
             <a href="../../cart-checkout/wishlist.html">Yêu thích</a>
             <a href="../../cart-checkout/cart.html">Giỏ hàng</a>
-        
-                <a href="../../user/login.html" class="login-link">Đăng nhập</a>
-            </nav>
-
+            <a href="../../user/login.html" class="login-link">Đăng nhập</a>
+        </nav>
     </div>
 </header>
 
+<!-- ========================================================================== -->
+<!-- 2. NỘI DUNG CHÍNH TRANG CHI TIẾT SẢN PHẨM (PRODUCT DETAIL MAIN) -->
+<!-- ========================================================================== -->
 <main class="detail-page">
     <div class="container">
 
+        <!-- Thanh điều hướng phân cấp (Breadcrumb) -->
         <nav class="breadcrumb" aria-label="Breadcrumb">
             <a href="../../../../index.html">Trang chủ</a>
             <span>/</span>
@@ -46,9 +63,12 @@
             <span id="breadcrumbTitle">Chi tiết sản phẩm</span>
         </nav>
 
+        <!-- Khu vực hiển thị thông tin chi tiết sản phẩm -->
         <section class="product-detail" aria-label="Chi tiết sản phẩm">
 
+            <!-- Cột trái: Bộ sưu tập hình ảnh sản phẩm (Image Gallery) -->
             <div class="product-gallery">
+                <!-- Khung ảnh chính kèm nút chuyển ảnh Trước/Sau -->
                 <div class="main-image-wrapper">
                     <button type="button" id="prevImageBtn" class="gallery-button" aria-label="Ảnh trước">
                         &#10094;
@@ -61,39 +81,49 @@
                     </button>
                 </div>
 
+                <!-- Danh sách ảnh thu nhỏ (Thumbnails) -->
                 <div id="productThumbnails" class="product-thumbnails"></div>
             </div>
 
+            <!-- Cột phải: Thông tin, giá, size, màu, số lượng và nút mua hàng -->
             <div class="product-info">
+                <!-- Danh mục sản phẩm -->
                 <p id="productCategory" class="product-category">Áo đấu</p>
 
+                <!-- Tên sản phẩm -->
                 <h1 id="productName">Đang tải sản phẩm...</h1>
 
+                <!-- Đánh giá sao & Tình trạng kho hàng -->
                 <div class="rating">
                     <span class="stars">★★★★★</span>
                     <span id="productRating">(0 đánh giá)</span>
                     <span id="stockStatus" class="stock-status">Còn hàng</span>
                 </div>
 
+                <!-- Giá bán sản phẩm -->
                 <p id="productPrice" class="detail-price">0đ</p>
 
+                <!-- Mô tả chi tiết sản phẩm -->
                 <div class="description">
                     <h2>Mô tả sản phẩm</h2>
                     <p id="productDescription">Đang tải thông tin sản phẩm...</p>
                 </div>
 
+                <!-- Lựa chọn Kích cỡ (Size) -->
                 <div class="option-section">
                     <h2>Chọn size</h2>
                     <div id="sizeOptionsContainer" class="size-options"></div>
                     <p id="sizeError" class="error-message"></p>
                 </div>
 
+                <!-- Lựa chọn Màu sắc (Color) -->
                 <div class="option-section">
                     <h2>Chọn màu</h2>
                     <div id="colorOptionsContainer" class="color-options"></div>
                     <p id="colorError" class="error-message"></p>
                 </div>
 
+                <!-- Điều khiển Số lượng mua -->
                 <div class="option-section">
                     <h2>Số lượng</h2>
                     <div class="quantity-control">
@@ -103,6 +133,7 @@
                     </div>
                 </div>
 
+                <!-- Các nút hành động: Thêm vào giỏ & Yêu thích -->
                 <div class="detail-actions">
                     <button type="button" id="addToCartBtn" class="add-cart-button">
                         Thêm vào giỏ hàng
@@ -112,11 +143,15 @@
                     </button>
                 </div>
 
+                <!-- Thông báo thêm giỏ hàng thành công -->
                 <p id="cartMessage" class="cart-message" aria-live="polite"></p>
             </div>
 
         </section>
 
+        <!-- ================================================================== -->
+        <!-- 3. DANH SÁCH SẢN PHẨM LIÊN QUAN (RELATED PRODUCTS) -->
+        <!-- ================================================================== -->
         <section class="related-section" aria-labelledby="relatedTitle">
             <h2 id="relatedTitle">Sản phẩm liên quan</h2>
             <div id="relatedProducts" class="related-grid"></div>
@@ -125,15 +160,20 @@
     </div>
 </main>
 
+<!-- ========================================================================== -->
+<!-- 4. CHÂN TRANG (FOOTER) -->
+<!-- ========================================================================== -->
 <footer class="site-footer">
     <div class="container">
         <p>© 2026 Football Fashion. All rights reserved.</p>
     </div>
 </footer>
 
+<!-- ========================================================================== -->
+<!-- 5. CÁC TỆP SCRIPT JAVASCRIPT -->
+<!-- ========================================================================== -->
 <script src="../../../app.js"></script>
 <script src="../../../assets/js/products-detail.js"></script>
-
-    <script src="../../../assets/js/navigation.js"></script>
+<script src="../../../assets/js/navigation.js"></script>
 </body>
 </html>

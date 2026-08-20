@@ -1,19 +1,19 @@
 "use strict";
 
-/* ========================================
-   STATE
-======================================== */
-let allProducts = [];
-let currentProduct = null;
-let currentImages = [];
-let currentImageIndex = 0;
-let selectedSize = "";
-let selectedColor = "";
-let quantity = 1;
+// ==========================================================================
+// TRẠNG THÁI ỨNG DỤNG TRANG CHI TIẾT SẢN PHẨM (STATE MANAGEMENT)
+// ==========================================================================
+let allProducts = [];         // Toàn bộ danh sách sản phẩm từ database
+let currentProduct = null;     // Sản phẩm hiện tại đang xem chi tiết
+let currentImages = [];        // Danh sách hình ảnh của sản phẩm hiện tại
+let currentImageIndex = 0;     // Vị trí hình ảnh đang được phóng to / hiển thị chính
+let selectedSize = "";         // Kích cỡ (Size) đang được người dùng chọn
+let selectedColor = "";        // Màu sắc (Color) đang được người dùng chọn
+let quantity = 1;              // Số lượng sản phẩm muốn đặt mua
 
-/* ========================================
-   DOM
-======================================== */
+// ==========================================================================
+// CÁC PHẦN TỬ GIAO DIỆN (DOM ELEMENTS)
+// ==========================================================================
 const productImage = document.getElementById("productImage");
 const productThumbnails = document.getElementById("productThumbnails");
 const productCategory = document.getElementById("productCategory");
@@ -37,24 +37,27 @@ const relatedProducts = document.getElementById("relatedProducts");
 const prevImageBtn = document.getElementById("prevImageBtn");
 const nextImageBtn = document.getElementById("nextImageBtn");
 
-/* ========================================
-   FORMAT PRICE
-======================================== */
+// ==========================================================================
+// CÁC HÀM TIỆN ÍCH & TRÍCH XUẤT THÔNG TIN (HELPER FUNCTIONS)
+// ==========================================================================
+
+// Định dạng số thành chuỗi tiền tệ VND (ví dụ: 350.000đ)
+// Tham số price: Mức giá cần định dạng
+// Trả về: Chuỗi tiền tệ đã định dạng
 function formatPrice(price) {
     return Number(price).toLocaleString("vi-VN") + "đ";
 }
 
-/* ========================================
-   GET PRODUCT ID
-======================================== */
+// Trích xuất tham số ID sản phẩm từ URL Query String (ví dụ: ?id=1)
+// Trả về: ID sản phẩm hoặc null nếu không tìm thấy
 function getProductId() {
     const params = new URLSearchParams(window.location.search);
     return params.get("id");
 }
 
-/* ========================================
-   IMAGE PATH
-======================================== */
+// Chuẩn hóa đường dẫn hình ảnh sản phẩm để hiển thị chính xác ở mọi cấp thư mục
+// Tham số imagePath: Đường dẫn ảnh từ dữ liệu sản phẩm
+// Trả về: Đường dẫn ảnh đã chuẩn hóa
 function convertImagePath(imagePath) {
     if (!imagePath) return '/Front_end/assets/images/clubs/manchester-united-2025-home.jpg';
     if (typeof normalizeProductImage === 'function') return normalizeProductImage(imagePath);
@@ -68,9 +71,12 @@ function convertImagePath(imagePath) {
     return '/Front_end/assets/images/clubs/' + p.split('/').pop();
 }
 
-/* ========================================
-   LOAD DATA
-======================================== */
+// ==========================================================================
+// TẢI VÀ NẠP DỮ LIỆU SẢN PHẨM (DATA LOADING)
+// ==========================================================================
+
+// Tải dữ liệu toàn bộ sản phẩm từ file json với cơ chế thử lại nhiều đường dẫn tương đối/tuyệt đối
+// Trả về: Mảng dữ liệu các sản phẩm
 async function loadProductsData() {
     const paths = [
         "../../../../database/products.json",
@@ -80,27 +86,22 @@ async function loadProductsData() {
     for (const path of paths) {
         try {
             const response = await fetch(path);
-
             if (!response.ok) {
                 continue;
             }
-
             const data = await response.json();
-
             if (Array.isArray(data)) {
                 return data;
             }
         } catch (error) {
-            console.warn("Không tải được:", path);
+            console.warn("Không tải được đường dẫn:", path);
         }
     }
 
     throw new Error("Không thể tải dữ liệu sản phẩm.");
 }
 
-/* ========================================
-   LOAD DETAIL
-======================================== */
+// Tìm nạp thông tin chi tiết của sản phẩm dựa theo ID trên URL và kích hoạt render giao diện
 async function loadProductDetail() {
     try {
         const productId = getProductId();
@@ -111,6 +112,7 @@ async function loadProductDetail() {
 
         allProducts = await loadProductsData();
 
+        // Tìm sản phẩm có ID khớp với ID từ URL
         currentProduct = allProducts.find(
             product => String(product.id) === String(productId)
         );
@@ -119,30 +121,34 @@ async function loadProductDetail() {
             throw new Error("Không tìm thấy sản phẩm.");
         }
 
+        // Hiển thị chi tiết sản phẩm, danh sách gợi ý và cập nhật giỏ hàng
         displayProduct();
         renderRelatedProducts();
         updateCartCount();
 
     } catch (error) {
         console.error(error);
-        productName.textContent = "Lỗi tải sản phẩm";
-        productDescription.textContent = error.message;
+        if (productName) productName.textContent = "Lỗi tải sản phẩm";
+        if (productDescription) productDescription.textContent = error.message;
     }
 }
 
-/* ========================================
-   DISPLAY PRODUCT
-======================================== */
+// ==========================================================================
+// HIỂN THỊ CHI TIẾT SẢN PHẨM (RENDER PRODUCT DETAILS)
+// ==========================================================================
+
+// Gán các thông tin chi tiết của sản phẩm (tên, giá, mô tả, đánh giá, tồn kho, ảnh, size, màu) lên DOM
 function displayProduct() {
     document.title = currentProduct.name + " | Football Fashion";
-    productName.textContent = currentProduct.name;
-    breadcrumbTitle.textContent = currentProduct.name;
-    productCategory.textContent = currentProduct.category || "Áo đấu";
-    productPrice.textContent = formatPrice(currentProduct.price);
-    productDescription.textContent = currentProduct.description || "Sản phẩm thời trang bóng đá chất lượng cao.";
-    productRating.textContent = `(${currentProduct.rating || 0} đánh giá)`;
-    stockStatus.textContent = Number(currentProduct.stock || 1) > 0 ? "Còn hàng" : "Hết hàng";
+    if (productName) productName.textContent = currentProduct.name;
+    if (breadcrumbTitle) breadcrumbTitle.textContent = currentProduct.name;
+    if (productCategory) productCategory.textContent = currentProduct.category || "Áo đấu";
+    if (productPrice) productPrice.textContent = formatPrice(currentProduct.price);
+    if (productDescription) productDescription.textContent = currentProduct.description || "Sản phẩm thời trang bóng đá chất lượng cao.";
+    if (productRating) productRating.textContent = `(${currentProduct.rating || 0} đánh giá)`;
+    if (stockStatus) stockStatus.textContent = Number(currentProduct.stock || 1) > 0 ? "Còn hàng" : "Hết hàng";
 
+    // Khởi tạo danh sách ảnh và ảnh đang chọn
     currentImages = getProductImages();
     currentImageIndex = 0;
 
@@ -151,13 +157,13 @@ function displayProduct() {
     renderSizeOptions();
     renderColorOptions();
     
+    // Đặt lại số lượng mua ban đầu là 1
     quantity = 1;
     updateQuantity();
 }
 
-/* ========================================
-   PRODUCT IMAGES
-======================================== */
+// Trích xuất danh sách tất cả các đường dẫn ảnh của sản phẩm
+// Trả về: Mảng đường dẫn ảnh
 function getProductImages() {
     if (Array.isArray(currentProduct.images) && currentProduct.images.length > 0) {
         return currentProduct.images.map(convertImagePath);
@@ -170,27 +176,25 @@ function getProductImages() {
     return [normalizeProductImage("manchester-united-2025-home.jpg")];
 }
 
-/* ========================================
-   MAIN IMAGE
-======================================== */
+// Hiển thị hình ảnh chính tại vị trí currentImageIndex
 function renderMainImage() {
-    if (!currentImages.length) {
+    if (!currentImages.length || !productImage) {
         return;
     }
 
     productImage.src = currentImages[currentImageIndex];
     productImage.alt = currentProduct.name;
 
+    // Xử lý ảnh lỗi fallback
     productImage.onerror = function () {
         this.onerror = null;
         this.src = normalizeProductImage("manchester-united-2025-home.jpg");
     };
 }
 
-/* ========================================
-   THUMBNAILS
-======================================== */
+// Tạo danh sách các hình thu nhỏ (Thumbnails) phía dưới ảnh chính và xử lý bấm chọn ảnh
 function renderThumbnails() {
+    if (!productThumbnails) return;
     productThumbnails.innerHTML = "";
 
     currentImages.forEach(function (image, index) {
@@ -208,6 +212,7 @@ function renderThumbnails() {
 
         button.appendChild(img);
 
+        // Khi người dùng bấm vào một ảnh thu nhỏ
         button.addEventListener("click", function () {
             currentImageIndex = index;
             renderMainImage();
@@ -217,21 +222,19 @@ function renderThumbnails() {
         productThumbnails.appendChild(button);
     });
 
+    // Ẩn các nút Next/Prev nếu sản phẩm chỉ có 1 ảnh duy nhất
     const multiple = currentImages.length > 1;
-    prevImageBtn.hidden = !multiple;
-    nextImageBtn.hidden = !multiple;
+    if (prevImageBtn) prevImageBtn.hidden = !multiple;
+    if (nextImageBtn) nextImageBtn.hidden = !multiple;
 }
 
-/* ========================================
-   NEXT / PREVIOUS
-======================================== */
+// Chuyển sang ảnh trước đó trong gallery
 function showPreviousImage() {
     if (currentImages.length <= 1) {
         return;
     }
 
     currentImageIndex--;
-
     if (currentImageIndex < 0) {
         currentImageIndex = currentImages.length - 1;
     }
@@ -240,13 +243,13 @@ function showPreviousImage() {
     renderThumbnails();
 }
 
+// Chuyển sang ảnh kế tiếp trong gallery
 function showNextImage() {
     if (currentImages.length <= 1) {
         return;
     }
 
     currentImageIndex++;
-
     if (currentImageIndex >= currentImages.length) {
         currentImageIndex = 0;
     }
@@ -255,10 +258,13 @@ function showNextImage() {
     renderThumbnails();
 }
 
-/* ========================================
-   SIZE
-======================================== */
+// ==========================================================================
+// TÙY CHỌN SIZE & MÀU SẮC (ATTRIBUTES SELECTION)
+// ==========================================================================
+
+// Hiển thị danh sách các nút chọn kích cỡ (Size)
 function renderSizeOptions() {
+    if (!sizeOptionsContainer) return;
     sizeOptionsContainer.innerHTML = "";
     selectedSize = "";
 
@@ -272,25 +278,22 @@ function renderSizeOptions() {
 
         button.addEventListener("click", function () {
             selectedSize = size;
-
             document.querySelectorAll(".size-button").forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
-            sizeError.textContent = "";
+            if (sizeError) sizeError.textContent = "";
         });
 
         sizeOptionsContainer.appendChild(button);
     });
 }
 
-/* ========================================
-   COLOR
-======================================== */
+// Hiển thị danh sách các nút chọn màu sắc (Color)
 function renderColorOptions() {
+    if (!colorOptionsContainer) return;
     colorOptionsContainer.innerHTML = "";
     selectedColor = "";
 
     let colors = [];
-
     if (Array.isArray(currentProduct.colors)) {
         colors = currentProduct.colors;
     } else if (Array.isArray(currentProduct.color)) {
@@ -309,23 +312,27 @@ function renderColorOptions() {
 
         button.addEventListener("click", function () {
             selectedColor = color;
-
             document.querySelectorAll(".color-button").forEach(btn => btn.classList.remove("selected"));
             button.classList.add("selected");
-            colorError.textContent = "";
+            if (colorError) colorError.textContent = "";
         });
 
         colorOptionsContainer.appendChild(button);
     });
 }
 
-/* ========================================
-   QUANTITY
-======================================== */
+// ==========================================================================
+// ĐIỀU KHIỂN SỐ LƯỢNG (QUANTITY CONTROLS)
+// ==========================================================================
+
+// Cập nhật số lượng hiển thị lên giao diện
 function updateQuantity() {
-    quantityElement.textContent = quantity;
+    if (quantityElement) {
+        quantityElement.textContent = quantity;
+    }
 }
 
+// Giảm số lượng mua (tối thiểu là 1)
 function decreaseQuantity() {
     if (quantity > 1) {
         quantity--;
@@ -333,6 +340,7 @@ function decreaseQuantity() {
     updateQuantity();
 }
 
+// Tăng số lượng mua (không vượt quá số lượng tồn kho)
 function increaseQuantity() {
     const stock = Number(currentProduct?.stock || 99);
     if (quantity < stock) {
@@ -341,9 +349,12 @@ function increaseQuantity() {
     updateQuantity();
 }
 
-/* ========================================
-   CART
-======================================== */
+// ==========================================================================
+// THÊM VÀO GIỎ HÀNG (ADD TO CART)
+// ==========================================================================
+
+// Lấy danh sách giỏ hàng từ localStorage
+// Trả về: Mảng các mặt hàng
 function getCart() {
     try {
         return JSON.parse(localStorage.getItem("cart")) || [];
@@ -352,28 +363,37 @@ function getCart() {
     }
 }
 
+// Lưu danh sách giỏ hàng vào localStorage
+// Tham số cart: Mảng giỏ hàng
 function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Xử lý thêm sản phẩm hiện tại vào giỏ hàng:
+// - Kiểm tra bắt buộc chọn Size (nếu có)
+// - Kiểm tra bắt buộc chọn Màu sắc (nếu có)
+// - Thêm hoặc cộng dồn số lượng nếu đã tồn tại cùng biến thể
 function addToCart() {
-    sizeError.textContent = "";
-    colorError.textContent = "";
+    if (sizeError) sizeError.textContent = "";
+    if (colorError) colorError.textContent = "";
 
+    // Kiểm tra đã chọn size chưa
     if (Array.isArray(currentProduct.sizes) && currentProduct.sizes.length > 0 && !selectedSize) {
-        sizeError.textContent = "Vui lòng chọn size.";
+        if (sizeError) sizeError.textContent = "Vui lòng chọn size.";
         return;
     }
 
+    // Kiểm tra đã chọn màu sắc chưa
     if (currentProduct.color || currentProduct.colors) {
         if (!selectedColor) {
-            colorError.textContent = "Vui lòng chọn màu.";
+            if (colorError) colorError.textContent = "Vui lòng chọn màu.";
             return;
         }
     }
 
     const cart = getCart();
 
+    // Tìm kiếm xem biến thể đã có trong giỏ chưa
     const existing = cart.find(
         item =>
             String(item.id) === String(currentProduct.id) &&
@@ -398,18 +418,17 @@ function addToCart() {
     saveCart(cart);
     updateCartCount();
 
-    cartMessage.textContent = "Đã thêm sản phẩm vào giỏ hàng thành công!";
-    setTimeout(() => { cartMessage.textContent = ""; }, 3000);
+    // Hiển thị thông báo thêm thành công
+    if (cartMessage) {
+        cartMessage.textContent = "Đã thêm sản phẩm vào giỏ hàng thành công!";
+        setTimeout(() => { cartMessage.textContent = ""; }, 3000);
+    }
 }
 
-/* ========================================
-   CART COUNT
-======================================== */
+// Cập nhật số lượng sản phẩm giỏ hàng trên thanh điều hướng
 function updateCartCount() {
     const cart = getCart();
-
     const count = cart.reduce((total, item) => total + Number(item.quantity || 0), 0);
-
     const cartLinks = document.querySelectorAll('a[href*="cart"]');
 
     cartLinks.forEach(function (link) {
@@ -418,9 +437,12 @@ function updateCartCount() {
     });
 }
 
-/* ========================================
-   WISHLIST
-======================================== */
+// ==========================================================================
+// DANH SÁCH YÊU THÍCH (WISHLIST)
+// ==========================================================================
+
+// Lấy danh sách yêu thích từ localStorage
+// Trả về: Mảng các sản phẩm yêu thích
 function getWishlist() {
     try {
         return JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -429,14 +451,14 @@ function getWishlist() {
     }
 }
 
+// Thêm hoặc xóa sản phẩm hiện tại khỏi danh sách yêu thích
 function toggleWishlist() {
     const wishlist = getWishlist();
-
     const index = wishlist.findIndex(item => String(item.id) === String(currentProduct.id));
 
     if (index !== -1) {
         wishlist.splice(index, 1);
-        toggleWishlistBtn.textContent = "♥ Thêm vào yêu thích";
+        if (toggleWishlistBtn) toggleWishlistBtn.textContent = "♥ Thêm vào yêu thích";
     } else {
         wishlist.push({
             id: currentProduct.id,
@@ -444,16 +466,19 @@ function toggleWishlist() {
             price: currentProduct.price,
             image: currentProduct.image
         });
-        toggleWishlistBtn.textContent = "♥ Đã yêu thích";
+        if (toggleWishlistBtn) toggleWishlistBtn.textContent = "♥ Đã yêu thích";
     }
 
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
-/* ========================================
-   RELATED PRODUCTS
-======================================== */
+// ==========================================================================
+// SẢN PHẨM LIÊN QUAN (RELATED PRODUCTS)
+// ==========================================================================
+
+// Hiển thị danh sách 4 sản phẩm liên quan (khác với sản phẩm đang xem)
 function renderRelatedProducts() {
+    if (!relatedProducts) return;
     relatedProducts.innerHTML = "";
 
     const related = allProducts
@@ -476,7 +501,7 @@ function renderRelatedProducts() {
         info.className = "related-card-info";
 
         const link = document.createElement("a");
-        link.href = `product-detail.html?id=${product.id}`;
+        link.href = `products-detail.html?id=${product.id}`;
         link.textContent = product.name;
 
         const price = document.createElement("p");
@@ -492,17 +517,17 @@ function renderRelatedProducts() {
     });
 }
 
-/* ========================================
-   EVENTS
-======================================== */
-prevImageBtn.addEventListener("click", showPreviousImage);
-nextImageBtn.addEventListener("click", showNextImage);
-decreaseBtn.addEventListener("click", decreaseQuantity);
-increaseBtn.addEventListener("click", increaseQuantity);
-addToCartBtn.addEventListener("click", addToCart);
-toggleWishlistBtn.addEventListener("click", toggleWishlist);
+// ==========================================================================
+// GẮN SỰ KIỆN TƯƠNG TÁC NGƯỜI DÙNG (EVENT LISTENERS)
+// ==========================================================================
+if (prevImageBtn) prevImageBtn.addEventListener("click", showPreviousImage);
+if (nextImageBtn) nextImageBtn.addEventListener("click", showNextImage);
+if (decreaseBtn) decreaseBtn.addEventListener("click", decreaseQuantity);
+if (increaseBtn) increaseBtn.addEventListener("click", increaseQuantity);
+if (addToCartBtn) addToCartBtn.addEventListener("click", addToCart);
+if (toggleWishlistBtn) toggleWishlistBtn.addEventListener("click", toggleWishlist);
 
-/* ========================================
-   START
-======================================== */
+// ==========================================================================
+// KHỞI CHẠY TẢI DỮ LIỆU BAN ĐẦU
+// ==========================================================================
 loadProductDetail();

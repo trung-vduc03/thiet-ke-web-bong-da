@@ -1,236 +1,284 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- Thiết lập bộ mã ký tự tiếng Việt và viewport hiển thị responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ | Football Fashion</title>
-    <meta name="description" content="Thời trang bóng đá - Áo đấu các câu lạc bộ">
-    <!-- Font Awesome -->
+    <meta name="description" content="Thời trang bóng đá - Áo đấu các câu lạc bộ hàng đầu thế giới">
+
+    <!-- Thư viện Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font -->
+
+    <!-- Google Font Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- External CSS -->
+
+    <!-- File định dạng giao diện CSS cho trang chủ, thanh điều hướng và responsive -->
     <link rel="stylesheet" href="Front_end/styles/styles.css">
     <link rel="stylesheet" href="Front_end/styles/navigation.css">
     <link rel="stylesheet" href="Front_end/styles/responsive.css">
 </head>
 <body>
-    <!-- HEADER -->
+
+    <!-- ====================================================================== -->
+    <!-- 1. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVIGATION) -->
+    <!-- ====================================================================== -->
     <header class="site-header" data-mobile-nav>
         <div class="header-inner">
+            <!-- Logo thương hiệu -->
             <a href="index.html" class="logo">Football Fashion</a>
-            <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+
+            <!-- Nút bật/tắt menu trên thiết bị di động (Hamburger Button) -->
+            <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Menu liên kết chính -->
             <nav class="main-nav" aria-label="Điều hướng chính">
                 <a href="index.html" class="active">Trang chủ</a>
                 <a href="Front_end/pages/home/products/products.html">Sản phẩm</a>
                 <a href="Front_end/pages/cart-checkout/wishlist.html"><i class="fa-regular fa-heart"></i> Yêu thích</a>
                 <a href="Front_end/pages/cart-checkout/cart.html"><i class="fa-solid fa-bag-shopping"></i> Giỏ hàng</a>
-                <a href="Front_end/pages/user/login.html" class="login-link">
-                    Đăng nhập
-                </a>
-</nav>
-</div>
+                <a href="Front_end/pages/user/login.html" class="login-link">Đăng nhập</a>
+            </nav>
+        </div>
     </header>
 
-<main>
+    <main>
 
-
-    <!-- HERO -->
-    <section class="hero-banner">
-        <span class="hero-badge">BỘ SƯU TẬP 2025/2026</span>
-        <h1 class="hero-title">ĐẲNG CẤP THỜI TRANG BÓNG ĐÁ</h1>
-        <p class="hero-desc">Khám phá những mẫu áo đấu mới nhất của các câu lạc bộ hàng đầu thế giới. Thiết kế đẹp, chất lượng cao và phong cách.</p>
-        <div class="hero-actions">
-            <a href="Front_end/pages/home/products/products.html" class="btn btn-primary">MUA NGAY</a>
-            <a href="Front_end/pages/home/products/products.html" class="btn btn-outline">XEM BỘ SƯU TẬP</a>
-        </div>
-    </section>
-
-    <!-- TRUST BAR -->
-    <section class="trust-bar">
-        <div class="trust-container">
-            <div class="trust-item">
-                <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                <div>
-                    <div class="trust-title">Giao Hàng Hỏa Tốc</div>
-                    <div class="trust-desc">Nhanh chóng trong 24h</div>
-                </div>
+        <!-- ================================================================== -->
+        <!-- 2. BANNER GIỚI THIỆU CHÍNH (HERO BANNER) -->
+        <!-- ================================================================== -->
+        <section class="hero-banner">
+            <span class="hero-badge">BỘ SƯU TẬP 2025/2026</span>
+            <h1 class="hero-title">ĐẲNG CẤP THỜI TRANG BÓNG ĐÁ</h1>
+            <p class="hero-desc">Khám phá những mẫu áo đấu mới nhất của các câu lạc bộ hàng đầu thế giới. Thiết kế đẹp, chất lượng cao và phong cách.</p>
+            <div class="hero-actions">
+                <a href="Front_end/pages/home/products/products.html" class="btn btn-primary">MUA NGAY</a>
+                <a href="Front_end/pages/home/products/products.html" class="btn btn-outline">XEM BỘ SƯU TẬP</a>
             </div>
-            <div class="trust-item">
-                <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div>
-                    <div class="trust-title">100% Chính Hãng</div>
-                    <div class="trust-desc">Cam kết chất lượng cao</div>
-                </div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon"><i class="fa-solid fa-rotate-left"></i></div>
-                <div>
-                    <div class="trust-title">Đổi Trả 7 Ngày</div>
-                    <div class="trust-desc">Dễ dàng & miễn phí</div>
-                </div>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
-                <div>
-                    <div class="trust-title">Hỗ Trợ 24/7</div>
-                    <div class="trust-desc">Tư vấn tận tâm</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ÁO CLB -->
-    <section class="container">
-        <div class="section-header">
-            <p class="section-tag">DANH MỤC</p>
-            <h2 class="section-title">ÁO ĐẤU CÁC CÂU LẠC BỘ</h2>
-        </div>
-        <div class="category-grid">
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Real-Madrid-Logo-1997-2001 (1).jpg" alt="Áo Real Madrid">
-                <div class="category-overlay">
-                    <div class="category-title">Real Madrid</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Barcelona-Logo.png" alt="Áo Barcelona">
-                <div class="category-overlay">
-                    <div class="category-title">Barcelona</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Arsenal-Logo.png" alt="Áo Arsenal">
-                <div class="category-overlay">
-                    <div class="category-title">Arsenal</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Liverpool-Logo.png" alt="Áo Liverpool">
-                <div class="category-overlay">
-                    <div class="category-title">Liverpool</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Manchester-United-logo.png" alt="Áo Manchester United">
-                <div class="category-overlay">
-                    <div class="category-title">Manchester United</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-            <a href="Front_end/pages/home/products/products.html" class="category-card">
-                <img src="Front_end/assets/images/clubs/Manchester-City-Logo.png" alt="Áo Manchester City">
-                <div class="category-overlay">
-                    <div class="category-title">Manchester City</div>
-                    <div class="category-sub">Xem áo đấu →</div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- SẢN PHẨM BÁN CHẠY -->
-    <section class="container products-section">
-        <div class="section-header">
-            <p class="section-tag">HOT TREND</p>
-            <h2 class="section-title">SẢN PHẨM BÁN CHẠY</h2>
-        </div>
-        <div class="product-grid">
-            <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=10">
-                <span class="product-badge">HOT</span>
-                <div class="product-img-box">
-                    <img class="product-img" src="Front_end/assets/images/clubs/real-madrid-2025-home.jpg" alt="Áo Real Madrid 2025/26">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">La Liga</p>
-                    <h3 class="product-title">Real Madrid 2025/26 - Sân nhà</h3>
-                    <div class="product-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
+        <!-- ================================================================== -->
+        <!-- 3. THANH CAM KẾT DỊCH VỤ & UY TÍN (TRUST BAR) -->
+        <!-- ================================================================== -->
+        <section class="trust-bar">
+            <div class="trust-container">
+                <!-- Giao hàng hỏa tốc -->
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div>
+                        <div class="trust-title">Giao Hàng Hỏa Tốc</div>
+                        <div class="trust-desc">Nhanh chóng trong 24h</div>
                     </div>
-                    <div class="product-bottom">
-                        <div class="price-box"><span class="product-price">900.000đ</span></div>
-                        <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="10" data-name="Real Madrid 2025/26 - Sân nhà" data-price="900000" data-image="Front_end/assets/images/clubs/real-madrid-2025-home.jpg">+</button>
+                </div>
+
+                <!-- 100% Chính Hãng -->
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div>
+                        <div class="trust-title">100% Chính Hãng</div>
+                        <div class="trust-desc">Cam kết chất lượng cao</div>
+                    </div>
+                </div>
+
+                <!-- Đổi trả 7 ngày -->
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                    <div>
+                        <div class="trust-title">Đổi Trả 7 Ngày</div>
+                        <div class="trust-desc">Dễ dàng & miễn phí</div>
+                    </div>
+                </div>
+
+                <!-- Hỗ trợ 24/7 -->
+                <div class="trust-item">
+                    <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div>
+                        <div class="trust-title">Hỗ Trợ 24/7</div>
+                        <div class="trust-desc">Tư vấn tận tâm</div>
                     </div>
                 </div>
             </div>
-            <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=38">
-                <span class="product-badge sale">SALE</span>
-                <div class="product-img-box">
-                    <img class="product-img" src="Front_end/assets/images/clubs/arsenal-2025-away.jpg" alt="Áo Arsenal 2025/26">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Premier League</p>
-                    <h3 class="product-title">Arsenal 2025/26 - Sân khách</h3>
-                    <div class="product-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- 4. DANH MỤC CÁC CÂU LẠC BỘ HÀNG ĐẦU (CLUBS CATEGORIES) -->
+        <!-- ================================================================== -->
+        <section class="container">
+            <div class="section-header">
+                <p class="section-tag">DANH MỤC</p>
+                <h2 class="section-title">ÁO ĐẤU CÁC CÂU LẠC BỘ</h2>
+            </div>
+            <div class="category-grid">
+                <!-- Real Madrid -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Real-Madrid-Logo-1997-2001 (1).jpg" alt="Áo Real Madrid">
+                    <div class="category-overlay">
+                        <div class="category-title">Real Madrid</div>
+                        <div class="category-sub">Xem áo đấu →</div>
                     </div>
-                    <div class="product-bottom">
-                        <div class="price-box">
-                            <span class="product-price">820.000đ</span>
-                            <span class="old-price">950.000đ</span>
+                </a>
+
+                <!-- Barcelona -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Barcelona-Logo.png" alt="Áo Barcelona">
+                    <div class="category-overlay">
+                        <div class="category-title">Barcelona</div>
+                        <div class="category-sub">Xem áo đấu →</div>
+                    </div>
+                </a>
+
+                <!-- Arsenal -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Arsenal-Logo.png" alt="Áo Arsenal">
+                    <div class="category-overlay">
+                        <div class="category-title">Arsenal</div>
+                        <div class="category-sub">Xem áo đấu →</div>
+                    </div>
+                </a>
+
+                <!-- Liverpool -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Liverpool-Logo.png" alt="Áo Liverpool">
+                    <div class="category-overlay">
+                        <div class="category-title">Liverpool</div>
+                        <div class="category-sub">Xem áo đấu →</div>
+                    </div>
+                </a>
+
+                <!-- Manchester United -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Manchester-United-logo.png" alt="Áo Manchester United">
+                    <div class="category-overlay">
+                        <div class="category-title">Manchester United</div>
+                        <div class="category-sub">Xem áo đấu →</div>
+                    </div>
+                </a>
+
+                <!-- Manchester City -->
+                <a href="Front_end/pages/home/products/products.html" class="category-card">
+                    <img src="Front_end/assets/images/clubs/Manchester-City-Logo.png" alt="Áo Manchester City">
+                    <div class="category-overlay">
+                        <div class="category-title">Manchester City</div>
+                        <div class="category-sub">Xem áo đấu →</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================================================================== -->
+        <!-- 5. DANH SÁCH SẢN PHẨM BÁN CHẠY (BEST SELLING PRODUCTS) -->
+        <!-- ================================================================== -->
+        <section class="container products-section">
+            <div class="section-header">
+                <p class="section-tag">HOT TREND</p>
+                <h2 class="section-title">SẢN PHẨM BÁN CHẠY</h2>
+            </div>
+            <div class="product-grid">
+                <!-- Sản phẩm 1: Real Madrid -->
+                <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=10">
+                    <span class="product-badge">HOT</span>
+                    <div class="product-img-box">
+                        <img class="product-img" src="Front_end/assets/images/clubs/real-madrid-2025-home.jpg" alt="Áo Real Madrid 2025/26">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">La Liga</p>
+                        <h3 class="product-title">Real Madrid 2025/26 - Sân nhà</h3>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
                         </div>
-                        <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="38" data-name="Arsenal 2025/26 - Sân khách" data-price="820000" data-image="Front_end/assets/images/clubs/arsenal-2025-away.jpg">+</button>
+                        <div class="product-bottom">
+                            <div class="price-box"><span class="product-price">900.000đ</span></div>
+                            <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="10" data-name="Real Madrid 2025/26 - Sân nhà" data-price="900000" data-image="Front_end/assets/images/clubs/real-madrid-2025-home.jpg">+</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=1">
-                <span class="product-badge">NEW</span>
-                <div class="product-img-box">
-                    <img class="product-img" src="Front_end/assets/images/clubs/manchester-united-2025-home.jpg" alt="Áo Manchester United 2025/26">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Premier League</p>
-                    <h3 class="product-title">Manchester United 2025/26 - Sân nhà</h3>
-                    <div class="product-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
-                    </div>
-                    <div class="product-bottom">
-                        <div class="price-box"><span class="product-price">850.000đ</span></div>
-                        <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="1" data-name="Manchester United 2025/26 - Sân nhà" data-price="850000" data-image="Front_end/assets/images/clubs/manchester-united-2025-home.jpg">+</button>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=55">
-                <div class="product-img-box">
-                    <img class="product-img" src="Front_end/assets/images/clubs/vietnam-2026-home.jpg" alt="Áo Đội tuyển Việt Nam 2026">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">ĐTQG</p>
-                    <h3 class="product-title">Đội tuyển Việt Nam 2026 - Sân nhà</h3>
-                    <div class="product-rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
-                    </div>
-                    <div class="product-bottom">
-                        <div class="price-box"><span class="product-price">650.000đ</span></div>
-                        <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="55" data-name="Đội tuyển Việt Nam 2026 - Sân nhà" data-price="650000" data-image="Front_end/assets/images/clubs/vietnam-2026-home.jpg">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- PROMO -->
-    <section class="container">
-        <div class="promo-banner">
-            <div class="promo-content">
-                <h2>SẴN SÀNG RA SÂN?</h2>
-                <p>Khám phá bộ sưu tập áo đấu mới nhất từ những câu lạc bộ hàng đầu thế giới.</p>
+                <!-- Sản phẩm 2: Arsenal -->
+                <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=38">
+                    <span class="product-badge sale">SALE</span>
+                    <div class="product-img-box">
+                        <img class="product-img" src="Front_end/assets/images/clubs/arsenal-2025-away.jpg" alt="Áo Arsenal 2025/26">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Premier League</p>
+                        <h3 class="product-title">Arsenal 2025/26 - Sân khách</h3>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> <span>(4.8)</span>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="price-box">
+                                <span class="product-price">820.000đ</span>
+                                <span class="old-price">950.000đ</span>
+                            </div>
+                            <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="38" data-name="Arsenal 2025/26 - Sân khách" data-price="820000" data-image="Front_end/assets/images/clubs/arsenal-2025-away.jpg">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 3: Manchester United -->
+                <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=1">
+                    <span class="product-badge">NEW</span>
+                    <div class="product-img-box">
+                        <img class="product-img" src="Front_end/assets/images/clubs/manchester-united-2025-home.jpg" alt="Áo Manchester United 2025/26">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Premier League</p>
+                        <h3 class="product-title">Manchester United 2025/26 - Sân nhà</h3>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="price-box"><span class="product-price">850.000đ</span></div>
+                            <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="1" data-name="Manchester United 2025/26 - Sân nhà" data-price="850000" data-image="Front_end/assets/images/clubs/manchester-united-2025-home.jpg">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 4: Đội tuyển Việt Nam -->
+                <div class="product-card" data-navigate="Front_end/pages/home/products/products-detail.html?id=55">
+                    <div class="product-img-box">
+                        <img class="product-img" src="Front_end/assets/images/clubs/vietnam-2026-home.jpg" alt="Áo Đội tuyển Việt Nam 2026">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">ĐTQG</p>
+                        <h3 class="product-title">Đội tuyển Việt Nam 2026 - Sân nhà</h3>
+                        <div class="product-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span>(5.0)</span>
+                        </div>
+                        <div class="product-bottom">
+                            <div class="price-box"><span class="product-price">650.000đ</span></div>
+                            <button class="add-btn" title="Thêm vào giỏ" data-quick-add data-id="55" data-name="Đội tuyển Việt Nam 2026 - Sân nhà" data-price="650000" data-image="Front_end/assets/images/clubs/vietnam-2026-home.jpg">+</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="Front_end/pages/home/products/products.html" class="btn btn-primary">XEM TẤT CẢ ÁO ĐẤU</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    
-</main>
+        <!-- ================================================================== -->
+        <!-- 6. BANNER KHUYẾN MÃI (PROMO BANNER) -->
+        <!-- ================================================================== -->
+        <section class="container">
+            <div class="promo-banner">
+                <div class="promo-content">
+                    <h2>SẴN SÀNG RA SÂN?</h2>
+                    <p>Khám phá bộ sưu tập áo đấu mới nhất từ những câu lạc bộ hàng đầu thế giới.</p>
+                </div>
+                <a href="Front_end/pages/home/products/products.html" class="btn btn-primary">XEM TẤT CẢ ÁO ĐẤU</a>
+            </div>
+        </section>
+        
+    </main>
 
-<footer class="site-footer">
+    <!-- ====================================================================== -->
+    <!-- 7. CHÂN TRANG (FOOTER) -->
+    <!-- ====================================================================== -->
+    <footer class="site-footer">
         <div class="footer-container">
+            <!-- Cột 1: Thông tin thương hiệu & Mạng xã hội -->
             <div class="footer-col">
                 <h3 class="footer-title">FOOTBALL FASHION</h3>
                 <p class="footer-desc">Chuyên cung cấp các mẫu áo đấu, giày đá bóng và phụ kiện thể thao chính hãng chất lượng cao.</p>
@@ -240,6 +288,8 @@
                     <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
+
+            <!-- Cột 2: Liên kết nhanh -->
             <div class="footer-col">
                 <h3 class="footer-title">LIÊN KẾT</h3>
                 <ul class="footer-links">
@@ -249,6 +299,8 @@
                     <li><a href="Front_end/pages/cart-checkout/cart.html">Giỏ hàng</a></li>
                 </ul>
             </div>
+
+            <!-- Cột 3: Chính sách khách hàng -->
             <div class="footer-col">
                 <h3 class="footer-title">CHÍNH SÁCH</h3>
                 <ul class="footer-links">
@@ -258,6 +310,8 @@
                     <li><a href="#">Phương thức thanh toán</a></li>
                 </ul>
             </div>
+
+            <!-- Cột 4: Thông tin liên hệ -->
             <div class="footer-col">
                 <h3 class="footer-title">LIÊN HỆ</h3>
                 <ul class="footer-links">
@@ -267,12 +321,17 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Bản quyền -->
         <div class="footer-bottom">
             <p>&copy; 2026 Football Fashion. All rights reserved.</p>
         </div>
     </footer>
 
-   <script src="Front_end/app.js"></script>
+    <!-- ====================================================================== -->
+    <!-- 8. CÁC TỆP SCRIPT JAVASCRIPT -->
+    <!-- ====================================================================== -->
+    <script src="Front_end/app.js"></script>
     <script src="Front_end/assets/js/home.js"></script>
     <script src="Front_end/assets/js/navigation.js"></script>
 </body>

@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <!-- Thiết lập mã hóa và viewport responsive -->
     <meta name="description" content="Football Fashion - Thanh toán đơn hàng.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE HUB | Thanh Toán</title>
-    <!-- Trỏ đến thư mục styles/ ở Front_end -->
+
+    <!-- File định dạng giao diện CSS cho trang thanh toán, điều hướng và responsive -->
     <link rel="stylesheet" href="../../styles/cart-checkout.css">
     <link rel="stylesheet" href="../../styles/navigation.css">
     <link rel="stylesheet" href="../../styles/responsive.css">
 </head>
 <body>
-    <header class="simple-header" data-mobile-nav><div class="container simple-header-inner"><a href="../../../index.html" class="site-logo">Football Fashion</a><button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false"><span aria-hidden="true">☰</span></button><nav class="simple-nav" aria-label="Điều hướng chính"><a href="../../../index.html">Trang chủ</a><a href="../home/products/products.html">Sản phẩm</a><a href="wishlist.html">Yêu thích</a><a href="cart.html">Giỏ hàng</a></nav></div></header>
+
+    <!-- ====================================================================== -->
+    <!-- 1. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVIGATION) -->
+    <!-- ====================================================================== -->
+    <header class="simple-header" data-mobile-nav>
+        <div class="container simple-header-inner">
+            <!-- Logo thương hiệu -->
+            <a href="../../../index.html" class="site-logo">Football Fashion</a>
+
+            <!-- Nút mở menu mobile -->
+            <button class="mobile-menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+            </button>
+
+            <!-- Menu liên kết chính -->
+            <nav class="simple-nav" aria-label="Điều hướng chính">
+                <a href="../../../index.html">Trang chủ</a>
+                <a href="../home/products/products.html">Sản phẩm</a>
+                <a href="wishlist.html">Yêu thích</a>
+                <a href="cart.html">Giỏ hàng</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====================================================================== -->
+    <!-- 2. NỘI DUNG CHÍNH TRANG THANH TOÁN (CHECKOUT FORM & SUMMARY) -->
+    <!-- ====================================================================== -->
     <main class="container">
-        <!-- Thẻ H1 duy nhất -->
+        <!-- Tiêu đề trang -->
         <h1 class="page-title">Thông Tin Thanh Toán</h1>
+
+        <!-- Form nhập thông tin thanh toán & Đặt hàng -->
         <form id="checkoutForm" class="checkout-grid checkout-figma-structure">
+
+            <!-- Cột trái: Form điền thông tin liên hệ, giao hàng và thanh toán thẻ -->
             <section class="checkout-section checkout-form-panel card-flex">
+
+                <!-- Phần 1: Thông tin liên hệ -->
                 <h2 class="section-title">1. Thông tin liên hệ</h2>
                 <label class="sr-only" for="email">Địa chỉ Email</label>
                 <input type="email" id="email" class="field-input" placeholder="Địa chỉ Email" required>
                 
+                <!-- Phần 2: Địa chỉ nhận hàng -->
                 <h2 class="section-title section-title-spacing">2. Giao hàng</h2>
                 <div class="grid-2-col">
                     <div class="field-stack">
@@ -35,6 +70,7 @@
                 <label class="sr-only" for="address">Địa chỉ chi tiết</label>
                 <input type="text" id="address" class="field-input" placeholder="Địa chỉ chi tiết" required>
                 
+                <!-- Phần 3: Thông tin thanh toán thẻ tín dụng -->
                 <h2 class="section-title section-title-spacing">3. Thanh toán thẻ</h2>
                 <div class="payment-card-box">
                     <p><strong>Credit Card</strong></p>
@@ -54,24 +90,36 @@
                     <input type="text" id="cardHolder" class="field-input" placeholder="Tên chủ thẻ">
                 </div>
             </section>
+
+            <!-- Cột phải: Bảng tóm tắt đơn hàng và nhập mã giảm giá -->
             <aside class="order-summary checkout-summary-panel card-flex">
                 <h2 class="section-title">Đơn hàng của bạn</h2>
+
+                <!-- Danh sách sản phẩm thanh toán (Render động bằng JS) -->
                 <div id="checkoutItems"></div>
                 
-                <!-- Ô nhập mã giảm giá FASCO -->
+                <!-- Ô nhập mã giảm giá Voucher -->
                 <div class="discount-box">
                     <label class="sr-only" for="discountCode">Mã giảm giá</label>
                     <input type="text" id="discountCode" class="field-input discount-input" placeholder="Mã giảm giá">
                     <button type="button" class="btn-primary discount-btn" id="applyDiscountBtn">Áp dụng</button>
                 </div>
+
+                <!-- Dòng tổng tiền cuối cùng -->
                 <div class="summary-row summary-total">
                     <span>Tổng cộng:</span>
                     <strong id="checkoutTotal">0đ</strong>
                 </div>
+
+                <!-- Nút xác nhận đặt hàng & thanh toán -->
                 <button type="submit" class="btn-primary checkout-submit-btn">Thanh toán ngay</button>
             </aside>
         </form>
     </main>
+
+    <!-- ====================================================================== -->
+    <!-- 3. CÁC TỆP SCRIPT JAVASCRIPT -->
+    <!-- ====================================================================== -->
     <script src="../../app.js"></script>
     <script src="../../assets/js/checkout.js"></script>
     <script src="../../assets/js/navigation.js"></script>

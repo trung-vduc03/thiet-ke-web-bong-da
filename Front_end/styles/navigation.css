@@ -1,4 +1,9 @@
-/* Football Fashion - mobile-first navigation */
+/* ==========================================================================
+   FOOTBALL FASHION - NAVIGATION.CSS
+   File định dạng giao diện cho thanh điều hướng Responsive trên Mobile
+   ========================================================================== */
+
+/* Nút mở menu dạng Hamburger trên mobile */
 .mobile-menu-toggle {
     display: none;
     width: 44px;
@@ -15,6 +20,7 @@
     line-height: 1;
 }
 
+/* Định vị tương đối cho Header khi có mobile nav */
 .site-header[data-mobile-nav] .header-inner,
 .simple-header[data-mobile-nav] .simple-header-inner {
     position: relative;

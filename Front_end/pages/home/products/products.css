@@ -1,20 +1,31 @@
+/* ==========================================================================
+   FOOTBALL FASHION - PRODUCTS.CSS
+   File định dạng giao diện cho trang Danh sách sản phẩm (Product Catalog) & Modal Xem Nhanh
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BIẾN MÀU SẮC & GIAO DIỆN CHUNG (CSS VARIABLES)
+   -------------------------------------------------------------------------- */
 :root {
-    --primary: #071a2b;
-    --primary-light: #0d2b43;
-    --accent: #18d900;
-    --accent-dark: #10ad00;
-    --text: #172033;
-    --muted: #697386;
-    --border: #e5e7eb;
-    --background: #f7f8fa;
-    --white: #ffffff;
-    --danger: #e11d48;
-    --warning: #f59e0b;
-    --radius: 10px;
-    --shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
-    --transition: all .25s ease;
+    --primary: #071a2b;          /* Màu chủ đạo xanh đậm */
+    --primary-light: #0d2b43;    /* Màu xanh đậm sáng hơn cho hover */
+    --accent: #18d900;           /* Màu điểm nhấn xanh lá thể thao */
+    --accent-dark: #10ad00;      /* Màu điểm nhấn đậm */
+    --text: #172033;             /* Màu chữ chính */
+    --muted: #697386;            /* Màu chữ phụ / xám mờ */
+    --border: #e5e7eb;           /* Màu đường viền */
+    --background: #f7f8fa;       /* Màu nền tổng thể */
+    --white: #ffffff;            /* Màu trắng */
+    --danger: #e11d48;           /* Màu đỏ cảnh báo / giá sale */
+    --warning: #f59e0b;          /* Màu vàng sao đánh giá */
+    --radius: 10px;              /* Độ bo góc mặc định */
+    --shadow: 0 8px 25px rgba(15, 23, 42, 0.08); /* Đổ bóng nhẹ */
+    --transition: all .25s ease; /* Hiệu ứng chuyển động mượt */
 }
 
+/* --------------------------------------------------------------------------
+   2. THIẾT LẬP CƠ BẢN (RESET & BASE STYLES)
+   -------------------------------------------------------------------------- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -32,6 +43,7 @@ body {
     line-height: 1.5;
 }
 
+/* Khóa cuộn trang khi modal đang mở */
 body.modal-open {
     overflow: hidden;
 }
@@ -50,6 +62,7 @@ a {
     color: inherit;
 }
 
+/* Lớp ẩn giao diện chỉ dành cho trình đọc màn hình (Screen Reader / a11y) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -62,6 +75,9 @@ a {
     border: 0;
 }
 
+/* --------------------------------------------------------------------------
+   3. THANH ĐIỀU HƯỚNG ĐẦU TRANG (HEADER & NAVBAR)
+   -------------------------------------------------------------------------- */
 .site-header {
     position: sticky;
     top: 0;
@@ -121,6 +137,9 @@ a {
     color: var(--accent);
 }
 
+/* --------------------------------------------------------------------------
+   4. BỐ CỤC KHU VỰC DANH MỤC (CATALOG SECTION & BREADCRUMB)
+   -------------------------------------------------------------------------- */
 .catalog-section {
     width: min(1440px, 100%);
     margin: 0 auto;
@@ -154,6 +173,9 @@ a {
     color: #9ca3af;
 }
 
+/* --------------------------------------------------------------------------
+   5. BANNER DANH MỤC SẢN PHẨM (CATEGORY BANNER)
+   -------------------------------------------------------------------------- */
 .category-banner {
     position: relative;
     min-height: 230px;
@@ -172,6 +194,7 @@ a {
     color: #fff;
 }
 
+/* Họa tiết trang trí gradient nền tròn */
 .category-banner::before {
     content: "";
     position: absolute;
@@ -222,6 +245,9 @@ a {
     font-size: 14px;
 }
 
+/* --------------------------------------------------------------------------
+   6. THANH TÌM KIẾM SẢN PHẨM (PRODUCT SEARCH BAR)
+   -------------------------------------------------------------------------- */
 .product-search {
     position: relative;
     width: 100%;
@@ -268,6 +294,9 @@ a {
     background: var(--primary-light);
 }
 
+/* --------------------------------------------------------------------------
+   7. THANH TIÊU ĐỀ & BỘ SẮP XẾP (CATALOG HEADER & SORTING)
+   -------------------------------------------------------------------------- */
 .catalog-header {
     display: flex;
     align-items: flex-end;
@@ -319,6 +348,9 @@ a {
     border-color: var(--primary);
 }
 
+/* --------------------------------------------------------------------------
+   8. BỐ CỤC SIDEBAR & LƯỚI SẢN PHẨM (CATALOG LAYOUT & GRID)
+   -------------------------------------------------------------------------- */
 .catalog-layout {
     display: grid;
     grid-template-columns: 235px minmax(0, 1fr);
@@ -326,6 +358,7 @@ a {
     align-items: start;
 }
 
+/* Sidebar bộ lọc dính cố định khi cuộn trang */
 .filter-sidebar {
     position: sticky;
     top: 95px;
@@ -399,6 +432,7 @@ a {
     cursor: pointer;
 }
 
+/* Khoảng giá */
 .price-filter-header {
     display: flex;
     align-items: center;
@@ -430,6 +464,9 @@ a {
     font-size: 10px;
 }
 
+/* --------------------------------------------------------------------------
+   9. KHU VỰC SẢN PHẨM & THẺ SẢN PHẨM (PRODUCT CARDS)
+   -------------------------------------------------------------------------- */
 .product-area {
     min-width: 0;
 }
@@ -452,6 +489,7 @@ a {
     font-weight: 800;
 }
 
+/* Các tag bộ lọc đang chọn */
 .active-filters {
     display: flex;
     flex-wrap: wrap;
@@ -481,12 +519,14 @@ a {
     color: var(--muted);
 }
 
+/* Lưới hiển thị 3 cột sản phẩm */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px 22px;
 }
 
+/* Thẻ sản phẩm */
 .product-card {
     position: relative;
     min-width: 0;
@@ -519,6 +559,7 @@ a {
     transform: scale(1.045);
 }
 
+/* Nhãn Sale / Mới */
 .product-badge {
     position: absolute;
     top: 11px;
@@ -537,6 +578,7 @@ a {
     color: #fff;
 }
 
+/* Nút yêu thích dạng tròn góc trên ảnh */
 .wishlist-btn {
     position: absolute;
     top: 10px;
@@ -563,6 +605,7 @@ a {
     color: var(--danger);
 }
 
+/* Thông tin thẻ sản phẩm */
 .product-card-info {
     padding: 14px 2px 0;
 }
@@ -594,6 +637,7 @@ a {
     color: #0b67b2;
 }
 
+/* Đánh giá sao */
 .product-rating {
     display: flex;
     align-items: center;
@@ -612,6 +656,7 @@ a {
     font-size: 11px;
 }
 
+/* Giá sản phẩm */
 .price-box {
     display: flex;
     align-items: center;
@@ -632,6 +677,7 @@ a {
     text-decoration: line-through;
 }
 
+/* Nút hành động trên thẻ sản phẩm */
 .card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -672,6 +718,9 @@ a {
     background: var(--primary-light);
 }
 
+/* --------------------------------------------------------------------------
+   10. GIAO DIỆN KHI KHÔNG CÓ SẢN PHẨM & PHÂN TRANG (EMPTY STATE & PAGINATION)
+   -------------------------------------------------------------------------- */
 .no-products {
     padding: 70px 20px;
     border-radius: 10px;
@@ -743,6 +792,9 @@ a {
     color: #fff;
 }
 
+/* --------------------------------------------------------------------------
+   11. CỬA SỔ XEM NHANH (QUICK VIEW MODAL)
+   -------------------------------------------------------------------------- */
 .modal {
     position: fixed;
     inset: 0;
@@ -997,6 +1049,9 @@ a {
     color: #0b67b2;
 }
 
+/* --------------------------------------------------------------------------
+   12. THÔNG BÁO NỔI TOAST (TOAST NOTIFICATION)
+   -------------------------------------------------------------------------- */
 .toast {
     position: fixed;
     right: 25px;
@@ -1026,6 +1081,9 @@ a {
     color: var(--accent);
 }
 
+/* --------------------------------------------------------------------------
+   13. CHÂN TRANG (FOOTER)
+   -------------------------------------------------------------------------- */
 .site-footer {
     padding: 28px 20px;
     background: var(--primary);
@@ -1034,19 +1092,7 @@ a {
     font-size: 12px;
 }
 
-
-
-
-
-
-
-
-/* Mobile-first catalog */
-
-
-
-
-/* Final image rendering rule: product images must always occupy the card. */
+/* Quy tắc hiển thị ảnh sản phẩm luôn lấp đầy thẻ */
 .product-img-box .product-image {
     display: block;
     width: 100%;
